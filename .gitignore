@@ -49,3 +49,5 @@ stats.json
 .DS_Store
 npm-debug.log
 .idea
+./config.js
+config.js
