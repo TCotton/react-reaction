@@ -63,6 +63,5 @@
   "validateLineBreaks": "LF",
   "validateQuoteMarks": "'",
   "validateIndentation": 2,
-  "esnext": true,
-  "excludeFiles": ["node_modules/**", "build/**", "webpack/**"]
+  "excludeFiles": ["node_modules/**", "build/**", "server/**"]
 }

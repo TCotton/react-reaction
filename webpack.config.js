@@ -1,3 +1,5 @@
+let path = require('path');
+
 module.exports = {
   // having an array means that there can be multiple entry points
   entry: [
@@ -17,6 +19,11 @@ module.exports = {
         exclude: /node_modules/,
         test: /\.jsx?$|\.js?$/,
         loader: 'eslint-loader'
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.jsx?$|\.js?$/,
+        loader: 'jscs-loader'
       }
     ],
     loaders: [

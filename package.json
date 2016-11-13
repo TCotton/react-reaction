@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ../'test'",
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline",
-    "build": "bump --prompt"
+    "build": "bump --prompt",
+    "strip": "webpack --config 'webpack.production.config.js' -p"
   },
   "repository": {
     "type": "git",
@@ -115,6 +116,7 @@
     "sass-lint": "1.10.2",
     "sass-loader": "4.0.2",
     "source-map-support": "0.4.6",
+    "strip-loader": "0.1.2",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "version-bump-prompt": "1.7.2",
