@@ -1,4 +1,13 @@
 let path = require('path');
+var sassLintPlugin = require('sasslint-webpack-plugin');
+
+let sassParams = [
+  'outputStyle=expanded',
+  'includePaths[]=' + path.resolve(__dirname, './app/scss')
+  //'excludePaths[]=' + path.resolve(__dirname, './node_modules')
+];
+
+sassParams.push('sourceMap', 'sourceMapContents=true');
 
 module.exports = {
   // having an array means that there can be multiple entry points
@@ -13,17 +22,31 @@ module.exports = {
   },
   debug: true,
   devtool: 'inline-source-map',
+  plugins: [
+    new sassLintPlugin({
+      configFile: '.scss-lint.yml',
+      context: './app/scss/',
+      ignoreFiles: [
+        './app/scss/_reset.scss'
+      ]
+  /*    ignorePlugins: [
+        'sass-lint',
+        'sasslint-webpack-plugin'
+      ]*/
+     /* glob: '**!/!*.s?(a|c)ss'*/
+    }),
+  ],
   module: {
     preLoaders: [
       {
         exclude: /node_modules/,
-        test: /\.jsx?$|\.js?$/,
-        loader: 'eslint-loader'
+        test: /\.jsx?$|\.js$/,
+        loader: 'eslint-loader!jscs-loader'
       },
       {
         exclude: /node_modules/,
-        test: /\.jsx?$|\.js?$/,
-        loader: 'jscs-loader'
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader?' + sassParams.join('&')
       }
     ],
     loaders: [

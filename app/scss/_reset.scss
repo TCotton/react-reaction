@@ -1,8 +1,9 @@
+// scss-lint:disable all
 :root {
-	--link-colour: blue;
-	--selection-colour: #000000;
-	--selection-bg-colour: #b3d4fc;
-	--focus-border: #cccccc;
+  --link-colour: blue;
+  --selection-colour: #000000;
+  --selection-bg-colour: #b3d4fc;
+  --focus-border: #cccccc;
 }
 
 html,
@@ -84,12 +85,12 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	vertical-align: baseline;
-	font-size: 100%;
-	background: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font-size: 100%;
+  background: transparent;
 }
 /* ==========================================================================
    HTML5 display definitions
@@ -113,7 +114,7 @@ menu,
 nav,
 section,
 summary {
-	display: block;
+  display: block;
 }
 /**
  * 1. Correct `inline-block` display not defined in IE 8/9.
@@ -124,12 +125,12 @@ audio,
 canvas,
 progress,
 video {
-	/* 1 */
+  /* 1 */
 
-	display: inline-block;
-	/* 2 */
+  display: inline-block;
+  /* 2 */
 
-	vertical-align: baseline;
+  vertical-align: baseline;
 }
 /**
  * Prevent modern browsers from displaying `audio` without controls.
@@ -137,8 +138,8 @@ video {
  */
 
 audio:not([controls]) {
-	display: none;
-	height: 0;
+  display: none;
+  height: 0;
 }
 /**
  * Address `[hidden]` styling not present in IE 8/9.
@@ -147,7 +148,7 @@ audio:not([controls]) {
 
 [hidden],
 template {
-	display: none;
+  display: none;
 }
 /**
  * 1. Correct the inability to style clickable types in iOS and Safari.
@@ -155,12 +156,12 @@ template {
  */
 
 ::-webkit-file-upload-button {
-	/* 1 */
+  /* 1 */
 
-	-webkit-appearance: button;
-	/* 2 */
+  -webkit-appearance: button;
+  /* 2 */
 
-	font: inherit;
+  font: inherit;
 }
 /* ==========================================================================
    Base
@@ -172,15 +173,15 @@ template {
  */
 
 html {
-	font-family: sans-serif;
-	text-size-adjust: 100%;
+  font-family: sans-serif;
+  text-size-adjust: 100%;
 }
 /**
  * Remove default margin.
  */
 
 body {
-	margin: 0;
+  margin: 0;
 }
 /* ==========================================================================
    Links
@@ -191,32 +192,32 @@ body {
  */
 
 a {
-	background-color: transparent;
-	/* 1 */
+  background-color: transparent;
+  /* 1 */
 
-	-webkit-text-decoration-skip: objects;
-	/* 2 */
+  -webkit-text-decoration-skip: objects;
+  /* 2 */
 }
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
  */
 
 a:focus {
-	outline: thin dotted var(--focus-border);
+  outline: thin dotted var(--focus-border);
 }
 textarea:focus,
 input:focus {
-	outline: thin dotted var(--focus-border);
+  outline: thin dotted var(--focus-border);
 }
 :focus {
-	outline: thin dotted var(--focus-border);
+  outline: thin dotted var(--focus-border);
 }
 /**
  * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
 
 abbr[title] {
-	border-bottom: 1px dotted;
+  border-bottom: 1px dotted;
 }
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
@@ -224,14 +225,14 @@ abbr[title] {
 
 b,
 strong {
-	font-weight: bold;
+  font-weight: bold;
 }
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
 
 dfn {
-	font-style: italic;
+  font-style: italic;
 }
 /**
  * Address differences between Firefox and other browsers.
@@ -242,23 +243,23 @@ dfn {
  */
 
 hr {
-	/* 1 */
+  /* 1 */
 
-	box-sizing: content-box;
-	/* 1 */
+  box-sizing: content-box;
+  /* 1 */
 
-	height: 0;
-	/* 2 */
+  height: 0;
+  /* 2 */
 
-	overflow: visible;
+  overflow: visible;
 }
 /**
  * Address styling not present in IE 8/9.
  */
 
 mark {
-	background: #ff0;
-	color: #000;
+  background: #ff0;
+  color: #000;
 }
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
@@ -268,29 +269,29 @@ code,
 kbd,
 pre,
 samp {
-	font-family: monospace, monospace;
-	font-size: 1em;
+  font-family: monospace, monospace;
+  font-size: 1em;
 }
 /**
  * Improve readability of pre-formatted text in all browsers.
  */
 
 pre {
-	white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 /**
  * Set consistent quote types.
  */
 
 q {
-	quotes: "\201C" "\201D" "\2018" "\2019";
+  quotes: "\201C" "\201D" "\2018" "\2019";
 }
 /**
  * Address inconsistent and variable font size in all browsers.
  */
 
 small {
-	font-size: 80%;
+  font-size: 80%;
 }
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
@@ -298,16 +299,16 @@ small {
 
 sub,
 sup {
-	font-size: 75%;
-	line-height: 0;
-	position: relative;
-	vertical-align: baseline;
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
 }
 sup {
-	top: -0.5em;
+  top: -0.5em;
 }
 sub {
-	bottom: -0.25em;
+  bottom: -0.25em;
 }
 /* ==========================================================================
    Embedded content
@@ -317,21 +318,21 @@ sub {
  */
 
 img {
-	border: 0;
+  border: 0;
 }
 /**
  * Change the fill color to match the text color in all browsers (opinionated).
  */
 
 svg {
-	fill: currentColor;
+  fill: currentColor;
 }
 /**
  * Correct overflow displayed oddly in IE 9.
  */
 
 svg:not(:root) {
-	overflow: hidden;
+  overflow: hidden;
 }
 /* ==========================================================================
    Figures
@@ -341,7 +342,7 @@ svg:not(:root) {
  */
 
 figure {
-	margin: 0;
+  margin: 0;
 }
 /* ==========================================================================
    Forms
@@ -351,9 +352,9 @@ figure {
  */
 
 fieldset {
-	border: none;
-	margin: 0;
-	padding: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 /**
  * 1. Correct the text wrapping in Edge and IE.
@@ -363,24 +364,24 @@ fieldset {
  */
 
 legend {
-	/* 1 */
+  /* 1 */
 
-	box-sizing: border-box;
-	/* 2 */
+  box-sizing: border-box;
+  /* 2 */
 
-	color: inherit;
-	/* 1 */
+  color: inherit;
+  /* 1 */
 
-	display: table;
-	/* 1 */
+  display: table;
+  /* 1 */
 
-	max-width: 100%;
-	/* 3 */
+  max-width: 100%;
+  /* 3 */
 
-	padding: 0;
-	/* 1 */
+  padding: 0;
+  /* 1 */
 
-	white-space: normal;
+  white-space: normal;
 }
 /**
  * 1. Correct color not being inherited.
@@ -394,15 +395,15 @@ input,
 optgroup,
 select,
 textarea {
-	/* 1 */
+  /* 1 */
 
-	color: inherit;
-	/* 2 */
+  color: inherit;
+  /* 2 */
 
-	font: inherit;
-	/* 3 */
+  font: inherit;
+  /* 3 */
 
-	margin: 0;
+  margin: 0;
 }
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
@@ -411,7 +412,7 @@ textarea {
 
 button,
 input {
-	line-height: normal;
+  line-height: normal;
 }
 /**
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
@@ -422,14 +423,14 @@ input {
 
 button,
 select {
-	text-transform: none;
+  text-transform: none;
 }
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10.
  */
 
 button {
-	overflow: visible;
+  overflow: visible;
 }
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
@@ -443,12 +444,12 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	/* 2 */
+  /* 2 */
 
-	-webkit-appearance: button;
-	/* 3 */
+  -webkit-appearance: button;
+  /* 3 */
 
-	cursor: pointer;
+  cursor: pointer;
 }
 /**
  * Re-set default cursor for disabled elements.
@@ -456,7 +457,7 @@ input[type="submit"] {
 
 button[disabled],
 html input[disabled] {
-	cursor: default;
+  cursor: default;
 }
 /**
  * 1. Address box sizing set to `content-box` in IE 8/9/10.
@@ -465,12 +466,12 @@ html input[disabled] {
 
 input[type="checkbox"],
 input[type="radio"] {
-	/* 1 */
+  /* 1 */
 
-	box-sizing: border-box;
-	/* 2 */
+  box-sizing: border-box;
+  /* 2 */
 
-	padding: 0;
+  padding: 0;
 }
 /**
  * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
@@ -479,10 +480,10 @@ input[type="radio"] {
  */
 
 input[type="search"] {
-	/* 1 */
+  /* 1 */
 
-	-webkit-appearance: textfield;
-	box-sizing: content-box;
+  -webkit-appearance: textfield;
+  box-sizing: content-box;
 }
 /**
  * Remove inner padding and search cancel button in Safari 5 and Chrome
@@ -491,7 +492,7 @@ input[type="search"] {
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-	-webkit-appearance: none;
+  -webkit-appearance: none;
 }
 /**
  * Remove the inner border and padding in Firefox.
@@ -501,8 +502,8 @@ button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
-	border-style: none;
-	padding: 0;
+  border-style: none;
+  padding: 0;
 }
 /**
  * Restore the focus styles unset by the previous rule.
@@ -512,7 +513,7 @@ button:-moz-focusring,
 [type="button"]:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
-	outline: 1px dotted ButtonText;
+  outline: 1px dotted ButtonText;
 }
 /**
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
@@ -520,7 +521,7 @@ button:-moz-focusring,
  */
 
 input {
-	line-height: normal;
+  line-height: normal;
 }
 /**
  * 1. Remove default vertical scrollbar in IE 8/9.
@@ -528,12 +529,12 @@ input {
  */
 
 textarea {
-	/* 1 */
+  /* 1 */
 
-	overflow: auto;
-	/* 2 */
+  overflow: auto;
+  /* 2 */
 
-	vertical-align: top;
+  vertical-align: top;
 }
 /* ==========================================================================
    Tables
@@ -543,12 +544,12 @@ textarea {
  */
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 td,
 th {
-	padding: 0;
+  padding: 0;
 }
 /* Interactive
    ========================================================================== */
@@ -558,17 +559,17 @@ th {
  */
 
 details,
-	/* 1 */
+  /* 1 */
 
 menu {
-	display: block;
+  display: block;
 }
 /*
  * Add the correct display in all browsers.
  */
 
 summary {
-	display: list-item;
+  display: list-item;
 }
 /* Scripting
    ========================================================================== */
@@ -577,14 +578,14 @@ summary {
  */
 
 canvas {
-	display: inline-block;
+  display: inline-block;
 }
 /**
  * Add the correct display in IE.
  */
 
 template {
-	display: none;
+  display: none;
 }
 /* Hidden
    ========================================================================== */
@@ -593,7 +594,7 @@ template {
  */
 
 [hidden] {
-	display: none;
+  display: none;
 }
 /* WAI-ARIA (https://www.w3.org/TR/html5/dom.html#wai-aria)
    ========================================================================== */
@@ -602,14 +603,14 @@ template {
  */
 
 [aria-busy="true"] {
-	cursor: progress;
+  cursor: progress;
 }
 /*
  * Change the cursor on control elements (opinionated).
  */
 
 [aria-controls] {
-	cursor: pointer;
+  cursor: pointer;
 }
 /*
  * Change the cursor on disabled, not-editable, or otherwise
@@ -617,7 +618,7 @@ template {
  */
 
 [aria-disabled] {
-	cursor: default;
+  cursor: default;
 }
 /* User interaction (https://www.w3.org/TR/html5/editing.html)
    ========================================================================== */
@@ -634,38 +635,38 @@ label,
 select,
 textarea,
 [tabindex] {
-	/* 1 */
+  /* 1 */
 
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
 /*
  * Change the display on visually hidden accessible elements (opinionated).
  */
 
 [hidden][aria-hidden="false"] {
-	clip: rect(0, 0, 0, 0);
-	display: inherit;
-	position: absolute;
+  clip: rect(0, 0, 0, 0);
+  display: inherit;
+  position: absolute;
 }
 [hidden][aria-hidden="false"]:focus {
-	clip: auto;
+  clip: auto;
 }
 /* disable / enable fort kerning and in all modern browers from ie9 upwards */
 
 body {
-	/* only optimize text for headers due to performance issues */
+  /* only optimize text for headers due to performance issues */
 
-	text-rendering: optimizeSpeed;
-	-webkit-font-smoothing: subpixel-antialiased;
-	font-kerning: auto;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-kerning: auto;
 }
 /* Hack that prevents the jump between scrollbar and no-scrollbar pages.
  http://aykevl.nl/2014/09/fix-jumping-scrollbar */
 
 html {
-	margin-left: calc(100vw - 100%);
-	margin-right: 0;
+  margin-left: calc(100vw - 100%);
+  margin-right: 0;
 }
 h1,
 h2,
@@ -676,12 +677,12 @@ h6,
 th,
 td,
 caption {
-	font-weight: normal;
-	/* just left it in the headers. Was making font less legible elsewhere */
+  font-weight: normal;
+  /* just left it in the headers. Was making font less legible elsewhere */
 
-	text-rendering: optimizeLegibility;
-	font-kerning: normal;
-	font-feature-settings: "liga", "kern";
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-feature-settings: "liga", "kern";
 }
 /* slight character and word gap of retina devices to make the text more legible */
 
@@ -689,29 +690,29 @@ caption {
 not all,
 (min-resolution: 2dppx),
 (min-resolution: 192dpi) {
-	p,
-	li {
-		letter-spacing: 0.01rem;
-		word-spacing: 0.01rem;
-	}
+  p,
+  li {
+    letter-spacing: 0.01rem;
+    word-spacing: 0.01rem;
+  }
 }
 /* { Box-sizing: Border-box } FTW: http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
 
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 input[type=submit],
 input[type=button],
 select,
 a {
-	cursor: pointer;
+  cursor: pointer;
 }
 textarea {
-	resize: vertical;
-	overflow: auto;
-	width: 100%;
+  resize: vertical;
+  overflow: auto;
+  width: 100%;
 }
 /**
  * Fix the cursor style for Chrome's increment/decrement buttons. For certain
@@ -721,7 +722,7 @@ textarea {
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-	height: auto;
+  height: auto;
 }
 /* Remove Search Box Buttons in WebKit: http://davidwalsh.name/remove-search-box-buttons-webkit */
 
@@ -729,7 +730,7 @@ input[type='search']::-webkit-search-decoration,
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-results-button,
 input[type='search']::-webkit-search-results-decoration {
-	display: none;
+  display: none;
 }
 /* remove default webkit form field appearance */
 
@@ -737,16 +738,16 @@ input[type=text],
 input[type=email],
 input[type=url],
 textarea {
-	appearance: none;
-	border-radius: 0;
+  appearance: none;
+  border-radius: 0;
 }
 /* responsive images */
 
 img {
-	max-width: 100%;
-	height: auto;
-	vertical-align: middle;
-	border: 0;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
 }
 /*
  * Remove the text shadow on text selections (opinionated).
@@ -754,68 +755,71 @@ img {
  */
 
 ::-moz-selection {
-	/* 1 */
+  /* 1 */
 
-	background-color: var(--selection-bg-colour);
-	/* 1 */
+  background-color: var(--selection-bg-colour);
+  /* 1 */
 
-	color: var(--selection-colour);
-	text-shadow: none;
+  color: var(--selection-colour);
+  text-shadow: none;
 }
 ::selection {
-	/* 1 */
+  /* 1 */
 
-	background-color: var(--selection-bg-colour);
-	/* 1 */
+  background-color: var(--selection-bg-colour);
+  /* 1 */
 
-	color: var(--selection-colour);
-	text-shadow: none;
+  color: var(--selection-colour);
+  text-shadow: none;
 }
 /* set colour links */
 
 a:link {
-	color: var(--link-colour);
+  color: var(--link-colour);
 }
 a:visited {
-	color: var(--link-colour);
+  color: var(--link-colour);
 }
 a:focus {
-	color: var(--link-colour);
+  color: var(--link-colour);
 }
 a:hover {
-	color: var(--link-colour);
+  color: var(--link-colour);
 }
 a:active {
-	color: var(--link-colour);
+  color: var(--link-colour);
 }
 /* selected link */
 
 .hide {
-	display: none;
+  display: none;
 }
 /*
 * Hide only visually, but have it available for screenreaders: h5bp.com/v
 */
 
+
 .visuallyhidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 /* clearfix */
 
 .clearfix::before,
 .clearfix::after {
-	content: "\0020";
-	display: block;
-	height: 0;
-	overflow: hidden;
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
 }
 .clearfix::after {
-	clear: both;
+  clear: both;
 }
+// scss-lint:enable all
+
