@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>React simple starter</div>
-    );
-  }
+export default function App() {
+  return (
+    <div>React simple starter</div>
+  );
 }
+
