@@ -1,8 +1,11 @@
 import React from 'react';
+import styles from './_index.scss';
 
 export default function App() {
   return (
-    <div>React simple starter</div>
+    <div className={styles['a-class-here']}>
+      App here
+    </div>
   );
 }
 

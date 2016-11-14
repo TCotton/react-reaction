@@ -27,7 +27,7 @@ module.exports = {
   devtool: 'inline-source-map',
   plugins: [
     new sassLintPlugin({
-      configFile: '.scss-lint.yml',
+      configFile: '.sass-lint.yml',
       context: './app/scss/',
       ignoreFiles: [
         './app/scss/_reset.scss'
