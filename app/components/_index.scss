@@ -1,3 +1,75 @@
-.a-class-here {
-  background: black;
+@import '../scss/_variables';
+
+.wrapper {
+  width: 100%;
+  max-width: 1366px;
+  margin: 10px auto;
+}
+
+.left-column {
+  background: transparent;
+}
+
+.right-column {
+  background: transparent;
+}
+
+.list-section {
+  background: transparent;
+}
+
+.list-section-left-column {
+  background: transparent;
+
+  .stars {
+    background: transparent;
+  }
+
+  .weblink {
+    background: transparent;
+  }
+}
+
+.list-section-right-column {
+  background: transparent;
+}
+
+@supports (display:grid) {
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: #{$gld8} #{$base - $gld8};
+    background: grey;
+
+    > div:first-of-type {
+      background: blue;
+    }
+
+    > div:last-of-type {
+      background: pink
+    }
+  }
+
+}
+
+
+@supports ( (not (display:grid)) and (display:flex)) {
+
+  .wrapper {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+
+    > div:first-of-type {
+      width: #{$gld8};
+
+      background: blue;
+    }
+    > div:last-of-type {
+      width: #{$base - $gld8};
+
+      background: green;
+    }
+  }
+
 }

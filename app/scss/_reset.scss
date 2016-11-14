@@ -811,14 +811,14 @@ a:active {
 }
 /* clearfix */
 
-.clearfix::before,
-.clearfix::after {
+:global(.clearfix)::before,
+:global(.clearfix)::after {
   content: "\0020";
   display: block;
   height: 0;
   overflow: hidden;
 }
-.clearfix::after {
+:global(.clearfix)::after {
   clear: both;
 }
 // scss-lint:enable all
