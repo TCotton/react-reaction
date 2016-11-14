@@ -1,7 +1,7 @@
-let WebpackStrip = require('strip-loader');
-let devConfig = require('./webpack.config');
+const WebpackStrip = require('strip-loader');
+const devConfig = require('./webpack.config');
 
-let stripLoader = {
+const stripLoader = {
   test: /\.jsx?$|\.js?$/,
   exclude: /node_modules/,
   loader: WebpackStrip.loader('console.log')

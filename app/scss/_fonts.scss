@@ -1,0 +1,99 @@
+@mixin industry-inc-3d-bold() {
+  font-family: unquote("'industry-inc-3d', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin industry-inc-n-out() {
+  font-family: unquote("'industry-inc-in-n-out', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-thin() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-extralight() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-light() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-regular() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-medium() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-semibold() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-bold() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin clone-rounded-later-extrabold() {
+  font-family: unquote("'clone-rounded-latin', sans-serif");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@mixin lo-res-9-regular() {
+  font-family: unquote("'lores-9-wide', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin lo-res-9-bold() {
+  font-family: unquote("'lores-9-wide', sans-serif");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@mixin lo-res-wide() {
+  font-family: unquote("'lores-9-wide-bold-alt-oaklan', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin lores-9-minus-wide() {
+  font-family: unquote("'lores-9-minus-wide', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin variex-regular () {
+  font-family: unquote("'variex', sans-serif");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin variex-bold () {
+  font-family: unquote("'variex', sans-serif");
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+
+

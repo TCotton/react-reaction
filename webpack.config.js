@@ -1,9 +1,9 @@
-let path = require('path');
-let sassLintPlugin = require('sasslint-webpack-plugin');
-let autoprefixer = require('autoprefixer');
-let postcssBase64 = require('postcss-base64');
+const path = require('path');
+const sassLintPlugin = require('sasslint-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const postcssBase64 = require('postcss-base64');
 
-let sassParams = [
+const sassParams = [
   'outputStyle=expanded',
   'includePaths[]=' + path.resolve(__dirname, './app/scss')
   //'excludePaths[]=' + path.resolve(__dirname, './node_modules')
