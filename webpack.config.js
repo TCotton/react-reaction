@@ -15,11 +15,11 @@ module.exports = {
   context: path.resolve('app'),
   // having an array means that there can be multiple entry points
   entry: [
-    './app/index.jsx'
+    './index.jsx'
   ],
   output: {
-    //path: path.resolve('./build'),
-    publicPath: '/',
+    path: path.resolve('./build'),
+    publicPath: 'build',
     filename: 'bundle.js',
     sourceMapFilename: "[file].map",
   },
