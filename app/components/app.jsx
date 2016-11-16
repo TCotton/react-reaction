@@ -2,10 +2,14 @@ import React from 'react';
 import classnames from 'classnames';
 
 import styles from './_index.scss';
+import star from './images/star.svg';
+import fork from './images/repo-forked.svg';
 
 export default function App() {
 
-  const wrapper = classnames(styles['wrapper'], 'whatever');
+  const wrapper = classnames(styles['wrapper']);
+  const stars = classnames(styles['stars']);
+  const forked = classnames(styles['forked']);
 
   return (
 
@@ -28,13 +32,55 @@ export default function App() {
 
           <div className={styles['list-section-left-column']}>
 
-            <div className={styles['stars']}>Stars</div>
-            <div className={styles['weblink']}>Stars</div>
+            <div className={stars}>
+              <img src={star} alt='' />
+            </div>
+            <div className={forked}>
+              <img src={fork} alt='' />
+            </div>
 
           </div>
           <div className={styles['list-section-right-column']}>
             <h3>React component title</h3>
-            <p>Description</p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+
+        </section>
+
+        <section className={styles['list-section']}>
+
+          <div className={styles['list-section-left-column']}>
+
+            <div className={stars}>
+              <img src={star} alt='' />
+            </div>
+            <div className={forked}>
+              <img src={fork} alt='' />
+            </div>
+
+          </div>
+          <div className={styles['list-section-right-column']}>
+            <h3>React component title</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+          </div>
+
+        </section>
+
+        <section className={styles['list-section']}>
+
+          <div className={styles['list-section-left-column']}>
+
+            <div className={stars}>
+              <img src={star} alt='' />
+            </div>
+            <div className={forked}>
+              <img src={fork} alt='' />
+            </div>
+
+          </div>
+          <div className={styles['list-section-right-column']}>
+            <h3>React component title</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
           </div>
 
         </section>

@@ -57,10 +57,10 @@
   } @else if $divider == 1.5 {
     $margin: (strip-units($baseLineHeight) / $fontSizeEm) * 1.5;
     margin-bottom: #{double-size($fontSize, $margin)}#{"em"};
-  } @else if $divider == .5 {
+  } @else if $divider == 0.5 {
     $margin: strip-units($baseLineHeight) / $fontSizeEm / 2;
     margin-bottom: #{double-size($fontSize, $margin)}#{"em"};
-  } @else if $divider == .25 {
+  } @else if $divider == 0.25 {
     $margin: strip-units($baseLineHeight) / $fontSizeEm / 4;
     margin-bottom: #{double-size($fontSize, $margin)}#{"em"};
   } @else if $divider == null {

@@ -1,9 +1,12 @@
 @import '../scss/_variables';
+@import '../scss/_mixins';
+@import '../scss/_fonts';
 
 .wrapper {
   width: 100%;
   max-width: 1366px;
-  margin: 10px auto;
+  margin: 30px auto 10px auto;
+  padding: 0 10px;
 }
 
 .left-column {
@@ -25,13 +28,51 @@
     background: transparent;
   }
 
-  .weblink {
+  .forked {
     background: transparent;
   }
+
+  > div {
+    background: transparent;
+    text-align: center;
+  }
+
+  > div img {
+    height: 30px;
+    object-fit: cover;
+  }
+
 }
 
 .list-section-right-column {
   background: transparent;
+}
+
+// fonts
+
+h1 {
+  @include font-calculator($baseFontFamily, 50px, 1.5);
+  line-height: 100%;
+}
+
+.left-column p {
+  @include font-calculator($secondaryFontFamily, 15px, 1);
+  font-weight: 500;
+}
+
+h2 {
+  @include font-calculator($secondaryFontFamily, 17px, 1);
+  font-weight: 600;
+}
+
+h3 {
+  @include font-calculator($secondaryFontFamily, 16px, 0.5);
+  font-weight: 400;
+}
+
+.right-column p {
+  @include font-calculator($secondaryFontFamily, 14px, 1);
+  font-weight: 300;
 }
 
 @supports (display:grid) {
@@ -39,19 +80,32 @@
   .wrapper {
     display: grid;
     grid-template-columns: #{$gld8} #{$base - $gld8};
-    background: grey;
+    background: transparent;
 
     > div:first-of-type {
-      background: blue;
+      background: transparent;
     }
 
     > div:last-of-type {
-      background: pink
+      background: transparent;
+      padding: 0 $gld7;
     }
+
+    .list-section {
+      display: grid;
+      grid-template-columns: #{$gld8} #{$base - $gld8};
+      background: transparent;
+      margin: 0 0 20px 0;
+
+      > div:first-of-type {
+        align-self: center;
+      }
+
+    }
+
   }
 
 }
-
 
 @supports ( (not (display:grid)) and (display:flex)) {
 

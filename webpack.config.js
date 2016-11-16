@@ -65,7 +65,7 @@ module.exports = {
         loader: 'style-loader!css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!sass-loader?' + sassParams.join('&')
       },
       {
-        test: /\.(png|jpg|jpeg)$/,
+        test: /\.(png|jpg|jpe?g$|svg)$/,
         exclude: /node_modules/,
         loader: 'url-loader?limit=100000'
       }

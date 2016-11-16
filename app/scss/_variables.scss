@@ -1,17 +1,23 @@
 $baseLineHeight: 2.5;
 $baseFontSize: 62.5%;
-$baseFontFamily: unquote("'Open Sans', Roboto, 'Droid Sans', 'Helvetica Neue', Helvetica, sans-serif");
-$secondaryFontFamily: unquote("'Yellowtail', cursive");
+$baseFontFamily: unquote("'industry-inc-3d', sans-serif");
+$secondaryFontFamily: unquote("'clone-rounded-latin', sans-serif");
 
-$golden:	1.618;
-$base:	100%;
-$gld10:	$base / $golden;
-$gld9:	$base - $gld10;
-$gld8:	$gld9 / $golden;
-$gld7:	$gld9 - $gld8;
-$gld6:	$gld7 / $golden;
-$gld5:	$gld7 - $gld6;
-$gld4:	$gld5 / $golden;
-$gld3:	$gld5 - $gld4;
-$gld2:	$gld3 / $golden;
-$gld1:	$gld3 - $gld2;
+$golden: 1.618;
+$base: 100%;
+$gld10: $base / $golden;
+$gld9: $base - $gld10;
+$gld8: $gld9 / $golden;
+$gld7: $gld9 - $gld8;
+$gld6: $gld7 / $golden;
+$gld5: $gld7 - $gld6;
+$gld4: $gld5 / $golden;
+$gld3: $gld5 - $gld4;
+$gld2: $gld3 / $golden;
+$gld1: $gld3 - $gld2;
+
+$textOne: rgb(30, 30, 32);
+$textTwo: rgb(42, 44, 43);
+$backgroundOne: rgb(55, 65, 64);
+$backgroundTwo: rgb(217, 203, 158);
+$highlight: rgb(220, 53, 34);
