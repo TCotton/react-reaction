@@ -2,11 +2,17 @@
 @import '../scss/_mixins';
 @import '../scss/_fonts';
 
+body {
+  background: $backgroundOne;
+  color: $textOne;
+}
+
 .wrapper {
   width: 100%;
   max-width: 1366px;
   margin: 30px auto 10px auto;
   padding: 0 10px;
+  background: black;
 }
 
 .left-column {
@@ -51,27 +57,27 @@
 // fonts
 
 h1 {
-  @include font-calculator($baseFontFamily, 50px, 1.5);
+  @include font-calculator($baseFontFamily, 80px, 1.5);
   line-height: 100%;
 }
 
 .left-column p {
-  @include font-calculator($secondaryFontFamily, 15px, 1);
+  @include font-calculator($secondaryFontFamily, 24px, 1);
   font-weight: 500;
 }
 
 h2 {
-  @include font-calculator($secondaryFontFamily, 17px, 1);
-  font-weight: 600;
+  @include font-calculator($secondaryFontFamily, 26px, 1);
+  font-weight: 500;
 }
 
 h3 {
-  @include font-calculator($secondaryFontFamily, 16px, 0.5);
+  @include font-calculator($secondaryFontFamily, 20px, 0.5);
   font-weight: 400;
 }
 
 .right-column p {
-  @include font-calculator($secondaryFontFamily, 14px, 1);
+  @include font-calculator($secondaryFontFamily, 16px, 1);
   font-weight: 300;
 }
 

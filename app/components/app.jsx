@@ -33,10 +33,10 @@ export default function App() {
           <div className={styles['list-section-left-column']}>
 
             <div className={stars}>
-              <img src={star} alt='' />
+              <img src={star} alt='' className={'octicon'} />
             </div>
             <div className={forked}>
-              <img src={fork} alt='' />
+              <img src={fork} alt='' className={'octicon'} />
             </div>
 
           </div>
@@ -52,10 +52,10 @@ export default function App() {
           <div className={styles['list-section-left-column']}>
 
             <div className={stars}>
-              <img src={star} alt='' />
+              <img src={star} alt='' className={'octicon'} />
             </div>
             <div className={forked}>
-              <img src={fork} alt='' />
+              <img src={fork} alt='' className={'octicon'} />
             </div>
 
           </div>
@@ -71,10 +71,10 @@ export default function App() {
           <div className={styles['list-section-left-column']}>
 
             <div className={stars}>
-              <img src={star} alt='' />
+              <img src={star} alt='' className={'octicon'} />
             </div>
             <div className={forked}>
-              <img src={fork} alt='' />
+              <img src={fork} alt='' className={'octicon'} />
             </div>
 
           </div>

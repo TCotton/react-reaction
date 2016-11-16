@@ -2,6 +2,14 @@
 @import 'reset';
 @import 'fonts';
 @import 'mixins';
+@import 'typography';
+
+body {
+  font-size: #{$baseFontSize};
+  font-family: $secondaryFontFamily;
+  font-weight: 400;
+  line-height: #{$baseLineHeight}em;
+}
 
 :global(.octicon) {
   display: inline-block;
