@@ -3,6 +3,12 @@ const CONST = require('../constants');
 
 module.exports = function (app) {
 
-  app.get(`/${CONST.API}//${CONST.SEARCH}`, GITHUB.search);
+  app.all('*', (req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+    next();
+  });
+
+  app.get(`/${CONST.API}/${CONST.SEARCH}`, GITHUB.search);
 
 };

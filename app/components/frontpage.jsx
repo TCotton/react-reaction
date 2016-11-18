@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 
-import { fetchGitHubData } from '../actions/actions';
+import ACTIONS from '../actions/actions';
 
 import styles from './_index.scss';
 import star from './images/star.svg';
@@ -15,8 +15,12 @@ const forked = classnames(styles['forked']);
 
 class Frontpage extends Component {
 
+  static propTypes = {
+    fetchGitHubData: PropTypes.func
+  };
+
   componentWillMount() {
-    console.dir(this);
+    this.props.fetchGitHubData();
   }
 
   render() {
@@ -112,7 +116,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    fetchGitHubData
+    fetchGitHubData: ACTIONS.fetchGitHubData
   }, dispatch);
 }
 

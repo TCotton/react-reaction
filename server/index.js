@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const router = require('./routes/application');
-// const CONST = require('./constants');
 
 const app = express();
 
