@@ -1,3 +1,4 @@
 module.exports = {
-  API: 'api/'
+  API: 'api/',
+  SEARCH: 'search'
 };

@@ -6,7 +6,6 @@ function githubSearch(callback) {
 
   const query = 'react';
   const inWhere = 'file,path';
-  const url = `https://api.github.com/search/repositories?q=${query}+in:${inWhere}`;
 
   const client = GITHUB.client({
     id: CONFIG.CLIENT_ID,
@@ -16,18 +15,12 @@ function githubSearch(callback) {
   const ghsearch = client.search();
 
   ghsearch.repos({
-    q: 'react+in:file,path'
+    q: `${query}+in:${inWhere}`
   }, callback);
 
 }
 
-module.exports.search = function (req, res, next) {
-
-  /*  const query = 'react';
-   const inWhere = 'file,path';
-   const url = `https://api.github.com/search/repositories?q=${query}+in:${inWhere}`;*/
-
-  // handle connection errors of the requestf
+module.exports.search = (req, res, next) => {
 
   githubSearch((err, JSONObject) => {
 

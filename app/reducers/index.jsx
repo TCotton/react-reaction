@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import githubReducer from './github_reducer';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  popular: githubReducer
 });
 
 export default rootReducer;
