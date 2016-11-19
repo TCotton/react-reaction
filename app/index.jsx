@@ -9,7 +9,7 @@ import a11y from 'react-a11y';
 
 import './scss/global.scss';
 
-import App from './components/app';
+import App from './containers/app';
 import reducers from './reducers';
 
 a11y(React);

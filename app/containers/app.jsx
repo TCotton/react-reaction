@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
 import React, { Component } from 'react';
-import Frontpage from './frontpage';
+import HomePage from './homepage/homepage';
 
 export default class App extends Component {
 
@@ -8,7 +8,7 @@ export default class App extends Component {
 
     return (
       <div>
-        <Frontpage />
+        <HomePage />
         { this.props.children }
       </div>
     );

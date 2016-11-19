@@ -1,6 +1,7 @@
-@import '../scss/_variables';
-@import '../scss/_mixins';
-@import '../scss/_fonts';
+@import '../../scss/_variables';
+@import '../../scss/functions';
+@import '../../scss/_mixins';
+@import '../../scss/_fonts';
 
 body {
   background: $backgroundOne;
@@ -117,7 +118,7 @@ h3 {
 
 }
 
-@supports (display:grid) {
+@supports ( (not (display:grid)) and (display:flex)) {
 
   .wrapper {
     display: grid;
@@ -149,7 +150,7 @@ h3 {
 
 }
 
-@supports ( (not (display:grid)) and (display:flex)) {
+@supports (display:grid) {
 
   .wrapper {
     display: flex;
@@ -157,15 +158,28 @@ h3 {
     flex-wrap: wrap;
 
     > div:first-of-type {
-      width: #{$gld8};
+      flex: reduceNumber(#{$gld8});
 
-      background: blue;
+      background: lightblue;
     }
     > div:last-of-type {
-      width: #{$base - $gld8};
+      flex: reduceNumber(#{$base - $gld8});
 
-      background: green;
+      background: lightgrey;
     }
+
+    .list-section {
+      display: grid;
+      grid-template-columns: #{$gld8} #{$base - $gld8};
+      background: transparent;
+      margin: 0 0 20px 0;
+
+      > div:first-of-type {
+        align-self: center;
+      }
+
+    }
+
   }
 
 }

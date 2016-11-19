@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
 
-import ACTIONS from '../actions/actions';
+import ACTIONS from '../../actions/actions';
 import messages from './messages';
 
 import styles from './_index.scss';
