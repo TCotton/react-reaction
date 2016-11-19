@@ -12,7 +12,7 @@ function fetchGitHubData() {
 
       dispatch({
         type: TYPES.FETCH_GITHUB_DATA,
-        payload: response.data.message
+        payload: response.data
       });
 
     });

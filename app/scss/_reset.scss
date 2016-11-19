@@ -774,21 +774,24 @@ img {
 }
 /* set colour links */
 
-a:link {
-  color: var(--link-colour);
+a {
+  &:link {
+    color: var(--link-colour);
+  }
+  &:visited {
+    color: var(--link-colour);
+  }
+  &:focus {
+    color: var(--link-colour);
+  }
+  &:hover {
+    color: var(--link-colour);
+  }
+  &:active {
+    color: var(--link-colour);
+  }
 }
-a:visited {
-  color: var(--link-colour);
-}
-a:focus {
-  color: var(--link-colour);
-}
-a:hover {
-  color: var(--link-colour);
-}
-a:active {
-  color: var(--link-colour);
-}
+
 /* selected link */
 
 .hide {

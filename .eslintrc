@@ -37,6 +37,10 @@
     }
   },
   "rules": {
+    "arrow-body-style": [
+      "error",
+      "as-needed"
+    ],
     "block-scoped-var": 2,
     "brace-style": [
       2,

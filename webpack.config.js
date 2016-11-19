@@ -21,7 +21,7 @@ module.exports = {
     path: path.resolve('./build'),
     publicPath: 'build',
     filename: 'bundle.js',
-    sourceMapFilename: "[file].map",
+    sourceMapFilename: '[file].map',
   },
   debug: true,
   devtool: 'inline-source-map',

@@ -6,6 +6,8 @@ function githubSearch(callback) {
 
   const query = 'react';
   const inWhere = 'file,path';
+  const language = 'js';
+  const sort = 'stars';
 
   const client = GITHUB.client({
     id: CONFIG.CLIENT_ID,
@@ -15,7 +17,7 @@ function githubSearch(callback) {
   const ghsearch = client.search();
 
   ghsearch.repos({
-    q: `${query}+in:${inWhere}`
+    q: `${query}+in:${inWhere}+language:${language}&sort=${sort}`
   }, callback);
 
 }

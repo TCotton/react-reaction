@@ -28,7 +28,10 @@ body {
 }
 
 .list-section-left-column {
-  background: transparent;
+  display: flex;
+  > div {
+    flex: 1;
+  }
 
   .stars {
     background: transparent;
@@ -38,14 +41,16 @@ body {
     background: transparent;
   }
 
-  > div {
-    background: transparent;
-    text-align: center;
+  .side-link {
+    @include font-calculator($secondaryFontFamily, 16px, 0);
+    padding: 0 0 0 5px;
   }
 
-  > div img {
-    height: 30px;
-    object-fit: cover;
+  .side-icon {
+    img {
+      height: 30px;
+      object-fit: cover;
+    }
   }
 
 }
@@ -79,6 +84,31 @@ h3 {
 .right-column p {
   @include font-calculator($secondaryFontFamily, 16px, 1);
   font-weight: 300;
+}
+
+.list-section {
+
+  a {
+
+    text-decoration: none;
+    &:link {
+      color: $highlight;
+    }
+    &:visited {
+      color: lighten($highlight, 10);
+    }
+    &:focus {
+      color: darken($highlight, 10);
+    }
+    &:hover {
+      color: darken($highlight, 10);
+    }
+    &:active {
+      color: lighten($highlight, 10);
+    }
+
+  }
+
 }
 
 @supports (display:grid) {

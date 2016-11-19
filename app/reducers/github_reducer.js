@@ -6,7 +6,7 @@ export default function (state = [], action = null) {
 
     case TYPES.FETCH_GITHUB_DATA:
 
-      return [...state, action.payload];
+      return action.payload;
 
     default:
 

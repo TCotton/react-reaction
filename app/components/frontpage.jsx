@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,17 +11,78 @@ import star from './images/star.svg';
 import fork from './images/repo-forked.svg';
 
 const wrapper = classnames(styles['wrapper']);
+
 const stars = classnames(styles['stars']);
 const forked = classnames(styles['forked']);
 
 class Frontpage extends Component {
 
   static propTypes = {
-    fetchGitHubData: PropTypes.func
+    fetchGitHubData: PropTypes.func,
+    popular: PropTypes.array
   };
 
   componentWillMount() {
     this.props.fetchGitHubData();
+  }
+
+  renderContent() {
+
+    if (this.props.popular) {
+
+      return this.props.popular.map((item) => {
+
+        return (
+
+          <section className={styles['list-section']} key={item.id}>
+
+            <div className={styles['list-section-left-column']}>
+
+              <div className={stars}>
+                <a href={item.homepage}>
+
+                  <span className={styles['side-icon']}>
+                    <img src={star} alt='' className={'octicon'} />
+                  </span>
+
+                  <span className={styles['side-link']}>
+                    {item['forks_count']}
+                  </span>
+
+                </a>
+              </div>
+
+              <div className={forked}>
+                <a href={item.homepage}>
+
+                  <span className={styles['side-icon']}>
+                    <img src={fork} alt='' className={'octicon'} />
+                  </span>
+
+                  <span className={styles['side-link']}>
+                    {item['stargazers_count']}
+                  </span>
+
+                </a>
+              </div>
+
+            </div>
+
+            <div className={styles['list-section-right-column']}>
+              <h3>{item['full_name']}</h3>
+              <p>{item.description}</p>
+            </div>
+
+          </section>
+
+        );
+
+      });
+
+    }
+
+    return null;
+
   }
 
   render() {
@@ -42,62 +104,7 @@ class Frontpage extends Component {
 
           <h2>Popular React libraries</h2>
 
-          <section className={styles['list-section']}>
-
-            <div className={styles['list-section-left-column']}>
-
-              <div className={stars}>
-                <img src={star} alt='' className={'octicon'} />
-              </div>
-              <div className={forked}>
-                <img src={fork} alt='' className={'octicon'} />
-              </div>
-
-            </div>
-            <div className={styles['list-section-right-column']}>
-              <h3>React component title</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            </div>
-
-          </section>
-
-          <section className={styles['list-section']}>
-
-            <div className={styles['list-section-left-column']}>
-
-              <div className={stars}>
-                <img src={star} alt='' className={'octicon'} />
-              </div>
-              <div className={forked}>
-                <img src={fork} alt='' className={'octicon'} />
-              </div>
-
-            </div>
-            <div className={styles['list-section-right-column']}>
-              <h3>React component title</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            </div>
-
-          </section>
-
-          <section className={styles['list-section']}>
-
-            <div className={styles['list-section-left-column']}>
-
-              <div className={stars}>
-                <img src={star} alt='' className={'octicon'} />
-              </div>
-              <div className={forked}>
-                <img src={fork} alt='' className={'octicon'} />
-              </div>
-
-            </div>
-            <div className={styles['list-section-right-column']}>
-              <h3>React component title</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            </div>
-
-          </section>
+          {this.renderContent()}
 
         </div>
 
@@ -110,7 +117,7 @@ class Frontpage extends Component {
 
 function mapStateToProps(state) {
   return {
-    popular: state.popular
+    popular: state.popular.results
   };
 }
 
