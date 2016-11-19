@@ -2,18 +2,22 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import classnames from 'classnames';
 
 import ACTIONS from '../actions/actions';
+import messages from './messages';
 
 import styles from './_index.scss';
 import star from './images/star.svg';
 import fork from './images/repo-forked.svg';
+import linkExternal from './images/link-external.svg';
 
 const wrapper = classnames(styles['wrapper']);
 
 const stars = classnames(styles['stars']);
 const forked = classnames(styles['forked']);
+const externalLinks = classnames('octicon', styles['external-link']);
 
 class Frontpage extends Component {
 
@@ -26,11 +30,17 @@ class Frontpage extends Component {
     this.props.fetchGitHubData();
   }
 
+  populateLink(item) {
+    return item['homepage'] ? item['homepage'] : item['html_url'];
+  }
+
   renderContent() {
 
     if (this.props.popular) {
 
       return this.props.popular.map((item) => {
+
+        const externalPage = this.populateLink(item);
 
         return (
 
@@ -39,7 +49,7 @@ class Frontpage extends Component {
             <div className={styles['list-section-left-column']}>
 
               <div className={stars}>
-                <a href={item.homepage}>
+                <a href={externalPage}>
 
                   <span className={styles['side-icon']}>
                     <img src={star} alt='' className={'octicon'} />
@@ -53,7 +63,7 @@ class Frontpage extends Component {
               </div>
 
               <div className={forked}>
-                <a href={item.homepage}>
+                <a href={externalPage}>
 
                   <span className={styles['side-icon']}>
                     <img src={fork} alt='' className={'octicon'} />
@@ -69,7 +79,11 @@ class Frontpage extends Component {
             </div>
 
             <div className={styles['list-section-right-column']}>
-              <h3>{item['full_name']}</h3>
+              <h3>{item['full_name']}
+                <a href={externalPage} target='_blank' >
+                  <img src={linkExternal} alt={item['name']} className={externalLinks} />
+                </a>
+              </h3>
               <p>{item.description}</p>
             </div>
 
@@ -93,16 +107,24 @@ class Frontpage extends Component {
 
         <div className={styles['left-column']}>
 
-          <h1>React Reaction</h1>
+          <h1>
+            <FormattedMessage {...messages.title} />
+          </h1>
 
-          <p>The most popular React third-party libraries on GitHub as ordered by stars</p>
-          <p>This list also includes libraries commonly associated with React, such as Redux</p>
+          <p>
+            <FormattedMessage {...messages.descriptionOne} />
+          </p>
+          <p>
+            <FormattedMessage {...messages.descriptionTwo} />
+          </p>
 
         </div>
 
         <div className={styles['right-column']}>
 
-          <h2>Popular React libraries</h2>
+          <h2>
+            <FormattedMessage {...messages.headerTwo} />
+          </h2>
 
           {this.renderContent()}
 

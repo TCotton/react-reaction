@@ -24,7 +24,7 @@ function githubSearch(callback) {
 
 module.exports.search = (req, res, next) => {
 
-  githubSearch((err, JSONObject) => {
+  githubSearch((err, JSONObject, headers) => {
 
     if (err) {
       return next(err);
