@@ -1,0 +1,96 @@
+@import '../../scss/_variables';
+@import '../../scss/functions';
+@import '../../scss/_mixins';
+@import '../../scss/_fonts';
+
+body {
+  background: $backgroundOne;
+  color: $textOne;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1366px;
+  margin: 30px auto 10px auto;
+  padding: 0 10px;
+}
+
+.left-column {
+  background: transparent;
+}
+
+.right-column {
+  background: transparent;
+}
+
+.right-column p {
+  @include font-calculator($secondaryFontFamily, 16px, 1);
+  font-weight: 300;
+  color: $link;
+}
+
+// fonts
+
+h1 {
+  @include font-calculator($baseFontFamily, 80px, 1.5);
+  line-height: 100%;
+  padding: 5px 0 0 0;
+}
+
+.left-column p {
+  @include font-calculator($secondaryFontFamily, 24px, 1);
+  font-weight: 500;
+}
+
+h2 {
+  @include font-calculator($secondaryFontFamily, 26px, 1);
+  font-weight: 500;
+}
+
+@supports (display:grid) {
+
+  .wrapper {
+    display: grid;
+    grid-template-columns: #{$gld8} #{$base - $gld8};
+
+    background: transparent;
+
+    > div:first-of-type {
+
+      background: transparent;
+    }
+
+    > div:last-of-type {
+      padding: 0 $gld7;
+
+      background: transparent;
+    }
+
+  }
+
+}
+
+@supports ( (not (display:grid)) and (display:flex)) {
+
+  .wrapper {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+
+    background: transparent;
+
+    > div:first-of-type {
+      flex: reduceNumber(#{$gld8});
+
+      background: transparent;
+    }
+    > div:last-of-type {
+      flex: reduceNumber(#{$base - $gld8});
+      padding: 0 $gld6;
+
+      background: transparent;
+    }
+
+  }
+
+}

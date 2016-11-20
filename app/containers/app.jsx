@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function, react/prop-types */
 import React, { Component } from 'react';
-import HomePage from './homepage/homepage';
+import HomePage from '../components/homepage';
 
 export default class App extends Component {
 

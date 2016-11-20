@@ -1,0 +1,114 @@
+@import '../../scss/_variables';
+@import '../../scss/functions';
+@import '../../scss/_mixins';
+@import '../../scss/_fonts';
+
+.list-section {
+  background: transparent;
+}
+
+.list-section-left-column {
+  display: flex;
+  > div {
+    flex: 1;
+  }
+
+  .stars {
+    background: transparent;
+  }
+
+  .forked {
+    background: transparent;
+  }
+
+  .side-link {
+    @include font-calculator($secondaryFontFamily, 16px, 0);
+    padding: 0 0 0 5px;
+  }
+
+  .side-icon {
+    img {
+      height: 30px;
+      object-fit: cover;
+    }
+  }
+
+}
+
+.list-section-right-column {
+  background: transparent;
+}
+
+.external-link {
+  margin: 0 0 0 5px;
+  padding: 0 0 3px 0;
+  vertical-align: middle;
+}
+
+h3 {
+  @include font-calculator($secondaryFontFamily, 20px, 0.5);
+  font-weight: 400;
+}
+
+.list-section {
+
+  a {
+    text-decoration: none;
+    &:link {
+      color: $highlight;
+    }
+    &:visited {
+      color: lighten($highlight, 10);
+    }
+    &:focus {
+      color: darken($highlight, 10);
+    }
+    &:hover {
+      color: darken($highlight, 10);
+    }
+    &:active {
+      color: lighten($highlight, 10);
+    }
+
+  }
+
+}
+
+@supports (display:grid) {
+
+  .list-section {
+    display: grid;
+    grid-template-columns: #{$gld8} #{$base - $gld8};
+    margin: 0 0 20px 0;
+
+    > div:first-of-type {
+      align-self: center;
+    }
+
+  }
+
+}
+
+@supports ( (not (display:grid)) and (display:flex)) {
+
+  .list-section {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    grid-template-columns: #{$gld8} #{$base - $gld8};
+    margin: 0 0 20px 0;
+
+    background: transparent;
+
+    > div:first-of-type {
+      align-self: center;
+      flex: reduceNumber(#{$gld8});
+    }
+
+    > div:last-of-type {
+      flex: reduceNumber(#{$base - $gld8});
+    }
+
+  }
+
+}
