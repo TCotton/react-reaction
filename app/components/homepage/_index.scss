@@ -19,6 +19,11 @@ body {
   background: transparent;
 }
 
+.left-column p {
+  @include font-calculator($secondaryFontFamily, 24px, 1);
+  font-weight: 500;
+}
+
 .right-column {
   background: transparent;
 }
@@ -35,11 +40,6 @@ h1 {
   @include font-calculator($baseFontFamily, 80px, 1.5);
   line-height: 100%;
   padding: 5px 0 0 0;
-}
-
-.left-column p {
-  @include font-calculator($secondaryFontFamily, 24px, 1);
-  font-weight: 500;
 }
 
 h2 {

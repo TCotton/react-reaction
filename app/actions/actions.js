@@ -1,8 +1,38 @@
 import axios from 'axios';
-
+import { browserHistory } from 'react-router';
 import TYPES from './types';
-
 import UNIVERSAL from '../constant';
+
+const ROOT_URL = 'http://localhost:3090';
+
+class ErrorMessage {
+
+  static displayMessage({ email, password }, dispatch) {
+
+    // submit email/password to the server
+
+    axios.post(`${ROOT_URL}/signin`, { email, password }).then((response) => {
+
+      // if request is good...
+      // - Update state to indicate user is authenticated
+      dispatch({
+        type: TYPES.AUTH_USER
+      });
+      // - Save the JWT token
+      localStorage.setItem('token', response.data.token);
+      // - redirect to the route './feature'
+      browserHistory.push('/feature');
+
+    }).catch((response) => {
+
+      // if request is bad
+      dispatch(authError(response.message));
+
+    });
+
+  }
+
+}
 
 function fetchGitHubData() {
 
@@ -21,8 +51,76 @@ function fetchGitHubData() {
 
 }
 
+function signinUser({ email, password }) {
+
+  return function (dispatch) {
+
+    ErrorMessage.displayMessage({
+      email, password
+    }, dispatch);
+
+  };
+
+}
+
+function signupUser({ email, password }) {
+
+  return function (dispatch) {
+
+    ErrorMessage.displayMessage({
+      email, password
+    }, dispatch);
+
+  };
+
+}
+
+function authError(error) {
+
+  return {
+    type: TYPES.AUTH_ERROR,
+    payload: error
+  };
+
+}
+
+function signoutUser() {
+
+  localStorage.removeItem('token');
+
+  return {
+    type: TYPES.UNAUTH_USER
+  };
+
+}
+
+function fetchMessage() {
+
+  return function (dispatch) {
+
+    axios.get(ROOT_URL, {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+    }).then((response) => {
+
+      dispatch({
+        type: TYPES.FETCH_MESSAGE,
+        payload: response.data.message
+      });
+
+    });
+
+  };
+
+}
+
 const ACTIONS = {
-  fetchGitHubData
+  fetchGitHubData,
+  signinUser,
+  signupUser,
+  signoutUser,
+  fetchMessage
 };
 
 export default ACTIONS;
