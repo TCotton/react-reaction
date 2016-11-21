@@ -38,6 +38,24 @@ class Signin extends Component {
 
   render() {
 
+    // crazy workaround to remove browser error noise in react from > 15.2.0 and redux-form < 6
+    // https://github.com/erikras/redux-form/issues/1249#issuecomment-238791983
+
+    const domOnlyProps = ({
+      initialValue,
+      autofill,
+      onUpdate,
+      valid,
+      invalid,
+      dirty,
+      pristine,
+      active,
+      touched,
+      visited,
+      autofilled,
+      error,
+      ...domProps }) => domProps;
+
     const { handleSubmit, fields: { email, password } } = this.props;
 
     return (
@@ -46,14 +64,14 @@ class Signin extends Component {
         <fieldset className='form-group'>
 
           <label htmlFor='emailSignin'>Email:</label><br />
-          <input {...email} type='email' id='emailSignin' className='form-control' />
+          <input {...domOnlyProps(email)} type='email' id='emailSignin' className='form-control' />
 
         </fieldset>
 
         <fieldset className='form-group'>
 
           <label htmlFor='passwordSignin'>Password:</label><br />
-          <input {...password} type='password' id='passwordSignin' className='form-control' />
+          <input {...domOnlyProps(password)} type='password' id='passwordSignin' className='form-control' />
 
         </fieldset>
 
