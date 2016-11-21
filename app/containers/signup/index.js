@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import ACTIONS from '../../actions/actions';
@@ -7,16 +7,22 @@ const formFields = ['email', 'password', 'passwordConfirm'];
 
 class Signup extends Component {
 
-  constructor(...arguments) {
-    super(arguments);
+  static propTypes = {
+    signupUser: PropTypes.func,
+    fields: PropTypes.object,
+    errorMessage: PropTypes.string,
+    handleSubmit: PropTypes.func
+  };
+
+  constructor(props) {
+    super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
-  passwordErrorDisplay() {
+  onFormSubmit(formProps) {
 
-    if (this.props.fields.password.touched && this.props.fields.passwordConfirm.touched) {
-      return this.props.fields.password.error;
-    }
+    // call action creator to sign up the user
+    this.props.signupUser(formProps);
 
   }
 
@@ -26,12 +32,17 @@ class Signup extends Component {
       return this.props.fields.email.error;
     }
 
+    return null;
+
   }
 
-  onFormSubmit(formProps) {
+  passwordErrorDisplay() {
 
-    // call action creator to sign up the user
-    this.props.signupUser(formProps);
+    if (this.props.fields.password.touched && this.props.fields.passwordConfirm.touched) {
+      return this.props.fields.password.error;
+    }
+
+    return null;
 
   }
 
@@ -44,6 +55,8 @@ class Signup extends Component {
         </div>
       );
     }
+
+    return null;
 
   }
 
@@ -88,9 +101,10 @@ class Signup extends Component {
 function validate(formProps) {
 
   const errors = {};
+  // eslint-disable-next-line max-len, no-useless-escape
   const re = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  if (typeof fornProps.email !== 'undefined' && !re.test(formProps.email)) {
+  if (typeof formProps.email !== 'undefined' && !re.test(formProps.email)) {
     errors.email = 'Please include a valid email address';
   }
 
@@ -102,7 +116,7 @@ function validate(formProps) {
     errors.password = 'The password must be more than 8 characters';
   }
 
-  formFields.map((value) => {
+  formFields.map((value) => { // eslint-disable-line array-callback-return
 
     if (!formProps[value]) {
       errors[value] = `Please do not leave the ${value} blank`;

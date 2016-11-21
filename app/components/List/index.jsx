@@ -1,11 +1,9 @@
-import React, {PropTypes}  from 'react';
+import React, { PropTypes }  from 'react';
 import styles from './_List.scss';
 
 import ListItem from '../List';
 
 function List(props) {
-
-  console.log(props.items);
 
   if (props.items) {
     return (

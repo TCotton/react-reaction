@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
-import { reduxForm, propTypes } from 'redux-form';
+import React, { Component, PropTypes } from 'react';
+import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import ACTIONS from '../../actions/actions';
 
 class Signin extends Component {
+
+  static propTypes = {
+    signinUser: PropTypes.func,
+    errorMessage: PropTypes.string,
+    handleSubmit: PropTypes.func,
+    fields: PropTypes.object
+  };
 
   constructor(props) {
     super(props);
@@ -11,7 +18,7 @@ class Signin extends Component {
     this.renderAlert = this.renderAlert.bind(this);
   }
 
-  handleFormSubmit({email, password}) {
+  handleFormSubmit({ email, password }) {
     this.props.signinUser({ email, password });
   }
 
@@ -25,6 +32,8 @@ class Signin extends Component {
       );
     }
 
+    return null;
+
   }
 
   render() {
@@ -37,14 +46,14 @@ class Signin extends Component {
         <fieldset className='form-group'>
 
           <label htmlFor='emailSignin'>Email:</label><br />
-          <input {...email} type='email' id='emailSignin' className='form-control'/>
+          <input {...email} type='email' id='emailSignin' className='form-control' />
 
         </fieldset>
 
         <fieldset className='form-group'>
 
           <label htmlFor='passwordSignin'>Password:</label><br />
-          <input {...password} type='password' id='passwordSignin' className='form-control'/>
+          <input {...password} type='password' id='passwordSignin' className='form-control' />
 
         </fieldset>
 
