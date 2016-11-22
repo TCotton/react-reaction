@@ -3,10 +3,18 @@
 <head>
   <!-- The first thing in any HTML file should be the charset -->
   <meta charset="utf-8">
-  <title>React.js Boilerplate</title>
+  <title>React Reaction</title>
 
-  <script src="https://use.typekit.net/hai5xeo.js"></script>
-  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <script>
+    (function(d) {
+      let config = {
+          kitId: 'hai5xeo',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+  </script>
 </head>
 <body>
 <!-- Display a message if JS has been disabled on the browser. -->

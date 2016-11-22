@@ -43,7 +43,7 @@ h1 {
 }
 
 h2 {
-  @include font-calculator($secondaryFontFamily, 26px, 1);
+  @include font-calculator($secondaryFontFamily, 26px, 2);
   font-weight: 500;
 }
 
