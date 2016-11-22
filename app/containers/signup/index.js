@@ -29,7 +29,7 @@ class Signup extends Component {
   emailErrorDisplay() {
 
     if (this.props.fields.email.touched) {
-      return this.props.fields.email.error;
+      return <span className='error'>{this.props.fields.email.error}</span>;
     }
 
     return null;
@@ -39,21 +39,7 @@ class Signup extends Component {
   passwordErrorDisplay() {
 
     if (this.props.fields.password.touched && this.props.fields.passwordConfirm.touched) {
-      return this.props.fields.password.error;
-    }
-
-    return null;
-
-  }
-
-  renderAlert() {
-
-    if (this.props.errorMessage) {
-      return (
-        <div className='alert alert-danger'>
-          <strong>OPPS!!</strong> {this.props.errorMessage}
-        </div>
-      );
+      return <span className='error'>{this.props.fields.password.error}</span>;
     }
 
     return null;
@@ -83,34 +69,36 @@ class Signup extends Component {
     const { handleSubmit, fields: { email, password, passwordConfirm } } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onFormSubmit)}>
+      <div className='form'>
+        <form onSubmit={handleSubmit(this.onFormSubmit)}>
 
-        <span>{this.props.errorMessage}</span>
+          <span>{this.props.errorMessage}</span>
 
-        <fieldset className='form-group'>
-          <label htmlFor='emailSignup'>Email:</label>
-          <input type='text' className='form-control' id='emailSignup' {...domOnlyProps(email)} />
+          <fieldset>
+            <label htmlFor='emailSignup'>Email:</label>
+            <input type='text' id='emailSignup' {...domOnlyProps(email)} />
 
-          <span>{this.emailErrorDisplay()}</span>
+            <span>{this.emailErrorDisplay()}</span>
 
-        </fieldset>
+          </fieldset>
 
-        <fieldset className='form-group'>
-          <label htmlFor='passwordSignup'>Password:</label>
-          <input type='text' className='form-control' id='passwordSignup' {...domOnlyProps(password)} />
+          <fieldset>
+            <label htmlFor='passwordSignup'>Password:</label>
+            <input type='text' id='passwordSignup' {...domOnlyProps(password)} />
 
-          <span>{this.passwordErrorDisplay()}</span>
+            <span>{this.passwordErrorDisplay()}</span>
 
-        </fieldset>
+          </fieldset>
 
-        <fieldset className='form-group'>
-          <label htmlFor='passwordSignupConfirm'>Confirm password:</label>
-          <input type='text' className='form-control' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
-        </fieldset>
+          <fieldset>
+            <label htmlFor='passwordSignupConfirm'>Confirm password:</label>
+            <input type='text' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
+          </fieldset>
 
-        <input type='submit' className='btn btn-primary' value='Submit' />
+          <input type='submit' className='btn' value='Submit' />
 
-      </form>
+        </form>
+      </div>
     );
   }
 

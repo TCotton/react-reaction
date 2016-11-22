@@ -26,7 +26,7 @@ class Signin extends Component {
 
     if (this.props.errorMessage) {
       return (
-        <div className='alert alert-danger'>
+        <div className='error'>
           <strong>Opps!</strong> {this.props.errorMessage} <br />
         </div>
       );
@@ -59,31 +59,33 @@ class Signin extends Component {
     const { handleSubmit, fields: { email, password } } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit)}>
+      <div className='form'>
+        <form onSubmit={handleSubmit(this.handleFormSubmit)}>
 
-        <fieldset className='form-group'>
+          <fieldset>
 
-          <label htmlFor='emailSignin'>Email:</label><br />
-          <input {...domOnlyProps(email)} type='email' id='emailSignin' className='form-control' />
+            <label htmlFor='emailSignin'>Email:</label>
+            <input {...domOnlyProps(email)} type='email' id='emailSignin' />
 
-        </fieldset>
+          </fieldset>
 
-        <fieldset className='form-group'>
+          <fieldset>
 
-          <label htmlFor='passwordSignin'>Password:</label><br />
-          <input {...domOnlyProps(password)} type='password' id='passwordSignin' className='form-control' />
+            <label htmlFor='passwordSignin'>Password:</label>
+            <input {...domOnlyProps(password)} type='password' id='passwordSignin' />
 
-        </fieldset>
+          </fieldset>
 
-        <fieldset className='form-group'>
+          <fieldset>
 
-          {this.renderAlert()}
+            {this.renderAlert()}
 
-          <input type='submit' className='btn button-primary' value='Submit' />
+            <input type='submit' className='btn button-primary' value='Submit' />
 
-        </fieldset>
+          </fieldset>
 
-      </form>
+        </form>
+      </div>
     );
 
   }

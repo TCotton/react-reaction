@@ -1,4 +1,6 @@
 module.exports = {
   API: 'api',
-  SEARCH: 'search'
+  SEARCH: 'search',
+  SIGNIN: 'signin',
+  SIGNUP: 'signup'
 };

@@ -1,0 +1,51 @@
+:global(.form) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 0 0;
+}
+
+form {
+  width: 500px;
+}
+
+fieldset {
+  display: flex;
+
+  label {
+    @include font-calculator($secondaryFontFamily, 22px, 0.5);
+    font-weight: 400;
+    flex: 1;
+
+    ~ [type=text],
+    ~ [type=email],
+    ~ [type=password] {
+      background: $textOne;
+      border: 1px solid $link;
+      color: $backgroundOne;
+      @include font-calculator($secondaryFontFamily, 22px);
+      font-weight: 200;
+      outline: 1px dotted $backgroundOne;
+      padding: 10px;
+      flex: 1;
+      width: 100%;
+    }
+  }
+}
+
+input[type=submit] {
+  padding: 10px;
+  @include font-calculator($secondaryFontFamily, 24px);
+  font-weight: 500;
+  border: 1px solid $backgroundTwo;
+  background: transparent;
+  &:hover {
+    border: 1px solid $highlight;
+    color: $highlight;
+  }
+}
+
+:global(.error) {
+  @include font-calculator($secondaryFontFamily, 20px);
+  color: $highlight;
+}

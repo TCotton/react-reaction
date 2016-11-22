@@ -4,6 +4,7 @@
 @import 'functions';
 @import 'mixins';
 @import 'typography';
+@import 'forms';
 
 body {
   font-size: #{$baseFontSize};
@@ -17,4 +18,3 @@ body {
   vertical-align: middle;
   fill: currentColor;
 }
-

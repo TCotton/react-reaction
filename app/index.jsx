@@ -5,8 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { IntlProvider } from 'react-intl';
-import a11y from 'react-a11y';
-
 import './scss/global.scss';
 
 import App from './containers/app';
@@ -17,7 +15,11 @@ import ACTIONS from './actions/types';
 
 import reducers from './reducers';
 
-a11y(React);
+if (process.env.NODE_ENV !== 'production') {
+  const axe = require('react-axe'); // eslint-disable-line
+
+  axe(React, ReactDOM, 1000);
+}
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);

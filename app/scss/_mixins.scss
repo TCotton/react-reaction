@@ -90,45 +90,15 @@
 // Word Wrapping
 @mixin word-wrap() {
   word-break: break-all;
-  -ms-hyphens: auto;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
   hyphens: auto;
 }
 
 @mixin word-nowrap() {
   word-break: normal;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
   hyphens: none;
 }
 
 // calc function
 @mixin calc($property, $value) {
   #{$property}: calc(#{$value});
-}
-
-// css transitions
-@mixin transitions($value) {
-  -ms-transition: #{$value};
-  -webkit-transition: #{$value};
-  transition: #{$value};
-}
-
-// css transform
-@mixin transform($value) {
-  -ms-transform: #{$value};
-  -webkit-transform: #{$value};
-  transform: #{$value};
-}
-
-// css boxshadow
-@mixin boxshadow($value) {
-  -webkit-box-shadow: #{$value};
-  box-shadow: #{$value};
-}
-
-.line-through {
-  text-decoration: line-through;
-  user-select: none;
 }
