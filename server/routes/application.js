@@ -27,8 +27,8 @@ module.exports = function (app) {
     });
   });
 
-  app.post(`/${CONST.SIGNIN}`, requireSignin, Authentication.signin);
+  app.post(`/${CONST.API}/${CONST.SIGNIN}`, requireSignin, Authentication.signin);
 
-  app.post(`/${CONST.SIGNUP}`, Authentication.signup);
+  app.post(`/${CONST.API}/${CONST.SIGNUP}`, Authentication.signup);
 
 };

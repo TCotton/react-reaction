@@ -29,7 +29,7 @@ class Signup extends Component {
   emailErrorDisplay() {
 
     if (this.props.fields.email.touched) {
-      return <span className='error'>{this.props.fields.email.error}</span>;
+      return this.props.fields.email.error;
     }
 
     return null;
@@ -39,7 +39,7 @@ class Signup extends Component {
   passwordErrorDisplay() {
 
     if (this.props.fields.password.touched && this.props.fields.passwordConfirm.touched) {
-      return <span className='error'>{this.props.fields.password.error}</span>;
+      return this.props.fields.password.error;
     }
 
     return null;
@@ -72,13 +72,13 @@ class Signup extends Component {
       <div className='form'>
         <form onSubmit={handleSubmit(this.onFormSubmit)}>
 
-          <span>{this.props.errorMessage}</span>
+          <span className='error'>{this.props.errorMessage}</span>
 
           <fieldset>
             <label htmlFor='emailSignup'>Email:</label>
             <input type='text' id='emailSignup' {...domOnlyProps(email)} />
 
-            <span>{this.emailErrorDisplay()}</span>
+            <span className='error'>{this.emailErrorDisplay()}</span>
 
           </fieldset>
 
@@ -86,7 +86,7 @@ class Signup extends Component {
             <label htmlFor='passwordSignup'>Password:</label>
             <input type='text' id='passwordSignup' {...domOnlyProps(password)} />
 
-            <span>{this.passwordErrorDisplay()}</span>
+            <span className='error'>{this.passwordErrorDisplay()}</span>
 
           </fieldset>
 

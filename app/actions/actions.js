@@ -3,15 +3,19 @@ import { browserHistory } from 'react-router';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
 
-const ROOT_URL = 'http://localhost:3090';
+let ROOT_URL;
+
+if (process.env.NODE_ENV !== 'production') {
+  ROOT_URL = 'http://localhost:3090';
+}
 
 class ErrorMessage {
 
-  static displayMessage({ email, password }, dispatch) {
+  static displayMessage({ email, password }, url, dispatch) {
 
     // submit email/password to the server
 
-    axios.post(`${ROOT_URL}/signin`, { email, password }).then((response) => {
+    axios.post(`${ROOT_URL}\\${url}`, { email, password }).then((response) => {
 
       // if request is good...
       // - Update state to indicate user is authenticated
@@ -57,7 +61,7 @@ function signinUser({ email, password }) {
 
     ErrorMessage.displayMessage({
       email, password
-    }, dispatch);
+    }, UNIVERSAL.SIGNIN, dispatch);
 
   };
 
@@ -69,7 +73,7 @@ function signupUser({ email, password }) {
 
     ErrorMessage.displayMessage({
       email, password
-    }, dispatch);
+    }, UNIVERSAL.SIGNUP, dispatch);
 
   };
 
