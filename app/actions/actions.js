@@ -3,11 +3,11 @@ import { browserHistory } from 'react-router';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
 
-let ROOT_URL;
+const ROOT_URL = window.location.origin;
 
-if (process.env.NODE_ENV !== 'production') {
+/* if (process.env.NODE_ENV !== 'production') {
   ROOT_URL = 'http://localhost:3090';
-}
+} */
 
 class ErrorMessage {
 
@@ -25,7 +25,7 @@ class ErrorMessage {
       // - Save the JWT token
       localStorage.setItem('token', response.data.token);
       // - redirect to the route './feature'
-      browserHistory.push('/feature');
+      browserHistory.push('/admin');
 
     }).catch((response) => {
 

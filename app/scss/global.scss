@@ -5,6 +5,7 @@
 @import 'mixins';
 @import 'typography';
 @import 'forms';
+@import 'list';
 
 body {
   font-size: #{$baseFontSize};
@@ -17,4 +18,12 @@ body {
   display: inline-block;
   vertical-align: middle;
   fill: currentColor;
+}
+
+:global(.form),
+:global(.admin) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 0 0;
 }

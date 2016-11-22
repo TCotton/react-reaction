@@ -11,6 +11,7 @@ import App from './containers/app';
 import Signin from './containers/signin';
 import Signout from './containers/signout';
 import Signup from './containers/signup';
+import Admin from './components/Admin';
 import ACTIONS from './actions/types';
 
 import reducers from './reducers';
@@ -41,7 +42,8 @@ ReactDOM.render(
         <Route path='/' component={App} />
         <Route path='/signin' component={Signin} />
         <Route path='/signout' component={Signout} />
-        <Route path='/signup' component={Signup} />
+        <Route path='/admin' component={Admin} />
+        <Route path='/admin/signup' component={Signup} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));

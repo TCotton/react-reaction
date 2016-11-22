@@ -1,0 +1,34 @@
+ul {
+  list-style: none;
+
+  li {
+    @include font-calculator($secondaryFontFamily, 30px);
+
+    a {
+      text-decoration: none;
+
+      &:link {
+        color: $highlight;
+      }
+
+      &:visited {
+        color: lighten($highlight, 10);
+      }
+
+      &:focus {
+        color: darken($highlight, 10);
+      }
+
+      &:hover {
+        color: darken($highlight, 10);
+      }
+
+      &:active {
+        color: lighten($highlight, 10);
+      }
+
+    }
+
+  }
+
+}
