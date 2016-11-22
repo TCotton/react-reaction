@@ -3,6 +3,7 @@ const passportService = require('../services/passport');
 const GITHUB = require('../services/github');
 const CONST = require('../constants');
 const Authentication = require('../controllers/authentication');
+const UsersList = require('../controllers/users_list');
 
 const requireAuth = passport.authenticate('jwt', {
   session: false
@@ -20,6 +21,8 @@ module.exports = function (app) {
   });
 
   app.get(`/${CONST.API}/${CONST.SEARCH}`, GITHUB.search);
+
+  app.get(`/${CONST.API}/${CONST.USER}`, UsersList.findUsers);
 
   app.get('/', requireAuth, (req, res) => {
     res.send({

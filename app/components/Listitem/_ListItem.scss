@@ -7,6 +7,17 @@
   background: transparent;
 }
 
+.loading {
+  color: $highlight;
+  animation: blinker 0.75s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
 .list-section-left-column {
   display: flex;
   > div {

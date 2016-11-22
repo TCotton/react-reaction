@@ -3,19 +3,13 @@ import { browserHistory } from 'react-router';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
 
-const ROOT_URL = window.location.origin;
-
-/* if (process.env.NODE_ENV !== 'production') {
-  ROOT_URL = 'http://localhost:3090';
-} */
-
 class ErrorMessage {
 
   static displayMessage({ email, password }, url, dispatch) {
 
     // submit email/password to the server
 
-    axios.post(`${ROOT_URL}\\${url}`, { email, password }).then((response) => {
+    axios.post(`${UNIVERSAL.ROOT_URL}\\${url}`, { email, password }).then((response) => {
 
       // if request is good...
       // - Update state to indicate user is authenticated
@@ -102,7 +96,7 @@ function fetchMessage() {
 
   return function (dispatch) {
 
-    axios.get(ROOT_URL, {
+    axios.get(UNIVERSAL.USERS_URL, {
       headers: {
         authorization: localStorage.getItem('token')
       }
@@ -119,12 +113,30 @@ function fetchMessage() {
 
 }
 
+function fetchUsers() {
+
+  return function (dispatch) {
+
+    axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.USERS_URL}`).then((response) => {
+
+      dispatch({
+        type: TYPES.FETCH_USERS,
+        payload: response.data
+      });
+
+    });
+
+  };
+
+}
+
 const ACTIONS = {
   fetchGitHubData,
   signinUser,
   signupUser,
   signoutUser,
-  fetchMessage
+  fetchMessage,
+  fetchUsers
 };
 
 export default ACTIONS;

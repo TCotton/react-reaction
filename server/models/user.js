@@ -16,7 +16,7 @@ const userSchema = new Schema({
 
 // on save hook, encrypt password
 // before saving a model, run this function
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
 
   const user = this;
 

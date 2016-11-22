@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import ACTIONS from '../../actions/actions';
+import styles from './_signup.scss';
+import H2 from '../../components/h2';
 
 const formFields = ['email', 'password', 'passwordConfirm'];
 
@@ -11,12 +13,18 @@ class Signup extends Component {
     signupUser: PropTypes.func,
     fields: PropTypes.object,
     errorMessage: PropTypes.string,
-    handleSubmit: PropTypes.func
+    handleSubmit: PropTypes.func,
+    fetchUsers: PropTypes.func,
+    users: PropTypes.object
   };
 
   constructor(props) {
     super(props);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.fetchUsers();
   }
 
   onFormSubmit(formProps) {
@@ -46,6 +54,22 @@ class Signup extends Component {
 
   }
 
+  displayUsers() {
+
+    if (this.props.users) {
+      return Object.values(this.props.users).map((user) => { // eslint-disable-line arrow-body-style
+
+        return (
+          <li key={user.email}>{user.email}</li>
+        );
+
+      });
+    }
+
+    return null;
+
+  }
+
   render() {
 
     // crazy workaround to remove browser error noise in react from > 15.2.0 and redux-form < 6
@@ -69,37 +93,49 @@ class Signup extends Component {
     const { handleSubmit, fields: { email, password, passwordConfirm } } = this.props;
 
     return (
-      <div className='form'>
-        <form onSubmit={handleSubmit(this.onFormSubmit)}>
+      <div className='new-users'>
 
-          <span className='error'>{this.props.errorMessage}</span>
+        <ul className={styles['users-list']}>
+          <li>Current users</li>
+          {this.displayUsers()}
+        </ul>
 
-          <fieldset>
-            <label htmlFor='emailSignup'>Email:</label>
-            <input type='text' id='emailSignup' {...domOnlyProps(email)} />
+        <div className='form'>
 
-            <span className='error'>{this.emailErrorDisplay()}</span>
+          <form onSubmit={handleSubmit(this.onFormSubmit)}>
 
-          </fieldset>
+            <H2>New user</H2>
 
-          <fieldset>
-            <label htmlFor='passwordSignup'>Password:</label>
-            <input type='text' id='passwordSignup' {...domOnlyProps(password)} />
+            <span className='error'>{this.props.errorMessage}</span>
 
-            <span className='error'>{this.passwordErrorDisplay()}</span>
+            <fieldset>
+              <label htmlFor='emailSignup'>Email:</label>
+              <input type='text' id='emailSignup' {...domOnlyProps(email)} />
 
-          </fieldset>
+              <span className='error'>{this.emailErrorDisplay()}</span>
 
-          <fieldset>
-            <label htmlFor='passwordSignupConfirm'>Confirm password:</label>
-            <input type='text' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
-          </fieldset>
+            </fieldset>
 
-          <input type='submit' className='btn' value='Submit' />
+            <fieldset>
+              <label htmlFor='passwordSignup'>Password:</label>
+              <input type='text' id='passwordSignup' {...domOnlyProps(password)} />
 
-        </form>
+              <span className='error'>{this.passwordErrorDisplay()}</span>
+
+            </fieldset>
+
+            <fieldset>
+              <label htmlFor='passwordSignupConfirm'>Confirm password:</label>
+              <input type='text' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
+            </fieldset>
+
+            <input type='submit' className='btn' value='Submit' />
+
+          </form>
+        </div>
       </div>
     );
+
   }
 
 }
@@ -135,13 +171,15 @@ function validate(formProps) {
 
 function mapStateToProps(state) {
   return {
-    errorMessage: state.auth.error
+    errorMessage: state.auth.error,
+    users: state.users.list
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    signupUser: ACTIONS.signupUser
+    signupUser: ACTIONS.signupUser,
+    fetchUsers: ACTIONS.fetchUsers
   }, dispatch);
 }
 

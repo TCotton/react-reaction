@@ -9,6 +9,7 @@ import star from './images/star.svg';
 import fork from './images/repo-forked.svg';
 import linkExternal from './images/link-external.svg';
 
+import H2 from '../../components/h2';
 import H3 from '../../components/h3';
 import IMG from '../../components/Img';
 
@@ -85,7 +86,11 @@ function ListItem(props) {
 
     }
 
-    return <div></div>;
+    return (
+      <section className={styles['list-section']}>
+        <H2 className={styles['loading']}>Loading...</H2>
+      </section>
+    );
   };
 
   return _render();
