@@ -4,10 +4,12 @@ const CONFIG = require('../config');
 
 function githubSearch(callback) {
 
-  const query = 'react';
-  const inWhere = 'file,path';
+  const query = 'react+NOT+facebook';
+  const inWhere = 'title,body';
   const language = 'js';
   const sort = 'stars';
+  const repoExclude = 'facebook';
+  const is = 'public';
 
   const client = GITHUB.client({
     id: CONFIG.CLIENT_ID,
@@ -17,14 +19,14 @@ function githubSearch(callback) {
   const ghsearch = client.search();
 
   ghsearch.repos({
-    q: `${query}+in:${inWhere}+language:${language}&sort=${sort}`
+    q: `${query}+in:${inWhere}+language:${language}+-repo:${repoExclude}+is:${is}&sort=${sort}`
   }, callback);
 
 }
 
 module.exports.search = (req, res, next) => {
 
-  githubSearch((err, JSONObject, headers) => {
+  githubSearch((err, JSONObject) => {
 
     if (err) {
       return next(err);

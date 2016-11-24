@@ -14,6 +14,7 @@ import Signout from './containers/signout';
 import Signup from './containers/signup';
 import Admin from './components/Admin';
 import ACTIONS from './actions/types';
+import ExcludePopular from './containers/excludePopular';
 
 import reducers from './reducers';
 
@@ -47,6 +48,7 @@ ReactDOM.render(
         <Route path='/signout' component={Signout} />
         <Route path='/admin' component={Admin} />
         <Route path='/admin/signup' component={Signup} />
+        <Route path='/admin/exclude' component={ExcludePopular} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));
