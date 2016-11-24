@@ -6,9 +6,7 @@ export default function (state = {}, action = null) {
 
     case TYPES.FETCH_USERS:
 
-      return {
-        ...state, list: action.payload
-      };
+      return Object.assign({}, state, { list: action.payload });
 
     default:
 
