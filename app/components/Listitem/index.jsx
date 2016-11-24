@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
-
 import React from 'react';
 import classnames from 'classnames';
-
 import styles from './_ListItem.scss';
-
 import star from './images/star.svg';
 import fork from './images/repo-forked.svg';
 import linkExternal from './images/link-external.svg';
-
 import H2 from '../../components/h2';
 import H3 from '../../components/h3';
 import IMG from '../../components/Img';

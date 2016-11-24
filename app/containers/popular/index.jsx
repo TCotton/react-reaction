@@ -2,11 +2,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import ACTIONS from '../../actions/actions';
-
 import ListItem from '../../components/Listitem';
-
 import styles from './_ListItem.scss';
 
 class Frontpage extends Component {
