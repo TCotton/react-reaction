@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
+import { FormattedMessage } from 'react-intl';
 import ACTIONS from '../../actions/actions';
 import styles from './_signup.scss';
 import H2 from '../../components/h2';
+import messages from './messages';
 
 const formFields = ['email', 'password', 'passwordConfirm'];
 
@@ -96,7 +98,7 @@ class Signup extends Component {
       <div className='new-users'>
 
         <ul className={styles['users-list']}>
-          <li>Current users</li>
+          <li><FormattedMessage {...messages.subTitle} /></li>
           {this.displayUsers()}
         </ul>
 
@@ -104,12 +106,12 @@ class Signup extends Component {
 
           <form onSubmit={handleSubmit(this.onFormSubmit)}>
 
-            <H2>New user</H2>
+            <H2><FormattedMessage {...messages.title} /></H2>
 
             <span className='error'>{this.props.errorMessage}</span>
 
             <fieldset>
-              <label htmlFor='emailSignup'>Email:</label>
+              <label htmlFor='emailSignup'><FormattedMessage {...messages.email} />:</label>
               <input type='text' id='emailSignup' {...domOnlyProps(email)} />
 
               <span className='error'>{this.emailErrorDisplay()}</span>
@@ -117,7 +119,7 @@ class Signup extends Component {
             </fieldset>
 
             <fieldset>
-              <label htmlFor='passwordSignup'>Password:</label>
+              <label htmlFor='passwordSignup'><FormattedMessage {...messages.password} />:</label>
               <input type='text' id='passwordSignup' {...domOnlyProps(password)} />
 
               <span className='error'>{this.passwordErrorDisplay()}</span>
@@ -125,7 +127,7 @@ class Signup extends Component {
             </fieldset>
 
             <fieldset>
-              <label htmlFor='passwordSignupConfirm'>Confirm password:</label>
+              <label htmlFor='passwordSignupConfirm'><FormattedMessage {...messages.passwordConfirm} />:</label>
               <input type='text' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
             </fieldset>
 
@@ -147,15 +149,15 @@ function validate(formProps) {
   const re = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (typeof formProps.email !== 'undefined' && !re.test(formProps.email)) {
-    errors.email = 'Please include a valid email address';
+    errors.email = <FormattedMessage {...messages.errorEmail} />;
   }
 
   if (!Object.is(formProps.password, formProps.passwordConfirm)) {
-    errors.password = 'Passwords must match';
+    errors.password = <FormattedMessage {...messages.errorPasswordMatch} />;
   }
 
   if (typeof formProps.password !== 'undefined' && formProps.password.length < 9) {
-    errors.password = 'The password must be more than 8 characters';
+    errors.password = <FormattedMessage {...messages.errorPasswordLength} />;
   }
 
   formFields.map((value) => { // eslint-disable-line array-callback-return
