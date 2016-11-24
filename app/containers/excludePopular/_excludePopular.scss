@@ -1,15 +1,13 @@
 @import '../../scss/_variables';
-@import '../../scss/functions';
+@import '../../scss/_functions';
 @import '../../scss/_mixins';
 @import '../../scss/_fonts';
 
 .list {
-  background: transparent;
   flex-direction: column;
 }
 
 .list-item {
-  background: transparent;
 
   dl {
     margin: 0 0 50px 0;
@@ -27,7 +25,7 @@
 
   a {
     text-decoration: none;
-    background-image: linear-gradient(to top, rgba($highlight, 0) 11%, rgba($highlight, .3) 11%, rgba($highlight, .3) 16%, rgba($highlight, 0) 16%);
+    background-image: linear-gradient(to top, rgba($link, 0) 11%, rgba($highlight, .3) 11%, rgba($highlight, .3) 16%, rgba($highlight, 0) 16%);
 
     &:link {
       color: $textOne;
@@ -57,5 +55,9 @@
   background: $backgroundTwo;
   font-weight: 300;
   padding: 0 3px;
+}
+
+.loading {
+  animation: blinker 0.75s linear infinite;
 }
 

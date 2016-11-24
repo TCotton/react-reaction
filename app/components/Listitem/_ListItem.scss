@@ -1,7 +1,8 @@
 @import '../../scss/_variables';
-@import '../../scss/functions';
+@import '../../scss/_functions';
 @import '../../scss/_mixins';
 @import '../../scss/_fonts';
+@import '../../scss/_animation';
 
 .list-section {
   background: transparent;
@@ -10,12 +11,6 @@
 .loading {
   color: $highlight;
   animation: blinker 0.75s linear infinite;
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
 }
 
 .list-section-left-column {
