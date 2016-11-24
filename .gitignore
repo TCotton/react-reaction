@@ -53,4 +53,3 @@ npm-debug.log
 .idea
 ./config.js
 config.js
-yarn.lock

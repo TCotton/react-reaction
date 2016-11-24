@@ -1,12 +1,12 @@
 import TYPES from '../actions/types';
 
-export default function (state = [], action = null) {
+export default function (state = {}, action = null) {
 
   switch (action.type) {
 
     case TYPES.FETCH_GITHUB_DATA:
 
-      return action.payload;
+      return Object.assign({}, state, action.payload);
 
     default:
 

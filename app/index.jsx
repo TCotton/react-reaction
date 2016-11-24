@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 import { IntlProvider } from 'react-intl';
+import createLogger from 'redux-logger';
 import './scss/global.scss';
 
 import App from './containers/app';
@@ -22,7 +23,9 @@ if (process.env.NODE_ENV !== 'production') {
   axe(React, ReactDOM, 1000);
 }
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const logger = createLogger();
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 // of we have a token, consider the user sign in
