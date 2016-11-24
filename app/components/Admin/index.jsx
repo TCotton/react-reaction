@@ -17,6 +17,11 @@ function Admin() {
               <FormattedMessage {...messages.linkSignUp} />
             </Link>
           </li>
+          <li>
+            <Link to='/admin/exclude'>
+              <FormattedMessage {...messages.linkManagePopularList} />
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

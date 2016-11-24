@@ -10,6 +10,11 @@ export default defineMessages({
   linkSignUp: {
     id: 'app.containers.Admin.descriptionOne',
     defaultMessage: 'Sign Up'
+  },
+
+  linkManagePopularList: {
+    id: 'app.containers.Admin.linkManagePopularList',
+    defaultMessage: 'Manage the GitHub popular list'
   }
 
 });

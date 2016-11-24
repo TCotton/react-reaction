@@ -65,6 +65,16 @@ export default defineMessages({
   dateUpdated: {
     id: 'app.containers.excludePopular.dateUpdated',
     defaultMessage: 'Date updated'
+  },
+
+  loading: {
+    id: 'app.containers.excludePopular.loading',
+    defaultMessage: 'Loading...'
+  },
+
+  repoID: {
+    id: 'app.containers.excludePopular.repoID',
+    defaultMessage: 'Repository ID'
   }
 
 });
