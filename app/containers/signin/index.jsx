@@ -9,7 +9,10 @@ class Signin extends Component {
     signinUser: PropTypes.func,
     errorMessage: PropTypes.string,
     handleSubmit: PropTypes.func,
-    fields: PropTypes.object
+    fields: PropTypes.shape({
+      email: PropTypes.object,
+      password: PropTypes.object
+    })
   };
 
   constructor(props) {

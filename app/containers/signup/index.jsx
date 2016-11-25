@@ -13,11 +13,15 @@ class Signup extends Component {
 
   static propTypes = {
     signupUser: PropTypes.func,
-    fields: PropTypes.object,
     errorMessage: PropTypes.string,
     handleSubmit: PropTypes.func,
     fetchUsers: PropTypes.func,
-    users: PropTypes.object
+    users: PropTypes.object,
+    fields: PropTypes.shape({
+      email: PropTypes.object,
+      password: PropTypes.object,
+      passwordConfirm: PropTypes.object
+    })
   };
 
   constructor(props) {
