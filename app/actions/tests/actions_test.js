@@ -1,6 +1,12 @@
+import thunk from 'redux-thunk';
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store'
 import { expect } from '../../test/test_helper';
 import TYPES from '../types';
 import ACTIONS from '../actions';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('test fetchGitHubData', () => {
 

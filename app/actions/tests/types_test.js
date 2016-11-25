@@ -15,7 +15,11 @@ describe('test constants', () => {
 
   });
 
-  // must check whether TYPES constant is immutable
+  it('must check whether TYPES constant is immutable', () => {
+
+    expect(Object.isFrozen(TYPES)).to.be(true);
+
+  });
 
 });
 /* eslint-enable */

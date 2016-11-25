@@ -24,6 +24,7 @@ function Frontpage() {
         <p>
           <FormattedMessage {...messages.descriptionOne} />
         </p>
+
         <p>
           <FormattedMessage {...messages.descriptionTwo} />
         </p>
