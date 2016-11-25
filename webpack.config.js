@@ -62,8 +62,8 @@ module.exports = {
 
   ],
   postcss: [
-    autoprefixer({browsers: ['last 2 versions']}),
-    postcssBase64({extensions: ['.svg', '.png', '.jpeg', 'jpg']}),
+    autoprefixer({ browsers: ['last 2 versions'] }),
+    postcssBase64({ extensions: ['.svg', '.png', '.jpeg', 'jpg'] }),
     require('postcss-mq-keyframes'),
     require('postcss-focus'),
     require('postcss-fakeid')

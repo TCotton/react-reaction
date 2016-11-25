@@ -15,6 +15,7 @@ import Signup from './containers/signup';
 import Admin from './components/Admin';
 import ACTIONS from './actions/types';
 import ExcludePopular from './containers/excludePopular';
+import SESSION_STORAGE from './util/sessionStorage';
 
 import reducers from './reducers';
 
@@ -28,6 +29,22 @@ const logger = createLogger();
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
 const store = createStoreWithMiddleware(reducers);
+
+if (process.env.NODE_ENV !== 'production') {
+  const axe = require('react-axe'); // eslint-disable-line
+
+  axe(React, ReactDOM, 1000);
+
+  // create basic local data cache for the most popular posts
+  store.subscribe(() => {
+
+    if (Object.keys(store.getState().popular).length > 0) {
+      SESSION_STORAGE.saveState(store.getState().popular);
+    }
+
+  });
+
+}
 
 // of we have a token, consider the user sign in
 const token = localStorage.getItem('token');

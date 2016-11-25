@@ -1,11 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import momentJS from 'moment';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import _ from 'lodash';
 import ACTIONS from '../../actions/actions';
 import messages from './messages';
 import H2 from '../../components/h2';
@@ -25,7 +23,7 @@ class ExcludePopular extends Component {
 
     if (this.props.popular) {
 
-      return this.props.popular.map((item) => {
+      return this.props.popular.map((item) => { // eslint-disable-line arrow-body-style
 
         return `${item.name}-${item.id}`;
 

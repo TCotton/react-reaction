@@ -7,7 +7,7 @@ import H2 from '../../components/h2';
 import Popular from '../../containers/popular';
 import styles from './_index.scss';
 
-const wrapper = classnames(styles['wrapper']);
+const wrapper = classnames(styles['wrapper'], 'whatever');
 
 function Frontpage() {
 

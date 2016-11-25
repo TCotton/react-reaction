@@ -2,6 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
+import SESSION_STORAGE from '../util/sessionStorage';
 
 class ErrorMessage {
 
@@ -36,14 +37,25 @@ function fetchGitHubData() {
 
   return function (dispatch) {
 
-    axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
+    if (Object.keys(SESSION_STORAGE.loadState()).length > 0) {
 
       dispatch({
         type: TYPES.FETCH_GITHUB_DATA,
-        payload: response.data
+        payload: SESSION_STORAGE.loadState()
       });
 
-    });
+    } else {
+
+      axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
+
+        dispatch({
+          type: TYPES.FETCH_GITHUB_DATA,
+          payload: response.data
+        });
+
+      });
+
+    }
 
   };
 
