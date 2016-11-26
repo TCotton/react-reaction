@@ -12,7 +12,10 @@
     "nodeDev": "nodemon server/index.js",
     "security": "nsp check",
     "npmcheckversion": "node ./internals/npmcheckversion.js",
-    "nodecheckversion": "node ./internals/nodecheckversion.js"
+    "nodecheckversion": "node ./internals/nodecheckversion.js",
+    "analyze": "node ./internals/scripts/analyze.js",
+    "test:clean": "rimraf ./coverage",
+    "build:clean": "npm run test:clean && rimraf ./build"
   },
   "jest": {
     "verbose": true
