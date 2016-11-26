@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { getStoredState } from 'redux-persist';
+import localForage from 'localforage';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
 import SESSION_STORAGE from '../util/sessionStorage';
@@ -15,8 +17,10 @@ class ErrorMessage {
       // if request is good...
       // - Update state to indicate user is authenticated
       dispatch({
-        type: TYPES.AUTH_USER
+        type: TYPES.AUTH_USER,
+        payload: response.data.token
       });
+
       // - Save the JWT token
       localStorage.setItem('token', response.data.token);
       // - redirect to the route './feature'
@@ -105,6 +109,11 @@ function signoutUser() {
 }
 
 function fetchMessage() {
+
+  getStoredState({ storage: localForage, whitelist: 'auth' }, (err, state) => {
+    console.dir(err);
+    console.dir(state);
+  });
 
   return function (dispatch) {
 

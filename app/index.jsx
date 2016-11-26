@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, browserHistory } from 'react-router';
-import reduxThunk from 'redux-thunk';
 import { IntlProvider } from 'react-intl';
-import createLogger from 'redux-logger';
+import { persistStore, getStoredState } from 'redux-persist';
+import localForage from 'localforage';
 import './scss/global.scss';
 
 import App from './containers/app';
@@ -16,8 +15,7 @@ import Admin from './components/Admin';
 import ACTIONS from './actions/types';
 import ExcludePopular from './containers/excludePopular';
 import SESSION_STORAGE from './util/sessionStorage';
-
-import reducers from './reducers';
+import store from './store';
 
 if (process.env.NODE_ENV !== 'production') {
   const axe = require('react-axe'); // eslint-disable-line
@@ -25,10 +23,12 @@ if (process.env.NODE_ENV !== 'production') {
   axe(React, ReactDOM, 1000);
 }
 
-const logger = createLogger();
+persistStore(store, { storage: localForage, whitelist: 'auth' });
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
-const store = createStoreWithMiddleware(reducers);
+getStoredState(store, (err, state) => {
+  console.dir(err);
+  console.dir(state);
+});
 
 if (process.env.NODE_ENV !== 'production') {
   const axe = require('react-axe'); // eslint-disable-line
