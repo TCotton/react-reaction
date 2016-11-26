@@ -1,9 +1,12 @@
+import localForage from 'localforage';
+
 const UNIVERSAL = {
   ROOT_URL: 'http://localhost:3090',
   SEARCH_URL: 'api/search',
   SIGNIN: 'api/signin',
   SIGNUP: 'api/signup',
-  USERS_URL: 'api/users'
+  USERS_URL: 'api/users',
+  PERSIST_KEY: 'reactReaction'
 };
 
 if (process.env.NODE_ENV !== 'production') {
@@ -11,5 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   UNIVERSAL.ROOT_URL = window.location.origin;
 }
+
+UNIVERSAL.persistConfigAuth = { storage: localForage, whitelist: 'auth', keyPrefix: UNIVERSAL.PERSIST_KEY };
 
 export default Object.freeze(UNIVERSAL);

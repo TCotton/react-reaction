@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { IntlProvider } from 'react-intl';
-import { persistStore, getStoredState } from 'redux-persist';
-import localForage from 'localforage';
+import { persistStore } from 'redux-persist';
 import './scss/global.scss';
 
 import App from './containers/app';
@@ -16,6 +15,7 @@ import ACTIONS from './actions/types';
 import ExcludePopular from './containers/excludePopular';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
+import UNIVERSAL from './constant';
 
 if (process.env.NODE_ENV !== 'production') {
   const axe = require('react-axe'); // eslint-disable-line
@@ -23,11 +23,23 @@ if (process.env.NODE_ENV !== 'production') {
   axe(React, ReactDOM, 1000);
 }
 
-persistStore(store, { storage: localForage, whitelist: 'auth' });
+persistStore(store, UNIVERSAL.persistConfigAuth, (err, state) => {
 
-getStoredState(store, (err, state) => {
-  console.dir(err);
-  console.dir(state);
+  if (err) {
+    return null;
+  }
+
+  if (state.auth.token) {
+
+    store.dispatch({
+      type: ACTIONS.AUTH_USER,
+      payload: state.auth.token
+    });
+
+  }
+
+  return true;
+
 });
 
 if (process.env.NODE_ENV !== 'production') {
@@ -44,16 +56,6 @@ if (process.env.NODE_ENV !== 'production') {
 
   });
 
-}
-
-// of we have a token, consider the user sign in
-const token = localStorage.getItem('token');
-
-if (token) {
-// we need to update application state
-  store.dispatch({
-    type: ACTIONS.AUTH_USER
-  });
 }
 
 ReactDOM.render(

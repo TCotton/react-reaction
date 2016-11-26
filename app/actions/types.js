@@ -4,8 +4,8 @@ const TYPES = {
   UNAUTH_USER: 'unauth_user',
   AUTH_ERROR: 'auth_error',
   FETCH_MESSAGE: 'fetch_message',
-  FETCH_USERS: 'fetch_users'
+  FETCH_USERS: 'fetch_users',
+  AUTH_USER_ONLOAD: 'auth_user_onload'
 };
 
 export default Object.freeze(TYPES);
-

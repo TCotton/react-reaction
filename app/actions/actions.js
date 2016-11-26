@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { getStoredState } from 'redux-persist';
-import localForage from 'localforage';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
 import SESSION_STORAGE from '../util/sessionStorage';
+import store from '../store';
 
 class ErrorMessage {
 
@@ -21,10 +21,8 @@ class ErrorMessage {
         payload: response.data.token
       });
 
-      // - Save the JWT token
-      localStorage.setItem('token', response.data.token);
       // - redirect to the route './feature'
-      browserHistory.push('/admin');
+      browserHistory.push('/');
 
     }).catch((response) => {
 
@@ -100,8 +98,6 @@ function authError(error) {
 
 function signoutUser() {
 
-  localStorage.removeItem('token');
-
   return {
     type: TYPES.UNAUTH_USER
   };
@@ -109,17 +105,21 @@ function signoutUser() {
 }
 
 function fetchMessage() {
+  let auth = null;
 
-  getStoredState({ storage: localForage, whitelist: 'auth' }, (err, state) => {
-    console.dir(err);
-    console.dir(state);
+  getStoredState(store, (err, state) => {
+    if (err) {
+      return false;
+    }
+    auth = state.auth.token;
+    return true;
   });
 
   return function (dispatch) {
 
     axios.get(UNIVERSAL.USERS_URL, {
       headers: {
-        authorization: localStorage.getItem('token')
+        authorization: auth
       }
     }).then((response) => {
 
