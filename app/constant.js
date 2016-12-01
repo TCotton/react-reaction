@@ -15,6 +15,6 @@ if (process.env.NODE_ENV !== 'production') {
   UNIVERSAL.ROOT_URL = window.location.origin;
 }
 
-UNIVERSAL.persistConfigAuth = { storage: localForage, whitelist: 'auth', keyPrefix: UNIVERSAL.PERSIST_KEY };
+UNIVERSAL.persistConfigAuth = { storage: localForage, serial: true, whitelist: 'auth', keyPrefix: UNIVERSAL.PERSIST_KEY };
 
 export default Object.freeze(UNIVERSAL);

@@ -1,18 +1,30 @@
+import { REHYDRATE } from 'redux-persist/constants';
 import TYPES from '../actions/types';
 
 export default function (state = {}, action = null) {
 
   switch (action.type) {
 
-    case TYPES.AUTH_USER:
+    case REHYDRATE: {
+
+      const incoming = action.payload.auth;
+
       return {
-        ...state, error: '', authenticated: true, token: action.payload
+        ...state, ...incoming
       };
+
+    }
 
     case TYPES.UNAUTH_USER:
 
       return {
-        ...state, authenticated: false
+        ...state, authenticated: false, token: ''
+      };
+
+    case TYPES.AUTH_USER:
+
+      return {
+        ...state, error: '', authenticated: true, token: action.payload
       };
 
     case TYPES.AUTH_ERROR:

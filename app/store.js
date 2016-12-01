@@ -9,6 +9,7 @@ const logger = createLogger();
 const middleWare = [reduxThunk, logger];
 
 const createStoreWithMiddleware = compose(applyMiddleware(...middleWare), autoRehydrate())(createStore);
+
 const store = createStoreWithMiddleware(reducers);
 
 export default store;

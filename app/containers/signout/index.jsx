@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ACTIONS from '../../actions/actions';
+import persistor from '../../persistor';
 
 class Signout extends Component {
 
@@ -11,6 +12,7 @@ class Signout extends Component {
 
   componentWillMount() {
     this.props.signoutUser();
+    persistor.purge(); // doesn't look right -> refactor?
   }
 
   render() {
