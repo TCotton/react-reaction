@@ -18,12 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
   const axe = require('react-axe'); // eslint-disable-line
 
   axe(React, ReactDOM, 1000);
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  const axe = require('react-axe'); // eslint-disable-line
-
-  axe(React, ReactDOM, 1000);
 
   // create basic local data cache for the most popular posts
   store.subscribe(() => {

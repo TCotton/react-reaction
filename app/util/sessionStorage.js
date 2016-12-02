@@ -1,3 +1,5 @@
+import serialize from 'serialize-javascript';
+
 function loadState() {
 
   try {
@@ -18,7 +20,7 @@ function loadState() {
 function saveState(state) {
 
   try {
-    const serialisedState = JSON.stringify(state);
+    const serialisedState = serialize(state);
 
     sessionStorage.setItem('state', serialisedState);
     return true;

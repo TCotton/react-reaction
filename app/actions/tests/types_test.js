@@ -17,7 +17,9 @@ describe('test constants', () => {
 
   it('must check whether TYPES constant is immutable', () => {
 
-    expect(Object.isFrozen(TYPES)).to.be(true);
+    console.dir(Object.isFrozen(TYPES));
+
+    expect(Object.isFrozen(TYPES)).to.equal(true);
 
   });
 
