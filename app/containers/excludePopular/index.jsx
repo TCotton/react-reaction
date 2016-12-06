@@ -9,8 +9,12 @@ import messages from './messages';
 import H2 from '../../components/h2';
 import H3 from '../../components/h3';
 import styles from './_excludePopular.scss';
+import InputCheckbox from '../../components/InputCheckbox';
 
 const adminExclPop = classnames('admin', styles.list);
+let domOnlyProps;
+
+const removeItem = [];
 
 class ExcludePopular extends Component {
 
@@ -19,26 +23,10 @@ class ExcludePopular extends Component {
     popular: PropTypes.array
   };
 
-  static checkboxFields() {
-
-    if (this.props.popular) {
-
-      return this.props.popular.map((item) => { // eslint-disable-line arrow-body-style
-
-        return `${item.name}-${item.id}`;
-
-      });
-
-    }
-
-    return null;
-
-  }
-
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
-    ExcludePopular.checkboxFields = ExcludePopular.checkboxFields.bind(this);
+    this.displayFields = this.displayFields.bind(this);
   }
 
   componentWillMount() {
@@ -49,12 +37,32 @@ class ExcludePopular extends Component {
     return momentJS(dateString).format('MMM Do YYYY');
   }
 
+  displayFields(id) {
+    removeItem.push(id);
+  }
+
   displayPopularGithubList() {
 
     if (this.props.popular) {
 
+      console.dir(this.props);
+
+      this.props.popular.map((item, index) => {
+
+        console.log('first');
+        console.log(index);
+
+        this.displayFields(`${item.name}-${item.id}`);
+
+      });
+
       /* eslint-disable max-len, arrow-body-style */
-      return this.props.popular.map((item) => {
+      return this.props.popular.map((item, index) => {
+
+        console.log('second');
+        console.log(index);
+
+        this.displayFields(item.id);
 
         return (
           <dl key={item.id}>
@@ -82,10 +90,7 @@ class ExcludePopular extends Component {
 
             <dd><FormattedMessage {...messages.dateUpdated} />: <span className={styles['highlight']}>{this.formatDate(item['updated_at'])}</span></dd>
 
-            <dd>
-              <input id={`${item.name}-${item.id}`} type='checkbox' value='ham' />
-              <label htmlFor={`${item.name}-${item.id}`}>{item.name}</label>
-            </dd>
+            <InputCheckbox name={item.name} id={item.id} field={item.name} />
 
           </dl>
 
@@ -101,13 +106,33 @@ class ExcludePopular extends Component {
 
   render() {
 
+    // crazy workaround to remove browser error noise in react from > 15.2.0 and redux-form < 6
+    // https://github.com/erikras/redux-form/issues/1249#issuecomment-238791983
+
+    domOnlyProps = ({
+      initialValue,
+      autofill,
+      onUpdate,
+      valid,
+      invalid,
+      dirty,
+      pristine,
+      active,
+      touched,
+      visited,
+      autofilled,
+      error,
+      ...domProps }) => domProps;
+
+    const { handleSubmit, fields: { removeItem } } = this.props;
+
     return (
       <div className={adminExclPop}>
         <H2 className={styles['exclude-popular-header']}>
           <FormattedMessage {...messages.title} />
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
-        <form className={styles['list-item']}>
+        <form className={styles['list-item']} onSubmit={handleSubmit}>
           {this.displayPopularGithubList()}
         </form>
       </div>
@@ -131,5 +156,5 @@ function mapDispatchToProps(dispatch) {
 
 export default reduxForm({
   form: 'managePopular',
-  fields: ['removeItem']
+  fields: removeItem
 }, mapStateToProps, mapDispatchToProps)(ExcludePopular);

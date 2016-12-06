@@ -10,7 +10,7 @@ import Signin from './containers/signin';
 import Signout from './containers/signout';
 import Signup from './containers/signup';
 import Admin from './components/Admin';
-import ExcludePopular from './containers/excludePopular';
+import ExcludePopularExtra from './containers/excludePopularExtra';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
 
@@ -18,6 +18,10 @@ if (process.env.NODE_ENV !== 'production') {
   const axe = require('react-axe'); // eslint-disable-line
 
   axe(React, ReactDOM, 1000);
+
+}
+
+if (process.env.NODE_ENV !== 'production') {
 
   // create basic local data cache for the most popular posts
   store.subscribe(() => {
@@ -39,7 +43,7 @@ ReactDOM.render(
         <Route path='/signout' component={Signout} />
         <Route path='/admin' component={Admin} />
         <Route path='/admin/signup' component={Signup} />
-        <Route path='/admin/exclude' component={ExcludePopular} />
+        <Route path='/admin/exclude' component={ExcludePopularExtra} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));

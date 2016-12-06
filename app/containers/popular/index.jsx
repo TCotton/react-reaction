@@ -15,6 +15,7 @@ class Frontpage extends Component {
 
   componentWillMount() {
     this.props.fetchGitHubData();
+    console.dir(this.props);
   }
 
   render() {
