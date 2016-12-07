@@ -9,8 +9,9 @@ import App from './containers/app';
 import Signin from './containers/signin';
 import Signout from './containers/signout';
 import Signup from './containers/signup';
+import Form from './containers/form';
 import Admin from './components/Admin';
-import ExcludePopularExtra from './containers/excludePopularExtra';
+import ExcludePopularTwo from './containers/excludePopularTwo';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
 
@@ -43,7 +44,7 @@ ReactDOM.render(
         <Route path='/signout' component={Signout} />
         <Route path='/admin' component={Admin} />
         <Route path='/admin/signup' component={Signup} />
-        <Route path='/admin/exclude' component={ExcludePopularExtra} />
+        <Route path='/admin/exclude' component={Form(ExcludePopularTwo)} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));
