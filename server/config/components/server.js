@@ -11,7 +11,7 @@ const common = require('./common');
 const app = express();
 
 // db
-if(common.isDevelopment) {
+if (common.isDevelopment) {
   mongoose.connect('mongodb://localhost:auth/auth');
 } else {
   log.error('No production DB');

@@ -8,7 +8,7 @@ const envVarsSchema = Joi.object({
 
 }).unknown().required();
 
-const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
+const {error, value: envVars} = Joi.validate(process.env, envVarsSchema);
 
 if (error) {
   throw new Error(`Config validation error: ${error.message}`);
@@ -16,12 +16,12 @@ if (error) {
 
 const config = {
   env: envVars.NODE_ENV,
-  isTest: envVars.NODE_ENV === 'test',
-  isDevelopment: envVars.NODE_ENV === 'development',
-  isProduction: envVars.NODE_ENV === 'production',
+  isTest: Object.is(envVars.NODE_ENV, 'test'),
+  isDevelopment: Object.is(envVars.NODE_ENV, 'development'),
+  isProduction: Object.is(envVars.NODE_ENV, 'production'),
   server: {
     port: envVars.PORT
   }
 };
 
-module.exports = Object.freeze(config)
+module.exports = config;
