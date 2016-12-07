@@ -39,7 +39,7 @@ function fetchGitHubData() {
 
   return function (dispatch) {
 
-    if (Object.keys(SESSION_STORAGE.loadState()).length > 0) {
+    if (typeof SESSION_STORAGE.loadState() !== 'undefined' && Object.keys(SESSION_STORAGE.loadState()).length > 0) {
 
       dispatch({
         type: TYPES.FETCH_GITHUB_DATA,

@@ -1,0 +1,27 @@
+const Joi = require('joi');
+
+const envVarsSchema = Joi.object({
+
+  NODE_ENV: Joi.string().allow(['development', 'production', 'test', 'provision']).required(),
+
+  PORT: Joi.number().required()
+
+}).unknown().required();
+
+const { error, value: envVars } = Joi.validate(process.env, envVarsSchema);
+
+if (error) {
+  throw new Error(`Config validation error: ${error.message}`);
+}
+
+const config = {
+  env: envVars.NODE_ENV,
+  isTest: envVars.NODE_ENV === 'test',
+  isDevelopment: envVars.NODE_ENV === 'development',
+  isProduction: envVars.NODE_ENV === 'production',
+  server: {
+    port: envVars.PORT
+  }
+};
+
+module.exports = Object.freeze(config)
