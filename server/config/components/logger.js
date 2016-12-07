@@ -22,5 +22,5 @@ const config = {
   }
 };
 
-module.exports = Object.freeze(config);
+module.exports = config;
 
