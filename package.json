@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ./app/test/test_helper.js --recursive 'app/actions/**/*test.js'",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline",
+    "start": "NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline",
     "build": "bump --prompt",
     "strip": "webpack --config 'webpack.production.config.js' -p",
     "nodeDev": "nodemon server/index.js",

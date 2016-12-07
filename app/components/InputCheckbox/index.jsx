@@ -2,8 +2,6 @@ import React from 'react';
 
 function InputCheckbox(props) {
 
-  // console.dir(props);
-
   return (
     <dd className='checkbox' key={props.id}>
 

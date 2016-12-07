@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, propTypes } from 'redux-form';
 import momentJS from 'moment';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
@@ -15,43 +15,56 @@ let domOnlyProps;
 const adminExclPop = classnames('admin', styles.list);
 
 const fields = ['checkRemove'];
-let removeItem = [];
+const newField = [
+  'removeItem[]'
+];
 
 class ExcludePopularTwo extends Component {
+
+  static propTypes = {
+    ...propTypes
+  };
 
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
-    this.displayFields = this.displayFields.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchGitHubData();
+
+    if (this.props.popular) {
+      console.dir(' THIS IS NOW ');
+    }
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    /*if (nextProps.popular) {
+     console.dir();
+    }*/
+
   }
 
   formatDate(dateString) {
     return momentJS(dateString).format('MMM Do YYYY');
   }
 
-  displayFields(id) {
-    removeItem.push(id.toString());
+  handleFormSubmit() {
+    console.dir(...arguments);
   }
 
-  onChange(event) {
-    console.dir(event);
-  }
-
-  displayPopularGithubList(removeItem) {
+  displayPopularGithubList() {
 
     if (this.props.popular) {
 
-      console.dir(removeItem);
-
       /* eslint-disable max-len, arrow-body-style */
-      return this.props.popular.map((item, index) => {
+      return this.props.popular.map((item) => {
 
-        this.displayFields(item.id);
+        const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
+        // this.props.fields.removeItem.addField(checkboxItem);
 
         return (
           <dl key={item.id}>
@@ -82,12 +95,12 @@ class ExcludePopularTwo extends Component {
             <dd className='checkbox'>
 
               <input
-                id={`${item.name}-${item.id}`}
+                id={checkboxItem}
                 type='checkbox'
-                value={`${item.name}-${item.id}`}
-                onChange={this.onChange} />
+                {...domOnlyProps(checkboxItem)}
+              />
 
-              <label htmlFor={`${item.name}-${item.id}`}>{item.name}</label>
+              <label htmlFor={checkboxItem}>{item.name}</label>
 
             </dd>
 
@@ -124,7 +137,7 @@ class ExcludePopularTwo extends Component {
       ...domProps
     }) => domProps;
 
-    const { handleSubmit, fields: { removeItem } } = this.props;
+    const { handleSubmit } = this.props;
 
     return (
       <div className={adminExclPop}>
@@ -132,8 +145,8 @@ class ExcludePopularTwo extends Component {
           <FormattedMessage {...messages.title} />
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
-        <form className={styles['list-item']} onSubmit={handleSubmit}>
-          {this.displayPopularGithubList(removeItem)}
+        <form className={styles['list-item']} onChange={handleSubmit(this.handleFormSubmit)}>
+          {this.displayPopularGithubList()}
         </form>
       </div>
     );
@@ -152,5 +165,6 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'managePopular',
-  fields: ['removeItem']
+  fields: newField,
+  initialValues: newField
 }, mapStateToProps)(ExcludePopularTwo);

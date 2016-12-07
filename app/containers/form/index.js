@@ -11,6 +11,7 @@ export default function (ComposedComponent) {
       this.props.fetchGitHubData();
     }
 
+    // err, what?
     componentWillUpdate(nextProps) {
 
       if (nextProps.popular) {
