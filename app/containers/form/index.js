@@ -14,11 +14,10 @@ export default function (ComposedComponent) {
     componentWillUpdate(nextProps) {
 
       if (nextProps.popular) {
-        const fields = nextProps.popular.map((item) => {
-          return `name-${item.id}`;
-        });
         return false;
       }
+
+      return true;
 
     }
 
