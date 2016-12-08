@@ -15,15 +15,14 @@ import ExcludePopularTwo from './containers/excludePopularTwo';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
 
-if (process.env.NODE_ENV !== 'production') {
+if (!Object.is(process.env.NODE_ENV, 'production')) {
   const axe = require('react-axe'); // eslint-disable-line
 
   axe(React, ReactDOM, 1000);
 
 }
 
-
-if (process.env.NODE_ENV !== 'production') {
+if (!Object.is(process.env.NODE_ENV, 'production')) {
 
   // create basic local data cache for the most popular posts
   store.subscribe(() => {
@@ -40,12 +39,12 @@ ReactDOM.render(
   <IntlProvider locale='en'>
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path='/' component={App} />
-        <Route path='/signin' component={Signin} />
-        <Route path='/signout' component={Signout} />
-        <Route path='/admin' component={Admin} />
-        <Route path='/admin/signup' component={Signup} />
-        <Route path='/admin/exclude' component={Form(ExcludePopularTwo)} />
+        <Route path='/' component={App}/>
+        <Route path='/signin' component={Signin}/>
+        <Route path='/signout' component={Signout}/>
+        <Route path='/admin' component={Admin}/>
+        <Route path='/admin/signup' component={Signup}/>
+        <Route path='/admin/exclude' component={Form(ExcludePopularTwo)}/>
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));

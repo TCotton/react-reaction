@@ -63,6 +63,7 @@ class Signup extends Component {
   displayUsers() {
 
     if (this.props.users) {
+
       return Object.values(this.props.users).map((user) => { // eslint-disable-line arrow-body-style
 
         return (
@@ -70,6 +71,7 @@ class Signup extends Component {
         );
 
       });
+
     }
 
     return null;
@@ -94,7 +96,8 @@ class Signup extends Component {
       visited,
       autofilled,
       error,
-      ...domProps }) => domProps;
+      ...domProps
+    }) => domProps;
 
     const { handleSubmit, fields: { email, password, passwordConfirm } } = this.props;
 
@@ -135,7 +138,7 @@ class Signup extends Component {
               <input type='text' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
             </fieldset>
 
-            <input type='submit' className='btn' value='Submit' />
+            <input type='submit' className='btn' value='Submit'/>
 
           </form>
         </div>

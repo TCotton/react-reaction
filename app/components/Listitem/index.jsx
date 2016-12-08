@@ -15,7 +15,7 @@ const externalLinks = classnames('octicon', styles['external-link']);
 
 function ListItem(props) {
 
-  const _populateLink = function _populateLink(item) {
+  function _populateLink(item) {
     return item['homepage'] ? item['homepage'] : item['html_url'];
   };
 
@@ -37,7 +37,7 @@ function ListItem(props) {
                 <a href={externalPage}>
 
                   <span className={styles['side-icon']}>
-                    <IMG src={star} alt='' className={'octicon'} />
+                    <IMG src={star} alt='' className={'octicon'}/>
                   </span>
 
                   <span className={styles['side-link']}>
@@ -51,7 +51,7 @@ function ListItem(props) {
                 <a href={externalPage}>
 
                   <span className={styles['side-icon']}>
-                    <IMG src={fork} alt='' className={'octicon'} />
+                    <IMG src={fork} alt='' className={'octicon'}/>
                   </span>
 
                   <span className={styles['side-link']}>
@@ -66,7 +66,7 @@ function ListItem(props) {
             <div className={styles['list-section-right-column']}>
               <a href={externalPage} target='_blank'>
                 <H3>{item['full_name']}
-                  <IMG src={linkExternal} alt={item['name']} className={externalLinks} />
+                  <IMG src={linkExternal} alt={item['name']} className={externalLinks}/>
                 </H3>
               </a>
               <p>{item.description}</p>
