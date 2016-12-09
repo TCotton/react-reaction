@@ -17,7 +17,7 @@ function ListItem(props) {
 
   function _populateLink(item) {
     return item['homepage'] ? item['homepage'] : item['html_url'];
-  };
+  }
 
   const _render = () => {
 
