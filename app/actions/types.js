@@ -9,6 +9,4 @@ const TYPES = {
   FETCH_USERS: 'fetch_users'
 };
 
-const deepTypes = ObjectDeepFreeze(TYPES);
-
 export default ObjectDeepFreeze(TYPES);
