@@ -14,7 +14,6 @@ import Admin from './components/Admin';
 import ExcludePopularTwo from './containers/excludePopularTwo';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
-import SubmitFromParentContainer from './containers/childform';
 
 if (!Object.is(process.env.NODE_ENV, 'production')) {
   const axe = require('react-axe'); // eslint-disable-line
@@ -46,7 +45,6 @@ ReactDOM.render(
         <Route path='/admin' component={Admin} />
         <Route path='/admin/signup' component={Signup} />
         <Route path='/admin/exclude' component={Form(ExcludePopularTwo)} />
-        <Route path='/childform' component={SubmitFromParentContainer} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));
