@@ -5,7 +5,7 @@ import SubmitFromParentForm from './SubmitFromParentForm';
 
 class SubmitFromParentContainer extends Component {
 
-  static PropTypes = {
+  static propTypes = {
     onSubmit: PropTypes.func,  // shows a dialog box
     reset: PropTypes.func      // reset action bound to dispatch
   };
@@ -18,14 +18,13 @@ class SubmitFromParentContainer extends Component {
   }
 
   componentDidMount() {
-    const component = this.hello;
-
-
+    const component = this.myForm;
     // ...do something with component
   }
 
   handleSubmit() {
-    // this.refs.myForm.submit(); // will return a promise
+    console.dir(this.myForm);
+    this.myForm.submit(); // will return a promise
   }
 
   resetForm() {
@@ -48,13 +47,12 @@ class SubmitFromParentContainer extends Component {
           </button>
         </div>
 
-        <SubmitFromParentForm ref={(c) => {
-          this.hello = c;
-        }} onSubmit={onSubmit} />
+        <SubmitFromParentForm ref={(c) => { this.myForm = c; }} onSubmit={onSubmit} />
 
       </div>
-    )
+    );
+
   }
 }
 
-export default connect(undefined, { reset })(SubmitFromParentContainer)
+export default connect(undefined, { reset })(SubmitFromParentContainer);

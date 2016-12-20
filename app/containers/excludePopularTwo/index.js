@@ -29,19 +29,12 @@ class ExcludePopularTwo extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchGitHubData();
-
     console.log('componentWillMount');
-
   }
 
-  componentWillReceiveProps(nextProps) {
+  /*componentWillReceiveProps(nextProps) {
 
-    /*if (nextProps.popular) {
-     console.dir();
-    }*/
-
-  }
+  }*/
 
   formatDate(dateString) {
     return momentJS(dateString).format('MMM Do YYYY');
@@ -130,7 +123,8 @@ class ExcludePopularTwo extends Component {
       ...domProps
     }) => domProps;
 
-    const { handleSubmit } = this.props;
+    const { handleSubmit, fields: { checkboxes } } = this.props;
+    console.dir(this.props);
 
     return (
       <div className={adminExclPop}>
@@ -157,5 +151,6 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-  form: 'managePopular'
+  form: 'managePopular',
+  fields
 }, mapStateToProps)(ExcludePopularTwo);

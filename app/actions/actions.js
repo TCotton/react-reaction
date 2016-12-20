@@ -43,7 +43,7 @@ function fetchGitHubData() {
 
       // temp solution
 
-      const checkboxes = SESSION_STORAGE.loadState().results.map((item) => {
+      const checkboxes = SESSION_STORAGE.loadState().results.map((item) => { // eslint-disable-line max-len, arrow-body-style
         return `${item.name.toLowerCase()}-${item.id}`;
       });
 
@@ -56,9 +56,15 @@ function fetchGitHubData() {
 
       axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
 
+        // temp solution
+
+        const checkboxes = response.data.results.map((item) => { // eslint-disable-line max-len, arrow-body-style
+          return `${item.name.toLowerCase()}-${item.id}`;
+        });
+
         dispatch({
           type: TYPES.FETCH_GITHUB_DATA,
-          payload: response.data
+          payload: Object.assign({}, response.data, { checkboxes })
         });
 
       });
