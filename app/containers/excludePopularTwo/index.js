@@ -15,9 +15,6 @@ let domOnlyProps;
 const adminExclPop = classnames('admin', styles.list);
 
 const fields = ['checkRemove'];
-const newField = [
-  'removeItem[]'
-];
 
 class ExcludePopularTwo extends Component {
 
@@ -57,8 +54,6 @@ class ExcludePopularTwo extends Component {
   displayPopularGithubList() {
 
     if (this.props.items.results) {
-
-      console.log(this.props);
 
       /* eslint-disable max-len, arrow-body-style */
       return this.props.items.results.map((item) => {
@@ -162,7 +157,5 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-  form: 'managePopular',
-  fields: newField,
-  initialValues: newField
+  form: 'managePopular'
 }, mapStateToProps)(ExcludePopularTwo);
