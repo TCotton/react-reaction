@@ -34,9 +34,7 @@ class ExcludePopularTwo extends Component {
   componentWillMount() {
     this.props.fetchGitHubData();
 
-    if (this.props.popular) {
-      console.dir(' THIS IS NOW ');
-    }
+    console.log('componentWillMount');
 
   }
 
@@ -58,10 +56,12 @@ class ExcludePopularTwo extends Component {
 
   displayPopularGithubList() {
 
-    if (this.props.popular) {
+    if (this.props.items.results) {
+
+      console.log(this.props);
 
       /* eslint-disable max-len, arrow-body-style */
-      return this.props.popular.map((item) => {
+      return this.props.items.results.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
         // this.props.fields.removeItem.addField(checkboxItem);
@@ -94,12 +94,7 @@ class ExcludePopularTwo extends Component {
 
             <dd className='checkbox'>
 
-              <input
-                id={checkboxItem}
-                type='checkbox'
-                {...domOnlyProps(checkboxItem)}
-              />
-
+              <input id={checkboxItem} type='checkbox' />
               <label htmlFor={checkboxItem}>{item.name}</label>
 
             </dd>
@@ -117,6 +112,9 @@ class ExcludePopularTwo extends Component {
   }
 
   render() {
+
+    console.log('on render');
+    console.log(this.props);
 
     // crazy workaround to remove browser error noise in react from > 15.2.0 and redux-form < 6
     // https://github.com/erikras/redux-form/issues/1249#issuecomment-238791983

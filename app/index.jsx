@@ -39,12 +39,12 @@ ReactDOM.render(
   <IntlProvider locale='en'>
     <Provider store={store}>
       <Router history={browserHistory}>
-        <Route path='/' component={App}/>
-        <Route path='/signin' component={Signin}/>
-        <Route path='/signout' component={Signout}/>
-        <Route path='/admin' component={Admin}/>
-        <Route path='/admin/signup' component={Signup}/>
-        <Route path='/admin/exclude' component={Form(ExcludePopularTwo)}/>
+        <Route path='/' component={App} />
+        <Route path='/signin' component={Signin} />
+        <Route path='/signout' component={Signout} />
+        <Route path='/admin' component={Admin} />
+        <Route path='/admin/signup' component={Signup} />
+        <Route path='/admin/exclude' component={Form(ExcludePopularTwo)} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));

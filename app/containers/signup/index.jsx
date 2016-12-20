@@ -138,7 +138,7 @@ class Signup extends Component {
               <input type='text' id='passwordSignupConfirm' {...domOnlyProps(passwordConfirm)} />
             </fieldset>
 
-            <input type='submit' className='btn' value='Submit'/>
+            <input type='submit' className='btn' value='Submit' />
 
           </form>
         </div>

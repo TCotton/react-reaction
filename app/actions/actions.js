@@ -41,9 +41,15 @@ function fetchGitHubData() {
 
     if (typeof SESSION_STORAGE.loadState() !== 'undefined' && Object.keys(SESSION_STORAGE.loadState()).length > 0) {
 
+      // temp solution
+
+      const checkboxes = SESSION_STORAGE.loadState().results.map((item) => {
+        return `${item.name.toLowerCase()}-${item.id}`;
+      });
+
       dispatch({
         type: TYPES.FETCH_GITHUB_DATA,
-        payload: SESSION_STORAGE.loadState()
+        payload: Object.assign({}, SESSION_STORAGE.loadState(), { checkboxes })
       });
 
     } else {

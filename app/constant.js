@@ -1,5 +1,4 @@
 import localForage from 'localforage';
-import deepFreeze from 'deep-freeze';
 
 const UNIVERSAL = {
   ROOT_URL: 'http://localhost:3090',
@@ -18,4 +17,4 @@ if (process.env.NODE_ENV !== 'production') {
 
 UNIVERSAL.persistConfigAuth = { storage: localForage, serial: true, whitelist: 'auth', keyPrefix: UNIVERSAL.PERSIST_KEY };
 
-export default deepFreeze(UNIVERSAL);
+export default Object.freeze(UNIVERSAL);

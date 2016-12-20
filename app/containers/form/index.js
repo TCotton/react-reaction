@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ACTIONS from '../../actions/actions';
@@ -6,6 +6,10 @@ import ACTIONS from '../../actions/actions';
 export default function (ComposedComponent) {
 
   class Authentication extends Component {
+
+    static propTypes = {
+      fetchGitHubData: PropTypes.func
+    };
 
     componentWillMount() {
       this.props.fetchGitHubData();
@@ -29,8 +33,10 @@ export default function (ComposedComponent) {
   }
 
   function mapStateToProps(state) {
+
     return {
-      popular: state.popular.results
+      popular: state.popular.results,
+      checkboxes: state.popular.checkboxes
     };
   }
 
