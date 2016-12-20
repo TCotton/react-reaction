@@ -4,7 +4,7 @@ export default function deepObjectFreeze(o) {
 
     Object.isFrozen(o) || Object.freeze(o);
 
-    Object.getOwnPropertyNames(o).forEach(function (prop) {
+    Object.getOwnPropertyNames(o).forEach((prop) => {
 
       Object.is(prop, 'constructor') || deepObjectFreeze(o[prop]);
 
