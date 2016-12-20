@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import { IntlProvider } from 'react-intl';
 import './scss/global.scss';
 
@@ -30,10 +31,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 }
 
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(browserHistory, store);
+
 ReactDOM.render(
   <IntlProvider locale='en'>
     <Provider store={store}>
-      <Router history={browserHistory}>
+      <Router history={history}>
         <Route path='/' component={App} />
         <Route path='/signin' component={Signin} />
         <Route path='/signout' component={Signout} />
