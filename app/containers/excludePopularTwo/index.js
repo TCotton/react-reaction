@@ -30,12 +30,30 @@ class ExcludePopularTwo extends Component {
     console.log('componentWillMount');
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    // perform any preparations for an upcoming update
+    console.dir(nextProps);
+    console.dir(nextState);
+  }
+
   formatDate(dateString) {
     return momentJS(dateString).format('MMM Do YYYY');
   }
 
   handleFormSubmit(...args) {
     console.dir(...args);
+  }
+
+  createMarkupSpace() {
+    return {
+      __html: '&nbsp'
+    };
+  }
+
+  createMarkupForwardSlash() {
+    return {
+      __html: '&nbsp;/&nbsp;'
+    };
   }
 
   displayPopularGithubList() {
@@ -51,28 +69,70 @@ class ExcludePopularTwo extends Component {
         return (
           <dl key={item.id}>
 
-            <dt><FormattedMessage {...messages.fullName} />: <span className={styles['highlight']}>{item['full_name']}</span>&nbsp;
-              /&nbsp;<FormattedMessage {...messages.shortName} />: <span className={styles['highlight']}>{item['name']}</span></dt>
+            <dt>
+              <FormattedMessage {...messages.fullName} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item['full_name']}</span>
 
-            <dd><FormattedMessage {...messages.owner} />: <a href={item.owner['html_url']} target='_blank' className={styles['highlight']}>{item.owner.login}</a>
-              &nbsp;/&nbsp;<FormattedMessage {...messages.ownerType} />: <span className={styles['highlight']}>{item.owner.type}</span>
-              &nbsp;/&nbsp;<FormattedMessage {...messages.ownerId} />: <span className={styles['highlight']}>{item.owner.id}</span></dd>
+              <span dangerouslySetInnerHTML={this.createMarkupForwardSlash()} />
 
-            <dd><FormattedMessage {...messages.repoID} />: <span className={styles['highlight']}>{item['id']}</span></dd>
+              <FormattedMessage {...messages.shortName} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item['name']}</span>
+            </dt>
 
-            <dd><FormattedMessage {...messages.githubLink} />: <a href={item['html_url']} target='_blank' className={styles['highlight']}>{item['html_url']}</a></dd>
+            <dd>
+              <FormattedMessage {...messages.owner} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <a href={item.owner['html_url']} target='_blank' className={styles['highlight']}>{item.owner.login}</a>
 
-            <dd><FormattedMessage {...messages.description} />: <span className={styles['highlight']}>{item.description}</span></dd>
+              <span dangerouslySetInnerHTML={this.createMarkupForwardSlash()} />
 
-            <dd><FormattedMessage {...messages.stars} />: <span className={styles['highlight']}>{item['stargazers_count']}</span></dd>
+              <FormattedMessage {...messages.ownerType} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item.owner.type}</span>
 
-            <dd><FormattedMessage {...messages.forks} />: <span className={styles['highlight']}>{item['forks_count']}</span></dd>
+              <span dangerouslySetInnerHTML={this.createMarkupForwardSlash()} />
 
-            <dd><FormattedMessage {...messages.language} />: <span className={styles['highlight']}>{item['language']}</span></dd>
+              <FormattedMessage {...messages.ownerId} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item.owner.id}</span>
+            </dd>
 
-            <dd><FormattedMessage {...messages.dateCreated} />: <span className={styles['highlight']}>{this.formatDate(item['created_at'])}</span></dd>
+            <dd>
+              <FormattedMessage {...messages.repoID} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item['id']}</span>
+            </dd>
 
-            <dd><FormattedMessage {...messages.dateUpdated} />: <span className={styles['highlight']}>{this.formatDate(item['updated_at'])}</span></dd>
+            <dd>
+              <FormattedMessage {...messages.githubLink} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <a href={item['html_url']} target='_blank' className={styles['highlight']}>{item['html_url']}</a>
+            </dd>
+
+            <dd>
+              <FormattedMessage {...messages.description} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item.description}</span>
+            </dd>
+
+            <dd>
+              <FormattedMessage {...messages.stars} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item['stargazers_count']}</span>
+            </dd>
+
+            <dd>
+              <FormattedMessage {...messages.forks} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item['forks_count']}</span>
+            </dd>
+
+            <dd>
+              <FormattedMessage {...messages.language} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{item['language']}</span>
+            </dd>
+
+            <dd>
+              <FormattedMessage {...messages.dateCreated} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{this.formatDate(item['created_at'])}</span>
+            </dd>
+
+            <dd>
+              <FormattedMessage {...messages.dateUpdated} />:<span dangerouslySetInnerHTML={this.createMarkupSpace()} />
+              <span className={styles['highlight']}>{this.formatDate(item['updated_at'])}</span>
+            </dd>
 
             <dd className='checkbox'>
 
@@ -95,9 +155,6 @@ class ExcludePopularTwo extends Component {
 
   render() {
 
-    console.log('on render');
-    console.log(this.props);
-
     // crazy workaround to remove browser error noise in react from > 15.2.0 and redux-form < 6
     // https://github.com/erikras/redux-form/issues/1249#issuecomment-238791983
 
@@ -118,6 +175,8 @@ class ExcludePopularTwo extends Component {
     }) => domProps;
 
     const { handleSubmit } = this.props;
+
+    // console.dir(this.props);
 
     return (
       <div className={adminExclPop}>
