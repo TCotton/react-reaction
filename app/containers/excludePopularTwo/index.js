@@ -12,7 +12,9 @@ let domOnlyProps; // eslint-disable-line  no-unused-vars
 
 const adminExclPop = classnames('admin', styles.list);
 
-const fields = ['checkRemove'];
+const fields = [
+  'checkboxes[]'
+];
 
 class ExcludePopularTwo extends Component {
 
@@ -28,9 +30,20 @@ class ExcludePopularTwo extends Component {
 
   componentWillMount() {
     console.log('componentWillMount');
+
+    this.props.items.checkboxes.map((item) => {
+      this.props.fields.checkboxes.addField(item);
+    });
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
+    console.dir(nextProps);
   }
 
   componentWillUpdate(nextProps, nextState) {
+    console.log('componentWillUpdate');
     // perform any preparations for an upcoming update
     console.dir(nextProps);
     console.dir(nextState);
@@ -174,7 +187,7 @@ class ExcludePopularTwo extends Component {
       ...domProps
     }) => domProps;
 
-    const { handleSubmit } = this.props;
+    const { handleSubmit, fields: { checkboxes } } = this.props;
 
     // console.dir(this.props);
 
