@@ -17,4 +17,4 @@ if (process.env.NODE_ENV !== 'production') {
 
 UNIVERSAL.persistConfigAuth = { storage: localForage, serial: true, whitelist: 'auth', keyPrefix: UNIVERSAL.PERSIST_KEY };
 
-export default UNIVERSAL;
+export default Object.freeze(UNIVERSAL);
