@@ -8,7 +8,7 @@ import H2 from '../../components/h2';
 import H3 from '../../components/h3';
 import styles from './_excludePopular.scss';
 
-let domOnlyProps; // eslint-disable-line  no-unused-vars
+let domOnlyProps; // eslint-disable-line no-unused-vars
 
 const adminExclPop = classnames('admin', styles.list);
 
@@ -31,7 +31,7 @@ class ExcludePopularTwo extends Component {
   componentWillMount() {
     console.log('componentWillMount');
 
-    this.props.items.checkboxes.map((item) => {
+    this.props.items.checkboxes.map((item) => { // eslint-disable-line array-callback-return
       this.props.fields.checkboxes.addField(item);
     });
 
@@ -49,12 +49,33 @@ class ExcludePopularTwo extends Component {
     console.dir(nextState);
   }
 
+  /**
+   *
+   * @param dateString {string}
+   * @returns {string}
+   */
+
   formatDate(dateString) {
     return momentJS(dateString).format('MMM Do YYYY');
   }
 
   handleFormSubmit(...args) {
     console.dir(...args);
+  }
+
+  /**
+   *
+   * @param paramArray {array}
+   * @param paramString {string}
+   * @return array
+   */
+
+  filterCheckboxes(paramArray, paramString) {
+
+    return paramArray.filter((item) => { // eslint-disable-line arrow-body-style
+      return (typeof item.value === 'string') && (item.value.indexOf(paramString) !== -1);
+    });
+
   }
 
   createMarkupSpace() {
@@ -69,15 +90,15 @@ class ExcludePopularTwo extends Component {
     };
   }
 
-  displayPopularGithubList() {
+  displayPopularGithubList(checkboxes) {
 
-    if (this.props.items.results) {
+    if (Array.isArray(checkboxes) && checkboxes.length > 0) {
 
       /* eslint-disable max-len, arrow-body-style */
       return this.props.items.results.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
-        // this.props.fields.removeItem.addField(checkboxItem);
+        const checkedBox = this.filterCheckboxes(checkboxes, checkboxItem);
 
         return (
           <dl key={item.id}>
@@ -149,7 +170,7 @@ class ExcludePopularTwo extends Component {
 
             <dd className='checkbox'>
 
-              <input id={checkboxItem} type='checkbox' />
+              <input id={checkboxItem} type='checkbox' {...domOnlyProps(checkedBox['0'])} />
               <label htmlFor={checkboxItem}>{item.name}</label>
 
             </dd>
@@ -189,8 +210,6 @@ class ExcludePopularTwo extends Component {
 
     const { handleSubmit, fields: { checkboxes } } = this.props;
 
-    // console.dir(this.props);
-
     return (
       <div className={adminExclPop}>
         <H2 className={styles['exclude-popular-header']}>
@@ -198,7 +217,7 @@ class ExcludePopularTwo extends Component {
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
         <form className={styles['list-item']} onChange={handleSubmit(this.handleFormSubmit)}>
-          {this.displayPopularGithubList()}
+          {this.displayPopularGithubList(checkboxes)}
         </form>
       </div>
     );
