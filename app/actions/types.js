@@ -1,5 +1,3 @@
-import deepFreeze from 'deep-freeze';
-
 const TYPES = {
   FETCH_GITHUB_DATA: 'FETCH_GITHUB_DATA',
   AUTH_USER: 'auth_user',
@@ -9,4 +7,4 @@ const TYPES = {
   FETCH_USERS: 'fetch_users'
 };
 
-export default deepFreeze(TYPES);
+export default Object.freeze(TYPES);

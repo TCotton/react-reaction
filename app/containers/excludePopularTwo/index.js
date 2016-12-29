@@ -32,10 +32,6 @@ class ExcludePopularTwo extends Component {
     console.log('componentWillMount');
   }
 
-  /*componentWillReceiveProps(nextProps) {
-
-  }*/
-
   formatDate(dateString) {
     return momentJS(dateString).format('MMM Do YYYY');
   }
