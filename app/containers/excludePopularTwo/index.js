@@ -21,6 +21,7 @@ class ExcludePopularTwo extends Component {
   static propTypes = {
     ...propTypes
   };
+  
 
   constructor(props) {
     super(props);
