@@ -1,5 +1,4 @@
 import serialize from 'serialize-javascript';
-import deepFreeze from 'deep-freeze';
 
 function loadState() {
 
@@ -38,4 +37,4 @@ const SESSION_STORAGE = {
   saveState
 };
 
-export default deepFreeze(SESSION_STORAGE);
+export default SESSION_STORAGE;

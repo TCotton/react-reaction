@@ -35,6 +35,8 @@ class ErrorMessage {
 
 }
 
+// TODO: refactor the creation of checkbox unique identifiers to either server-side or in the
+
 function fetchGitHubData() {
 
   return function (dispatch) {

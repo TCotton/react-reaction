@@ -8,7 +8,8 @@ export default function (ComposedComponent) {
   class Authentication extends Component {
 
     static propTypes = {
-      fetchGitHubData: PropTypes.func
+      fetchGitHubData: PropTypes.func.isRequired,
+      checkboxes: PropTypes.array
     };
 
     componentWillMount() {
@@ -27,7 +28,13 @@ export default function (ComposedComponent) {
     }
 
     render() {
-      return <ComposedComponent {...this.props} />;
+
+      if (Array.isArray(this.props.checkboxes)) {
+        return <ComposedComponent {...this.props} />;
+      }
+
+      return null;
+
     }
 
   }
