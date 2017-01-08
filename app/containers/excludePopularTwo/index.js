@@ -13,7 +13,8 @@ let domOnlyProps; // eslint-disable-line no-unused-vars
 const adminExclPop = classnames('admin', styles.list);
 
 const fields = [
-  'checkboxes[]'
+  'checkboxes[]',
+  'aCheckbox'
 ];
 
 class ExcludePopularTwo extends Component {
@@ -99,6 +100,8 @@ class ExcludePopularTwo extends Component {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
         const checkedBox = this.filterCheckboxes(checkboxes, checkboxItem);
+
+        console.dir(checkedBox);
 
         return (
           <dl key={item.id}>
@@ -208,7 +211,7 @@ class ExcludePopularTwo extends Component {
       ...domProps
     }) => domProps;
 
-    const { handleSubmit, fields: { checkboxes } } = this.props;
+    const { handleSubmit, fields: { checkboxes, aCheckbox } } = this.props;
 
     return (
       <div className={adminExclPop}>
@@ -217,7 +220,14 @@ class ExcludePopularTwo extends Component {
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
         <form className={styles['list-item']} onChange={handleSubmit(this.handleFormSubmit)}>
-          {this.displayPopularGithubList(checkboxes)}
+
+          <dd className='checkbox'>
+
+            <input id='whatever' type='checkbox' {...domOnlyProps(aCheckbox)} />
+            <label htmlFor='whatever'>Here</label>
+
+          </dd>
+
         </form>
       </div>
     );
@@ -236,5 +246,8 @@ function mapStateToProps(state) {
 
 export default reduxForm({
   form: 'managePopular',
+  initialValues: {
+    aCheckbox: null
+  },
   fields
 }, mapStateToProps)(ExcludePopularTwo);
