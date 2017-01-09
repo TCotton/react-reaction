@@ -1,32 +1,24 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { reduxForm, propTypes } from 'redux-form';
+import { connect } from 'react-redux';
 import momentJS from 'moment';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import ACTIONS from '../../actions/actions';
+import { bindActionCreators } from 'redux';
 import messages from './messages';
 import H2 from '../../components/h2';
 import H3 from '../../components/h3';
+import ACTIONS from '../../actions/actions';
 import styles from './_excludePopular.scss';
-import InputCheckbox from '../../components/InputCheckbox';
-let domOnlyProps;
 
 const adminExclPop = classnames('admin', styles.list);
 
-const fields = ['checkRemove'];
-
 class ExcludePopularTwo extends Component {
-
-  static propTypes = {
-    ...propTypes
-  };
-  
 
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentWillMount() {
@@ -79,7 +71,7 @@ class ExcludePopularTwo extends Component {
 
             <dd className='checkbox'>
 
-              <input id={checkboxItem} type='checkbox' />
+              <input id={checkboxItem} type='checkbox' name={checkboxItem} onChange={this.onChange} />
               <label htmlFor={checkboxItem}>{item.name}</label>
 
             </dd>
@@ -96,32 +88,11 @@ class ExcludePopularTwo extends Component {
 
   }
 
+  onChange(event){
+    console.dir(event.target);
+  }
+
   render() {
-
-    console.log('on render');
-    console.log(this.props);
-
-    // crazy workaround to remove browser error noise in react from > 15.2.0 and redux-form < 6
-    // https://github.com/erikras/redux-form/issues/1249#issuecomment-238791983
-
-    domOnlyProps = ({
-      initialValue,
-      autofill,
-      onUpdate,
-      valid,
-      invalid,
-      dirty,
-      pristine,
-      active,
-      touched,
-      visited,
-      autofilled,
-      error,
-      ...domProps
-    }) => domProps;
-
-    const { handleSubmit, fields: { checkboxes } } = this.props;
-    console.dir(this.props);
 
     return (
       <div className={adminExclPop}>
@@ -129,7 +100,7 @@ class ExcludePopularTwo extends Component {
           <FormattedMessage {...messages.title} />
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
-        <form className={styles['list-item']} onChange={handleSubmit(this.handleFormSubmit)}>
+        <form className={styles['list-item']} onSubmit={this.handleFormSubmit} noValidate>
           {this.displayPopularGithubList()}
         </form>
       </div>
@@ -147,7 +118,10 @@ function mapStateToProps(state) {
 
 }
 
-export default reduxForm({
-  form: 'managePopular',
-  fields
-}, mapStateToProps)(ExcludePopularTwo);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchGitHubData: ACTIONS.fetchGitHubData
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ExcludePopularTwo);

@@ -4,7 +4,9 @@ const TYPES = {
   UNAUTH_USER: 'unauth_user',
   AUTH_ERROR: 'auth_error',
   FETCH_MESSAGE: 'fetch_message',
-  FETCH_USERS: 'fetch_users'
+  FETCH_USERS: 'fetch_users',
+  FORM_UPDATE_VALUE: 'FORM_UPDATE_VALUE',
+  FORM_RESET: 'FORM_RESET'
 };
 
 export default Object.freeze(TYPES);

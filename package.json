@@ -9,7 +9,7 @@
     "analyze": "node ./internals/analyze.js",
     "test": "mocha --compilers js:babel-core/register --require ./app/test/test_helper.js --recursive 'app/actions/**/*test.js'",
     "test:watch": "npm run test -- --auto-watch --no-single-run",
-    "start": "cross-env NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline",
+    "start": "cross-env NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --colors --watch --config",
     "build": "bump --prompt",
     "strip": "webpack --config 'webpack.production.config.js' -p",
     "nodeDev": "nodemon server/index.js",
@@ -42,7 +42,8 @@
     "url": "https://github.com/TCotton/react-reaction/issues"
   },
   "engines": {
-    "npm": "3.10.9"
+    "npm": "3.10.9",
+    "node": "7.1.0"
   },
   "homepage": "https://github.com/TCotton/react-reaction#readme",
   "dependencies": {

@@ -165,13 +165,33 @@ function fetchUsers() {
 
 }
 
+function formUpdate(name, value) {
+
+  return dispatch => dispatch({
+    type: TYPES.FORM_UPDATE_VALUE,
+    name,
+    value
+  });
+
+}
+
+function formReset() {
+
+  return dispatch => dispatch({
+    type: TYPES.FORM_RESET
+  });
+
+}
+
 const ACTIONS = {
   fetchGitHubData,
   signinUser,
   signupUser,
   signoutUser,
   fetchMessage,
-  fetchUsers
+  fetchUsers,
+  formUpdate,
+  formReset
 };
 
 export default ACTIONS;
