@@ -71,7 +71,7 @@ class ExcludePopularTwo extends Component {
 
             <dd className='checkbox'>
 
-              <input id={checkboxItem} type='checkbox' name={checkboxItem} onChange={this.onChange} />
+              <input id={checkboxItem} type='checkbox' name={checkboxItem} value={item.id} onChange={this.onChange}/>
               <label htmlFor={checkboxItem}>{item.name}</label>
 
             </dd>
@@ -88,8 +88,9 @@ class ExcludePopularTwo extends Component {
 
   }
 
-  onChange(event){
+  onChange(event) {
     console.dir(event.target);
+    console.log(this.props.formUpdate(event.target.value));
   }
 
   render() {
@@ -119,9 +120,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchGitHubData: ACTIONS.fetchGitHubData
-  }, dispatch);
+  return bindActionCreators({ formUpdate: ACTIONS.formUpdate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExcludePopularTwo);

@@ -165,13 +165,15 @@ function fetchUsers() {
 
 }
 
-function formUpdate(name, value) {
+function formUpdate(id) {
 
-  return dispatch => dispatch({
+  console.log('formUpdate');
+  console.dir(id);
+
+  return {
     type: TYPES.FORM_UPDATE_VALUE,
-    name,
-    value
-  });
+    payload: id
+  };
 
 }
 

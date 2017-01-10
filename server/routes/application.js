@@ -34,4 +34,6 @@ module.exports = function (app) {
 
   app.post(`/${CONST.API}/${CONST.SIGNUP}`, Authentication.signup);
 
+  app.post(`/${CONST.API}/${CONST.REMOVE}`, Authentication.signup);
+
 };

@@ -11,7 +11,12 @@ export default function (state = initialState, action = null) {
 
     case TYPES.FORM_UPDATE_VALUE:
 
-      return Object.assign({}, state, { values: Object.assign({}, state.values, { [action.name]: action.value }) });
+      console.log(action.type);
+      console.log(action.payload);
+
+      return {
+        ...state, id: action.payload
+      };
 
     case TYPES.FORM_RESET:
       return initialState;

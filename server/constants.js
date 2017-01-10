@@ -3,5 +3,6 @@ module.exports = {
   SEARCH: 'search',
   SIGNIN: 'signin',
   SIGNUP: 'signup',
-  USER: 'users'
+  USER: 'users',
+  REMOVE: 'remove'
 };
