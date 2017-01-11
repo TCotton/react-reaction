@@ -73,7 +73,7 @@ function fetchGitHubData() {
 
 }
 
-function git() {
+function fetchGitHubDataRemovedItems() {
 
   return function (dispatch) {
 

@@ -15,9 +15,6 @@ export default function (state = initialState, action = null) {
         ...state, id: action.payload
       };
 
-    case TYPES.FORM_RESET:
-      return initialState;
-
     default:
       return state;
   }
