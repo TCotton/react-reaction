@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { getStoredState } from 'redux-persist';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
-import SESSION_STORAGE from '../util/sessionStorage';
+// import SESSION_STORAGE from '../util/sessionStorage';
 import store from '../store';
 
 class ErrorMessage {
@@ -44,7 +44,8 @@ function fetchGitHubDataAllData() {
 }
 
 /**
- * @description The GitHub API does not allow the exclusion of individual repros. This has to be manually filtered on either the client or server side
+ * @description The GitHub API does not allow the exclusion of individual repros.
+ * This has to be manually filtered on either the client or server side
  * @returns {Function}
  */
 function fetchGitHubData() {
@@ -63,6 +64,31 @@ function fetchGitHubData() {
         dispatch({
           type: TYPES.FETCH_GITHUB_DATA,
           payload: Object.assign({}, remainingItems)
+        });
+
+        // Both requests are now complete
+      }));
+
+  };
+
+}
+
+function git() {
+
+  return function (dispatch) {
+
+    axios.all([fetchGitHubDataRemoveItems(), fetchGitHubDataAllData()])
+      .then(axios.spread((removeItems, allItems) => {
+
+        const removedItems = {};
+
+        removedItems.results = allItems.data.results.filter((itemHere) => {
+          return removeItems.data.ids.includes(itemHere.id);
+        });
+
+        dispatch({
+          type: TYPES.FETCH_GITHUB_DATA_REMOVED,
+          payload: Object.assign({}, removedItems)
         });
 
         // Both requests are now complete
@@ -181,23 +207,15 @@ function formUpdate(id) {
 
 }
 
-function formReset() {
-
-  return dispatch => dispatch({
-    type: TYPES.FORM_RESET
-  });
-
-}
-
 const ACTIONS = {
   fetchGitHubData,
+  fetchGitHubDataRemovedItems,
   signinUser,
   signupUser,
   signoutUser,
   fetchMessage,
   fetchUsers,
-  formUpdate,
-  formReset
+  formUpdate
 };
 
 export default Object.freeze(ACTIONS);
