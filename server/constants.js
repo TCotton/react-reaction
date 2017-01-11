@@ -4,5 +4,6 @@ module.exports = {
   SIGNIN: 'signin',
   SIGNUP: 'signup',
   USER: 'users',
-  REMOVE: 'remove'
+  REMOVE: 'remove',
+  RET_REMOVE: 'retrieve_all_remove'
 };

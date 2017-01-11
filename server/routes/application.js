@@ -37,4 +37,6 @@ module.exports = function (app) {
 
   app.post(`/${CONST.API}/${CONST.REMOVE}`, RemoveItem.remove);
 
+  app.get(`/${CONST.API}/${CONST.RET_REMOVE}`, RemoveItem.retrieveItems);
+
 };

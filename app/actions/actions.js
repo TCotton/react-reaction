@@ -35,20 +35,38 @@ class ErrorMessage {
 
 }
 
-// TODO: refactor the creation of checkbox unique identifiers to either server-side or in the
+function fetchGitHubDataRemoveItems() {
+  return axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.RET_REMOVE}`);
+}
 
+function fetchGitHubDataAllData() {
+  return axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`);
+}
+
+/**
+ * @description The GitHub API does not allow the exclusion of individual repros. This has to be manually filtered on either the client or server side
+ * @returns {Function}
+ */
 function fetchGitHubData() {
 
   return function (dispatch) {
 
-    axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
+    axios.all([fetchGitHubDataRemoveItems(), fetchGitHubDataAllData()])
+      .then(axios.spread((removeItems, allItems) => {
 
-      dispatch({
-        type: TYPES.FETCH_GITHUB_DATA,
-        payload: Object.assign({}, response.data)
-      });
+        const remainingItems = {};
 
-    });
+        remainingItems.results = allItems.data.results.filter((itemHere) => {
+          return !removeItems.data.ids.includes(itemHere.id);
+        });
+
+        dispatch({
+          type: TYPES.FETCH_GITHUB_DATA,
+          payload: Object.assign({}, remainingItems)
+        });
+
+        // Both requests are now complete
+      }));
 
   };
 
