@@ -6,6 +6,7 @@ const UNIVERSAL = {
   SIGNIN: 'api/signin',
   SIGNUP: 'api/signup',
   USERS_URL: 'api/users',
+  REMOVE: 'api/remove',
   PERSIST_KEY: 'reactReaction'
 };
 

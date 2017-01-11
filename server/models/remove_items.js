@@ -15,14 +15,5 @@ const removeSchema = new Schema({
 
 const RemoveClass = mongoose.model('remove', removeSchema);
 
-removeSchema.methods.removeItem = function (id) {
-
-  // create a document
-  return new RemoveClass({
-    id
-  });
-
-};
-
 // Export the model
 module.exports = RemoveClass;
