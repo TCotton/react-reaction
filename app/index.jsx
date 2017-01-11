@@ -11,7 +11,7 @@ import Signout from './containers/signout';
 import Signup from './containers/signup';
 import Form from './containers/form';
 import Admin from './components/Admin';
-import ExcludePopularTwo from './containers/excludePopularTwo';
+import ExcludePopularTwo from './containers/excludePopular';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
 
