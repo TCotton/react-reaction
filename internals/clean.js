@@ -1,5 +1,5 @@
 // TODO DO NOT RUN THIS SCRIPT UNTIL AFTER YOU HAVE CHECKED ALL FILES AND DIRECTORES LINKEDTO BELOW
-equire('shelljs/global');
+require('shelljs/global');
 const addCheckMark = require('./helpers/checkmark.js');
 
 if (!which('git')) {
@@ -30,7 +30,7 @@ cp('internals/templates/homePage/homePage.js', 'app/containers/HomePage/index.js
 cp('internals/templates/homePage/messages.js', 'app/containers/HomePage/messages.js');
 
 // Handle Translations
-rm('-rf', 'app/translations/*')
+rm('-rf', 'app/translations/*');
 mkdir('-p', 'app/translations');
 cp('internals/templates/translations/en.json',
   'app/translations/en.json');

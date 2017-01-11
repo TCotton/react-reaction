@@ -37,4 +37,4 @@ const SESSION_STORAGE = {
   saveState
 };
 
-export default Object.freeze(SESSION_STORAGE);
+export default SESSION_STORAGE;

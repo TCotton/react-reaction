@@ -43,3 +43,4 @@ build/
 .DS_Store
 .idea
 config.js
+stats.json

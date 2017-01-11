@@ -1,48 +1,47 @@
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
-import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import momentJS from 'moment';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import ACTIONS from '../../actions/actions';
+import { bindActionCreators } from 'redux';
 import messages from './messages';
 import H2 from '../../components/h2';
 import H3 from '../../components/h3';
+import ACTIONS from '../../actions/actions';
 import styles from './_excludePopular.scss';
 
 const adminExclPop = classnames('admin', styles.list);
 
-class ExcludePopular extends Component {
+class ExcludePopularTwo extends Component {
 
   static propTypes = {
-    fetchGitHubData: PropTypes.func,
-    popular: PropTypes.array
+    formUpdate: PropTypes.func,
+    items: PropTypes.shape({
+      results: PropTypes.array
+    })
   };
-
-  static checkboxFields() {
-
-    if (this.props.popular) {
-
-      return this.props.popular.map((item) => { // eslint-disable-line arrow-body-style
-
-        return `${item.name}-${item.id}`;
-
-      });
-
-    }
-
-    return null;
-
-  }
 
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
-    ExcludePopular.checkboxFields = ExcludePopular.checkboxFields.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchGitHubData();
+    console.log('componentWillMount');
+  }
+
+  /**
+   * @description add the repository id to the DB. This is then used to exclude from future GITHUB get requests
+   * @param event {object}
+   */
+
+  onChange(event) {
+
+    if (event.target.checked) {
+      this.props.formUpdate(event.target.value);
+    }
+
   }
 
   formatDate(dateString) {
@@ -51,10 +50,12 @@ class ExcludePopular extends Component {
 
   displayPopularGithubList() {
 
-    if (this.props.popular) {
+    if (this.props.items.results) {
 
       /* eslint-disable max-len, arrow-body-style */
-      return this.props.popular.map((item) => {
+      return this.props.items.results.map((item) => {
+
+        const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
 
         return (
           <dl key={item.id}>
@@ -82,9 +83,11 @@ class ExcludePopular extends Component {
 
             <dd><FormattedMessage {...messages.dateUpdated} />: <span className={styles['highlight']}>{this.formatDate(item['updated_at'])}</span></dd>
 
-            <dd>
-              <input id={`${item.name}-${item.id}`} type='checkbox' value='ham' />
-              <label htmlFor={`${item.name}-${item.id}`}>{item.name}</label>
+            <dd className='checkbox'>
+
+              <input id={checkboxItem} type='checkbox' name={checkboxItem} value={item.id} defaultChecked={false} onChange={this.onChange} />
+              <label htmlFor={checkboxItem}>{item.name}</label>
+
             </dd>
 
           </dl>
@@ -107,7 +110,7 @@ class ExcludePopular extends Component {
           <FormattedMessage {...messages.title} />
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
-        <form className={styles['list-item']}>
+        <form className={styles['list-item']} noValidate>
           {this.displayPopularGithubList()}
         </form>
       </div>
@@ -118,18 +121,15 @@ class ExcludePopular extends Component {
 }
 
 function mapStateToProps(state) {
+
   return {
-    popular: state.popular.results
+    items: state.popular
   };
+
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchGitHubData: ACTIONS.fetchGitHubData
-  }, dispatch);
+  return bindActionCreators({ formUpdate: ACTIONS.formUpdate }, dispatch);
 }
 
-export default reduxForm({
-  form: 'managePopular',
-  fields: ['removeItem']
-}, mapStateToProps, mapDispatchToProps)(ExcludePopular);
+export default connect(mapStateToProps, mapDispatchToProps)(ExcludePopularTwo);

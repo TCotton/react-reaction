@@ -9,7 +9,7 @@ const persistor = persistStore(store, UNIVERSAL.persistConfigAuth, (err, state) 
     return null;
   }
 
-  if (typeof state.auth !== 'undefined' && state.auth.token) {
+  if (!Object.is(typeof state.auth, 'undefined') && state.auth.token) {
     store.dispatch({
       type: ACTIONS.AUTH_USER,
       payload: state.auth.token

@@ -35,29 +35,38 @@ class ErrorMessage {
 
 }
 
+function fetchGitHubDataRemoveItems() {
+  return axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.RET_REMOVE}`);
+}
+
+function fetchGitHubDataAllData() {
+  return axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`);
+}
+
+/**
+ * @description The GitHub API does not allow the exclusion of individual repros. This has to be manually filtered on either the client or server side
+ * @returns {Function}
+ */
 function fetchGitHubData() {
 
   return function (dispatch) {
 
-    if (!Object.is(typeof SESSION_STORAGE.loadState(), 'undefined') && Object.keys(SESSION_STORAGE.loadState()).length > 0) {
+    axios.all([fetchGitHubDataRemoveItems(), fetchGitHubDataAllData()])
+      .then(axios.spread((removeItems, allItems) => {
 
-      dispatch({
-        type: TYPES.FETCH_GITHUB_DATA,
-        payload: SESSION_STORAGE.loadState()
-      });
+        const remainingItems = {};
 
-    } else {
-
-      axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
+        remainingItems.results = allItems.data.results.filter((itemHere) => {
+          return !removeItems.data.ids.includes(itemHere.id);
+        });
 
         dispatch({
           type: TYPES.FETCH_GITHUB_DATA,
-          payload: response.data
+          payload: Object.assign({}, remainingItems)
         });
 
-      });
-
-    }
+        // Both requests are now complete
+      }));
 
   };
 
@@ -151,13 +160,44 @@ function fetchUsers() {
 
 }
 
+function formUpdate(id) {
+
+  return function (dispatch) {
+
+    axios.post(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.REMOVE}`, { 'id': id }).then((response) => {
+
+      if (response.data.id && Object.is(response.status, 200)) {
+
+        dispatch({
+          type: TYPES.FORM_UPDATE_VALUE,
+          payload: response.data.id
+        });
+
+      }
+
+    });
+
+  };
+
+}
+
+function formReset() {
+
+  return dispatch => dispatch({
+    type: TYPES.FORM_RESET
+  });
+
+}
+
 const ACTIONS = {
   fetchGitHubData,
   signinUser,
   signupUser,
   signoutUser,
   fetchMessage,
-  fetchUsers
+  fetchUsers,
+  formUpdate,
+  formReset
 };
 
-export default ACTIONS;
+export default Object.freeze(ACTIONS);

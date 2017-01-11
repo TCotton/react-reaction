@@ -1,3 +1,4 @@
+/* eslint-disable */
 const exec = require('child_process').exec;
 const path = require('path');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
@@ -10,3 +11,4 @@ exec('node -v', function(err, stdout) {
     process.exit(1);
   }
 });
+/* eslint-enable */

@@ -37,9 +37,41 @@ form {
       }
     }
   }
+
+  :global(.checkbox) {
+    display: flex;
+  }
+
+  input {
+
+    &[type=checkbox] {
+      opacity: 1;
+
+      + label {
+        margin: 0 0 0 20px;
+        position: relative;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: $secondaryFontFamily;
+        font-weight: 500;
+      }
+
+      + label ~ label {
+        margin: 0 0 0 40px;
+      }
+
+      &:checked + label {
+        &::after {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+    }
+
+  }
+
 }
-
-
 
 :global(.error) {
   @include font-calculator($secondaryFontFamily, 20px);

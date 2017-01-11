@@ -4,6 +4,7 @@ const GITHUB = require('../services/github');
 const CONST = require('../constants');
 const Authentication = require('../controllers/authentication');
 const UsersList = require('../controllers/users_list');
+const RemoveItem = require('../controllers/remove_items');
 
 const requireAuth = passport.authenticate('jwt', {
   session: false
@@ -33,5 +34,9 @@ module.exports = function (app) {
   app.post(`/${CONST.API}/${CONST.SIGNIN}`, requireSignin, Authentication.signin);
 
   app.post(`/${CONST.API}/${CONST.SIGNUP}`, Authentication.signup);
+
+  app.post(`/${CONST.API}/${CONST.REMOVE}`, RemoveItem.remove);
+
+  app.get(`/${CONST.API}/${CONST.RET_REMOVE}`, RemoveItem.retrieveItems);
 
 };

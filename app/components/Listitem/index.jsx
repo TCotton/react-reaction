@@ -15,9 +15,9 @@ const externalLinks = classnames('octicon', styles['external-link']);
 
 function ListItem(props) {
 
-  const _populateLink = function _populateLink(item) {
+  function _populateLink(item) {
     return item['homepage'] ? item['homepage'] : item['html_url'];
-  };
+  }
 
   const _render = () => {
 
