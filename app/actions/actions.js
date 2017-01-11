@@ -79,7 +79,7 @@ function fetchGitHubData() {
 
 function signinUser({ email, password }) {
 
-  return function (dispatch) {
+  return function(dispatch) {
 
     ErrorMessage.displayMessage({
       email, password
@@ -167,12 +167,21 @@ function fetchUsers() {
 
 function formUpdate(id) {
 
-  console.log('formUpdate');
-  console.dir(id);
+  return function (dispatch) {
 
-  return {
-    type: TYPES.FORM_UPDATE_VALUE,
-    payload: id
+    axios.post(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.REMOVE}`, { 'id': id }).then((response) => {
+
+      if (response.data.id && Object.is(response.status, 200)) {
+
+        dispatch({
+          type: TYPES.FORM_UPDATE_VALUE,
+          payload: response.data.id
+        });
+
+      }
+
+    });
+
   };
 
 }

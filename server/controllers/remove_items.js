@@ -1,17 +1,21 @@
 const removeItems = require('../models/remove_items.js');
 
-exports.findUsers = function (req, res, next) {
+exports.remove = function(req, res, next) {
 
-  console.dir(req);
+  const postId = Number.parseFloat(req.body.id);
 
- /* removeItems.create({}, (err, item) => {
+  removeItems.update(
+    { id: postId },
+    { $setOnInsert: { id: postId } },
+    { upsert: true },
+    (err, item) => {
 
-    if (err) {
-      return next(err);
-    }
+      if (err) {
+        return next(err);
+      }
 
-    console.log(item);
+      return res.send({ 'id': postId });
 
-  });*/
+    });
 
 };
