@@ -14,7 +14,7 @@ exports.remove = function(req, res, next) {
         return next(err);
       }
 
-      return res.send({ 'id': postId });
+      return res.send({ 'id': item.id });
 
     });
 

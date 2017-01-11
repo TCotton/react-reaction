@@ -14,10 +14,16 @@ const adminExclPop = classnames('admin', styles.list);
 
 class ExcludePopularTwo extends Component {
 
+  static propTypes = {
+    formUpdate: PropTypes.func,
+    items: PropTypes.shape({
+      results: PropTypes.array
+    })
+  };
+
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
@@ -25,12 +31,21 @@ class ExcludePopularTwo extends Component {
     console.log('componentWillMount');
   }
 
-  formatDate(dateString) {
-    return momentJS(dateString).format('MMM Do YYYY');
+  /**
+   * @description add the repository id to the DB. This is then used to exclude from future GITHUB get requests
+   * @param event {object}
+   */
+
+  onChange(event) {
+
+    if (event.target.checked) {
+      this.props.formUpdate(event.target.value);
+    }
+
   }
 
-  handleFormSubmit() {
-    console.dir(...arguments);
+  formatDate(dateString) {
+    return momentJS(dateString).format('MMM Do YYYY');
   }
 
   displayPopularGithubList() {
@@ -41,7 +56,6 @@ class ExcludePopularTwo extends Component {
       return this.props.items.results.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
-        // this.props.fields.removeItem.addField(checkboxItem);
 
         return (
           <dl key={item.id}>
@@ -71,7 +85,7 @@ class ExcludePopularTwo extends Component {
 
             <dd className='checkbox'>
 
-              <input id={checkboxItem} type='checkbox' name={checkboxItem} value={item.id} onChange={this.onChange}/>
+              <input id={checkboxItem} type='checkbox' name={checkboxItem} value={item.id} defaultChecked={false} onChange={this.onChange} />
               <label htmlFor={checkboxItem}>{item.name}</label>
 
             </dd>
@@ -88,11 +102,6 @@ class ExcludePopularTwo extends Component {
 
   }
 
-  onChange(event) {
-    console.dir(event.target);
-    console.log(this.props.formUpdate(event.target.value));
-  }
-
   render() {
 
     return (
@@ -101,7 +110,7 @@ class ExcludePopularTwo extends Component {
           <FormattedMessage {...messages.title} />
         </H2>
         <p>Click on the checkbox to exclude a repository from being indexed</p>
-        <form className={styles['list-item']} onSubmit={this.handleFormSubmit} noValidate>
+        <form className={styles['list-item']} noValidate>
           {this.displayPopularGithubList()}
         </form>
       </div>

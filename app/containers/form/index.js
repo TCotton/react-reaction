@@ -8,8 +8,7 @@ export default function (ComposedComponent) {
   class Authentication extends Component {
 
     static propTypes = {
-      fetchGitHubData: PropTypes.func.isRequired,
-      checkboxes: PropTypes.array
+      fetchGitHubData: PropTypes.func.isRequired
     };
 
     componentWillMount() {
@@ -28,13 +27,7 @@ export default function (ComposedComponent) {
     }
 
     render() {
-
-      if (Array.isArray(this.props.checkboxes)) {
-        return <ComposedComponent {...this.props} />;
-      }
-
-      return null;
-
+      return <ComposedComponent {...this.props} />;
     }
 
   }
@@ -42,8 +35,7 @@ export default function (ComposedComponent) {
   function mapStateToProps(state) {
 
     return {
-      popular: state.popular.results,
-      checkboxes: state.popular.checkboxes
+      popular: state.popular.results
     };
   }
 
@@ -54,5 +46,4 @@ export default function (ComposedComponent) {
   }
 
   return connect(mapStateToProps, mapDispatchToProps)(Authentication);
-
 }

@@ -41,37 +41,14 @@ function fetchGitHubData() {
 
   return function (dispatch) {
 
-    if (typeof SESSION_STORAGE.loadState() !== 'undefined' && Object.keys(SESSION_STORAGE.loadState()).length > 0) {
-
-      // temp solution
-
-      const checkboxes = SESSION_STORAGE.loadState().results.map((item) => { // eslint-disable-line max-len, arrow-body-style
-        return `${item.name.toLowerCase()}-${item.id}`;
-      });
+    axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
 
       dispatch({
         type: TYPES.FETCH_GITHUB_DATA,
-        payload: Object.assign({}, SESSION_STORAGE.loadState(), { checkboxes })
+        payload: Object.assign({}, response.data)
       });
 
-    } else {
-
-      axios.get(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.SEARCH_URL}`).then((response) => {
-
-        // temp solution
-
-        const checkboxes = response.data.results.map((item) => { // eslint-disable-line max-len, arrow-body-style
-          return `${item.name.toLowerCase()}-${item.id}`;
-        });
-
-        dispatch({
-          type: TYPES.FETCH_GITHUB_DATA,
-          payload: Object.assign({}, response.data, { checkboxes })
-        });
-
-      });
-
-    }
+    });
 
   };
 
@@ -79,7 +56,7 @@ function fetchGitHubData() {
 
 function signinUser({ email, password }) {
 
-  return function(dispatch) {
+  return function (dispatch) {
 
     ErrorMessage.displayMessage({
       email, password
@@ -205,4 +182,4 @@ const ACTIONS = {
   formReset
 };
 
-export default ACTIONS;
+export default Object.freeze(ACTIONS);
