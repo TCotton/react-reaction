@@ -9,9 +9,11 @@ import App from './containers/app';
 import Signin from './containers/signin';
 import Signout from './containers/signout';
 import Signup from './containers/signup';
-import Form from './containers/form';
+import Included from './containers/included_posts';
+import Excluded from './containers/excluded_posts';
 import Admin from './components/Admin';
-import ExcludePopularTwo from './containers/excludePopular';
+import ExcludePopular from './containers/excludePopular';
+import ExcludedPosts from './containers/excluded';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
 
@@ -44,7 +46,8 @@ ReactDOM.render(
         <Route path='/signout' component={Signout} />
         <Route path='/admin' component={Admin} />
         <Route path='/admin/signup' component={Signup} />
-        <Route path='/admin/exclude' component={Form(ExcludePopularTwo)} />
+        <Route path='/admin/exclude' component={Included(ExcludePopular)} />
+        <Route path='/admin/include' component={Excluded(ExcludedPosts)} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));

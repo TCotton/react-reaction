@@ -186,11 +186,11 @@ function fetchUsers() {
 
 }
 
-function formUpdate(id) {
+function formUpdate(id, include) {
 
   return function (dispatch) {
 
-    axios.post(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.REMOVE}`, { 'id': id }).then((response) => {
+    axios.post(`${UNIVERSAL.ROOT_URL}\\${UNIVERSAL.REMOVE}`, { 'id': id, 'remove': include }).then((response) => {
 
       if (response.data.id && Object.is(response.status, 200)) {
 

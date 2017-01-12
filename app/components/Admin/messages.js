@@ -15,6 +15,11 @@ export default defineMessages({
   linkManagePopularList: {
     id: 'app.containers.Admin.linkManagePopularList',
     defaultMessage: 'Manage the GitHub popular list'
+  },
+
+  addItemsBack: {
+    id: 'app.containers.Admin.addItemsBack',
+    defaultMessage: 'Add items back to the GitHub popular list'
   }
 
 });

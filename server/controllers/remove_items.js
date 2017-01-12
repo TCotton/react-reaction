@@ -7,23 +7,39 @@ const removeItems = require('../models/remove_items.js');
  * @param next {function}
  */
 
-exports.remove = function (req, res, next) {
+exports.remove = function(req, res, next) {
 
   const postId = Number.parseFloat(req.body.id);
 
-  removeItems.update(
-    { id: postId },
-    { $setOnInsert: { id: postId } },
-    { upsert: true },
-    (err, item) => {
+  if (req.body.remove) {
+
+    removeItems.update(
+      { id: postId },
+      { $setOnInsert: { id: postId } },
+      { upsert: true },
+      (err, item) => {
+
+        if (err) {
+          return next(err);
+        }
+
+        return res.send({ 'id': item.id });
+
+      });
+
+  } else {
+
+    removeItems.findOneAndRemove({ id: postId }, (err, doc) => {
 
       if (err) {
         return next(err);
       }
 
-      return res.send({ 'id': item.id });
+      return res.send({ 'id': doc.id });
 
     });
+
+  }
 
 };
 

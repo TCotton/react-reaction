@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import momentJS from 'moment';
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { bindActionCreators } from 'redux';
+import momentJS from 'moment';
 import messages from './messages';
 import H2 from '../../components/h2';
 import H3 from '../../components/h3';
 import ACTIONS from '../../actions/actions';
-import styles from './_excludePopular.scss';
+import styles from './_excluded.scss';
 
 const adminExclPop = classnames('admin', styles.list);
 
-class ExcludePopularTwo extends Component {
+class Excluded extends Component {
 
   static propTypes = {
     formUpdate: PropTypes.func,
@@ -27,10 +27,6 @@ class ExcludePopularTwo extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
   /**
    * @description add the repository id to the DB. This is then used to exclude from future GITHUB get requests
    * @param event {object}
@@ -39,7 +35,7 @@ class ExcludePopularTwo extends Component {
   onChange(event) {
 
     if (event.target.checked) {
-      this.props.formUpdate(event.target.value, true);
+      this.props.formUpdate(event.target.value, false);
     }
 
   }
@@ -51,6 +47,10 @@ class ExcludePopularTwo extends Component {
   displayPopularGithubList() {
 
     if (this.props.items.results) {
+
+      if (this.props.items.results.length === 0) {
+        return <p>There are no items to remove</p>;
+      }
 
       /* eslint-disable max-len, arrow-body-style */
       return this.props.items.results.map((item) => {
@@ -109,7 +109,7 @@ class ExcludePopularTwo extends Component {
         <H2 className={styles['exclude-popular-header']}>
           <FormattedMessage {...messages.title} />
         </H2>
-        <p>Click on the checkbox to include a repository from being indexed</p>
+        <p>Click on the checkbox to exclude a repository from being indexed</p>
         <form className={styles['list-item']} noValidate>
           {this.displayPopularGithubList()}
         </form>
@@ -132,4 +132,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ formUpdate: ACTIONS.formUpdate }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExcludePopularTwo);
+export default connect(mapStateToProps, mapDispatchToProps)(Excluded);
+

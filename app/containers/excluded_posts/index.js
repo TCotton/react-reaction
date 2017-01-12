@@ -1,0 +1,49 @@
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import ACTIONS from '../../actions/actions';
+
+export default function (ComposedComponent) {
+
+  class Authentication extends Component {
+
+    static propTypes = {
+      fetchGitHubDataRemovedItems: PropTypes.func.isRequired
+    };
+
+    componentWillMount() {
+      this.props.fetchGitHubDataRemovedItems();
+    }
+
+    // err, what?
+    componentWillUpdate(nextProps) {
+
+      if (nextProps.popular) {
+        return false;
+      }
+
+      return true;
+
+    }
+
+    render() {
+      return <ComposedComponent {...this.props} />;
+    }
+
+  }
+
+  function mapStateToProps(state) {
+
+    return {
+      popular: state.popular.results
+    };
+  }
+
+  function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+      fetchGitHubDataRemovedItems: ACTIONS.fetchGitHubDataRemovedItems
+    }, dispatch);
+  }
+
+  return connect(mapStateToProps, mapDispatchToProps)(Authentication);
+}

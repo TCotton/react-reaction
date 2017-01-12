@@ -22,6 +22,11 @@ function Admin() {
               <FormattedMessage {...messages.linkManagePopularList} />
             </Link>
           </li>
+          <li>
+            <Link to='/admin/include'>
+              <FormattedMessage {...messages.addItemsBack} />
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
