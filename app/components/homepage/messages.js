@@ -9,12 +9,12 @@ export default defineMessages({
 
   descriptionOne: {
     id: 'app.containers.HomePage.descriptionOne',
-    defaultMessage: 'The most popular React third-party libraries on GitHub as ordered by stars'
+    defaultMessage: 'The most popular React and Redux GitHub repositories'
   },
 
   descriptionTwo: {
     id: 'app.containers.HomePage.descriptionTwo',
-    defaultMessage: 'This list also includes libraries commonly associated with React, such as Redux'
+    defaultMessage: 'List ordered by the number of stars'
   },
 
   headerTwo: {
