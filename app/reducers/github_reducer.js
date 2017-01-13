@@ -6,6 +6,9 @@ export default function (state = {}, action = null) {
 
     case TYPES.FETCH_GITHUB_DATA:
 
+      console.dir(state);
+      console.dir(action.payload);
+
       return Object.assign({}, state, action.payload);
 
     case TYPES.FETCH_GITHUB_DATA_REMOVED:

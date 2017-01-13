@@ -12,7 +12,7 @@ import Signup from './containers/signup';
 import Included from './containers/included_posts';
 import Excluded from './containers/excluded_posts';
 import Admin from './components/Admin';
-import ExcludePopular from './containers/excludePopular';
+import ExcludePopular from './containers/included';
 import ExcludedPosts from './containers/excluded';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';

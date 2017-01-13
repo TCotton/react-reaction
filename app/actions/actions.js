@@ -63,7 +63,7 @@ function fetchGitHubData() {
 
         dispatch({
           type: TYPES.FETCH_GITHUB_DATA,
-          payload: Object.assign({}, remainingItems)
+          payload: Object.assign({}, { results: remainingItems.results, excluded: removeItems.data.ids })
         });
 
         // Both requests are now complete
@@ -88,7 +88,7 @@ function fetchGitHubDataRemovedItems() {
 
         dispatch({
           type: TYPES.FETCH_GITHUB_DATA_REMOVED,
-          payload: Object.assign({}, removedItems)
+          payload: Object.assign({}, { results: removedItems.results, excluded: removeItems.data.ids })
         });
 
         // Both requests are now complete
