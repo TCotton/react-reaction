@@ -2,6 +2,7 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const log = require('loglevel');
@@ -29,6 +30,9 @@ if (common.isDevelopment) {
   log.error('No production DB');
 }
 // App Set up
+// parse cookies 
+// we need this because "cookie" is true in csrfProtection 
+app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(bodyParser.json({
   type: '*/*'

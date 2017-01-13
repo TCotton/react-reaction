@@ -1,4 +1,7 @@
 const passport = require('passport');
+const RateLimit = require('express-rate-limit');
+const bodyParser = require('body-parser');
+const csrf = require('csurf');
 const passportService = require('../services/passport');
 const GITHUB = require('../services/github');
 const CONST = require('../constants');
@@ -12,6 +15,16 @@ const requireAuth = passport.authenticate('jwt', {
 const requireSignin = passport.authenticate('local', {
   session: false
 });
+
+const apiLimiter = new RateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  delayMs: 0 // disabled
+});
+
+// setup route middlewares 
+const csrfProtection = csrf({ cookie: true });
+const parseForm = bodyParser.urlencoded({ extended: false });
 
 module.exports = function (app) {
 
@@ -31,12 +44,27 @@ module.exports = function (app) {
     });
   });
 
-  app.post(`/${CONST.API}/${CONST.SIGNIN}`, requireSignin, Authentication.signin);
+  app.get(`/${CONST.API}/${CONST.SIGNIN}`, csrfProtection, (req, res) => {
+    // pass the csrfToken to the view
+    res.render('send', { csrfToken: req.csrfToken() });
+  });
 
-  app.post(`/${CONST.API}/${CONST.SIGNUP}`, Authentication.signup);
+  app.post(`/${CONST.API}/${CONST.SIGNIN}`, apiLimiter, requireSignin, Authentication.signin);
 
-  app.post(`/${CONST.API}/${CONST.REMOVE}`, RemoveItem.remove);
+  app.get(`/${CONST.API}/${CONST.SIGNUP}`, csrfProtection, (req, res) => {
+    // pass the csrfToken to the view
+    res.render('send', { csrfToken: req.csrfToken() });
+  });
 
-  app.get(`/${CONST.API}/${CONST.RET_REMOVE}`, RemoveItem.retrieveItems);
+  app.post(`/${CONST.API}/${CONST.SIGNUP}`, apiLimiter, Authentication.signup);
+
+  app.get(`/${CONST.API}/${CONST.REMOVE}`, csrfProtection, (req, res) => {
+    // pass the csrfToken to the view
+    res.render('send', { csrfToken: req.csrfToken() });
+  });
+
+  app.post(`/${CONST.API}/${CONST.REMOVE}`, apiLimiter, RemoveItem.remove);
+
+  app.get(`/${CONST.API}/${CONST.RET_REMOVE}`, apiLimiter, RemoveItem.retrieveItems);
 
 };
