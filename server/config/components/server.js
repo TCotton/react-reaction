@@ -5,10 +5,22 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const log = require('loglevel');
+const helmet = require('helmet');
+
 const router = require('../../routes/application');
 const common = require('./common');
 
 const app = express();
+
+app.use(helmet.frameguard({ action: 'sameorigin' }));
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.xssFilter());
+
+if (common.isProduction) {
+  app.use(helmet.hsts({ maxAge: 31536000 }));
+}
 
 // db
 if (common.isDevelopment) {
