@@ -57,7 +57,7 @@ function fetchGitHubData() {
 
         const remainingItems = {};
 
-        remainingItems.results = allItems.data.results.filter((itemHere) => {
+        remainingItems.results = allItems.data.results.filter((itemHere) => { // eslint-disable-line arrow-body-style
           return !removeItems.data.ids.includes(itemHere.id);
         });
 
@@ -82,7 +82,7 @@ function fetchGitHubDataRemovedItems() {
 
         const removedItems = {};
 
-        removedItems.results = allItems.data.results.filter((itemHere) => {
+        removedItems.results = allItems.data.results.filter((itemHere) => { // eslint-disable-line arrow-body-style
           return removeItems.data.ids.includes(itemHere.id);
         });
 

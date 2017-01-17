@@ -18,7 +18,8 @@ class Excluded extends Component {
     formUpdate: PropTypes.func,
     items: PropTypes.shape({
       results: PropTypes.array
-    })
+    }),
+    id: PropTypes.number
   };
 
   constructor(props) {
@@ -56,9 +57,10 @@ class Excluded extends Component {
       return this.props.items.results.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
+        const hide = Object.is(this.props.id, item.id) ? 'hide' : '';
 
         return (
-          <dl key={item.id}>
+          <dl key={item.id} className={hide}>
 
             <dt><FormattedMessage {...messages.fullName} />: <span className={styles['highlight']}>{item['full_name']}</span>&nbsp;
               /&nbsp;<FormattedMessage {...messages.shortName} />: <span className={styles['highlight']}>{item['name']}</span></dt>
@@ -120,16 +122,8 @@ class Excluded extends Component {
 
 }
 
-function mapStateToProps(state) {
-
-  return {
-    items: state.popular
-  };
-
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ formUpdate: ACTIONS.formUpdate }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Excluded);
+export default connect(null, mapDispatchToProps)(Excluded);

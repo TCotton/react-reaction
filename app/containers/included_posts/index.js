@@ -15,17 +15,6 @@ export default function (ComposedComponent) {
       this.props.fetchGitHubData();
     }
 
-    // err, what?
- /*   componentWillUpdate(nextProps) {
-
-      if (nextProps.popular) {
-        return false;
-      }
-
-      return true;
-
-    }*/
-
     render() {
       return <ComposedComponent {...this.props} />;
     }
@@ -33,8 +22,6 @@ export default function (ComposedComponent) {
   }
 
   function mapStateToProps(state) {
-
-    console.dir(state);
 
     return {
       popular: state.popular.results,

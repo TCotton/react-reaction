@@ -17,26 +17,13 @@ class ExcludePopularTwo extends Component {
   static propTypes = {
     formUpdate: PropTypes.func,
     id: PropTypes.number,
-    popular: PropTypes.array,
-    remove: PropTypes.number
+    popular: PropTypes.array
   };
 
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
     this.onChange = this.onChange.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    console.dir(prevProps);
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-    /*if (!Object.is(this.props.id, nextProps.id) && Object.is(typeof nextProps.id, 'number')) {
-      console.log(nextProps.id);
-    }*/
-
   }
 
   /**
@@ -65,8 +52,6 @@ class ExcludePopularTwo extends Component {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
         const hide = Object.is(this.props.id, item.id) ? 'hide' : '';
-
-        console.log(this.props.id);
 
         return (
           <dl key={item.id} className={hide}>
