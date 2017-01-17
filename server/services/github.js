@@ -17,8 +17,6 @@ function githubSearch(callback) {
 
   const ghsearch = client.search();
 
-  console.log(`${query}+in:${inWhere}+language:${language}+-repo:${repoExclude}+is:${is}&sort=${sort}`);
-
   ghsearch.repos({
     q: `${query}+in:${inWhere}+language:${language}+-repo:${repoExclude}+is:${is}&sort=${sort}`
   }, callback);

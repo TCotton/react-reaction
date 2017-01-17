@@ -21,6 +21,10 @@ body {
   fill: currentColor;
 }
 
+:global(.hide) {
+  display: none;
+}
+
 :global(.form),
 :global(.admin) {
   display: flex;

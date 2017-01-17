@@ -9,9 +9,6 @@ export default function (state = initialState, action = null) {
 
     case TYPES.FORM_UPDATE_VALUE:
 
-      console.log('FORM_UPDATE_VALUE');
-      console.dir(action.payload);
-
       return { id: action.payload };
 
     default:

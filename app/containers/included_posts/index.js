@@ -34,6 +34,8 @@ export default function (ComposedComponent) {
 
   function mapStateToProps(state) {
 
+    console.dir(state);
+
     return {
       popular: state.popular.results,
       id: state.forms.id

@@ -15,17 +15,6 @@ export default function (ComposedComponent) {
       this.props.fetchGitHubDataRemovedItems();
     }
 
-    // err, what?
-    componentWillUpdate(nextProps) {
-
-      if (nextProps.popular) {
-        return false;
-      }
-
-      return true;
-
-    }
-
     render() {
       return <ComposedComponent {...this.props} />;
     }

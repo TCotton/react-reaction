@@ -17,7 +17,8 @@ class ExcludePopularTwo extends Component {
   static propTypes = {
     formUpdate: PropTypes.func,
     id: PropTypes.number,
-    popular: PropTypes.array
+    popular: PropTypes.array,
+    remove: PropTypes.number
   };
 
   constructor(props) {
@@ -26,11 +27,15 @@ class ExcludePopularTwo extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    console.dir(prevProps);
+  }
+
   componentWillReceiveProps(nextProps) {
 
-    if (!Object.is(this.props.id, nextProps.id) && !Object.is(typeof this.props.id, 'undefined')) {
-      console.dir(nextProps.id);
-    }
+    /*if (!Object.is(this.props.id, nextProps.id) && Object.is(typeof nextProps.id, 'number')) {
+      console.log(nextProps.id);
+    }*/
 
   }
 
@@ -59,9 +64,12 @@ class ExcludePopularTwo extends Component {
       return this.props.popular.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
+        const hide = Object.is(this.props.id, item.id) ? 'hide' : '';
+
+        console.log(this.props.id);
 
         return (
-          <dl key={item.id}>
+          <dl key={item.id} className={hide}>
 
             <dt><FormattedMessage {...messages.fullName} />: <span className={styles['highlight']}>{item['full_name']}</span>&nbsp;
               /&nbsp;<FormattedMessage {...messages.shortName} />: <span className={styles['highlight']}>{item['name']}</span></dt>
@@ -89,7 +97,7 @@ class ExcludePopularTwo extends Component {
             <dd className='checkbox'>
 
               <input id={checkboxItem} type='checkbox' name={checkboxItem} value={item.id} defaultChecked={false} onChange={this.onChange} />
-              <label htmlFor={checkboxItem}>{item.name}</label>
+              <label htmlFor={checkboxItem}>{item.name} / {item.id}</label>
 
             </dd>
 

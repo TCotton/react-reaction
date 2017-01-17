@@ -48,7 +48,7 @@ class Excluded extends Component {
 
     if (this.props.items.results) {
 
-      if (this.props.items.results.length === 0) {
+      if (Object.is(this.props.items.results.length, 0)) {
         return <p>There are no items to remove</p>;
       }
 
