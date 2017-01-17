@@ -47,6 +47,10 @@ class ExcludePopularTwo extends Component {
 
     if (this.props.popular) {
 
+      if (Object.is(this.props.popular.length, 0)) {
+        return <p>There are no items to add</p>;
+      }
+
       /* eslint-disable max-len, arrow-body-style */
       return this.props.popular.map((item) => {
 

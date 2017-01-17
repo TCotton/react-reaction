@@ -16,9 +16,7 @@ class Excluded extends Component {
 
   static propTypes = {
     formUpdate: PropTypes.func,
-    items: PropTypes.shape({
-      results: PropTypes.array
-    }),
+    popular: PropTypes.array,
     id: PropTypes.number
   };
 
@@ -47,14 +45,14 @@ class Excluded extends Component {
 
   displayPopularGithubList() {
 
-    if (this.props.items.results) {
+    if (this.props.popular) {
 
-      if (Object.is(this.props.items.results.length, 0)) {
+      if (Object.is(this.props.popular.length, 0)) {
         return <p>There are no items to remove</p>;
       }
 
       /* eslint-disable max-len, arrow-body-style */
-      return this.props.items.results.map((item) => {
+      return this.props.popular.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
         const hide = Object.is(this.props.id, item.id) ? 'hide' : '';
