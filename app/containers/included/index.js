@@ -27,10 +27,6 @@ class ExcludePopularTwo extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillMount() {
-    console.log('componentWillMount');
-  }
-
   /**
    * @description add the repository id to the DB. This is then used to exclude from future GITHUB get requests
    * @param event {object}
