@@ -57,8 +57,6 @@ class Excluded extends Component {
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
         const hide = Object.is(this.props.id, item.id) ? 'hide' : '';
 
-        console.dir(item);
-
         return (
           <dl key={item.id} className={hide}>
 
