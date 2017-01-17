@@ -54,6 +54,8 @@ class ExcludePopularTwo extends Component {
       /* eslint-disable max-len, arrow-body-style */
       return this.props.popular.map((item) => {
 
+        console.dir(item);
+
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
         const hide = Object.is(this.props.id, item.id) ? 'hide' : '';
 

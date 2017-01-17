@@ -27,6 +27,7 @@ export default function (ComposedComponent) {
       popular: state.popular.results,
       id: state.forms.id
     };
+
   }
 
   function mapDispatchToProps(dispatch) {
