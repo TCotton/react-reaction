@@ -16,15 +16,22 @@ class ExcludePopularTwo extends Component {
 
   static propTypes = {
     formUpdate: PropTypes.func,
-    items: PropTypes.shape({
-      results: PropTypes.array
-    })
+    id: PropTypes.number,
+    popular: PropTypes.array
   };
 
   constructor(props) {
     super(props);
     this.displayPopularGithubList = this.displayPopularGithubList.bind(this);
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    if (!Object.is(this.props.id, nextProps.id) && !Object.is(typeof this.props.id, 'undefined')) {
+      console.dir(nextProps.id);
+    }
+
   }
 
   /**
@@ -46,10 +53,10 @@ class ExcludePopularTwo extends Component {
 
   displayPopularGithubList() {
 
-    if (this.props.items.results) {
+    if (this.props.popular) {
 
       /* eslint-disable max-len, arrow-body-style */
-      return this.props.items.results.map((item) => {
+      return this.props.popular.map((item) => {
 
         const checkboxItem = `${item.name.toLowerCase()}-${item.id}`;
 
@@ -116,16 +123,8 @@ class ExcludePopularTwo extends Component {
 
 }
 
-function mapStateToProps(state) {
-
-  return {
-    items: state.popular
-  };
-
-}
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ formUpdate: ACTIONS.formUpdate }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExcludePopularTwo);
+export default connect(null, mapDispatchToProps)(ExcludePopularTwo);

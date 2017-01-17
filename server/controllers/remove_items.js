@@ -12,18 +12,18 @@ exports.remove = function(req, res, next) {
   const postId = Number.parseFloat(req.body.id);
 
   if (req.body.remove) {
-
+    // TODO: remove and change to new Mongoose
     removeItems.update(
       { id: postId },
       { $setOnInsert: { id: postId } },
       { upsert: true },
-      (err, item) => {
+      (err) => {
 
         if (err) {
           return next(err);
         }
 
-        return res.send({ 'id': item.id });
+        return res.send({ 'id': postId });
 
       });
 

@@ -16,7 +16,7 @@ export default function (ComposedComponent) {
     }
 
     // err, what?
-    componentWillUpdate(nextProps) {
+ /*   componentWillUpdate(nextProps) {
 
       if (nextProps.popular) {
         return false;
@@ -24,7 +24,7 @@ export default function (ComposedComponent) {
 
       return true;
 
-    }
+    }*/
 
     render() {
       return <ComposedComponent {...this.props} />;
@@ -35,7 +35,8 @@ export default function (ComposedComponent) {
   function mapStateToProps(state) {
 
     return {
-      popular: state.popular.results
+      popular: state.popular.results,
+      id: state.forms.id
     };
   }
 

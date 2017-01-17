@@ -1,9 +1,7 @@
 import TYPES from '../actions/types';
 
 // define initial state - an empty form
-const initialState = {
-  values: {}
-};
+const initialState = {};
 
 export default function (state = initialState, action = null) {
 
@@ -11,9 +9,10 @@ export default function (state = initialState, action = null) {
 
     case TYPES.FORM_UPDATE_VALUE:
 
-      return {
-        ...state, id: action.payload
-      };
+      console.log('FORM_UPDATE_VALUE');
+      console.dir(action.payload);
+
+      return { id: action.payload };
 
     default:
       return state;
