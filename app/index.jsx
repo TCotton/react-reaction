@@ -14,6 +14,7 @@ import Excluded from './containers/excluded_posts';
 import Admin from './components/Admin';
 import ExcludePopular from './containers/included';
 import ExcludedPosts from './containers/excluded';
+import RequireAuth from './containers/authentication';
 import SESSION_STORAGE from './util/sessionStorage';
 import store from './store';
 
@@ -43,9 +44,9 @@ ReactDOM.render(
       <Router history={browserHistory}>
         <Route path='/' component={App} />
         <Route path='/signin' component={Signin} />
-        <Route path='/signout' component={Signout} />
-        <Route path='/admin' component={Admin} />
-        <Route path='/admin/signup' component={Signup} />
+        <Route path='/admin/signout' component={Signout} />
+        <Route path='/admin' component={RequireAuth(Admin)} />
+        <Route path='/admin/signup' component={RequireAuth(Signup)} />
         <Route path='/admin/exclude' component={Included(ExcludePopular)} />
         <Route path='/admin/include' component={Excluded(ExcludedPosts)} />
       </Router>

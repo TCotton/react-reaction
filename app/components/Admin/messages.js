@@ -12,6 +12,11 @@ export default defineMessages({
     defaultMessage: 'Sign Up'
   },
 
+  linkSignOut: {
+    id: 'app.containers.Admin.linkSignOut',
+    defaultMessage: 'Sign out'
+  },
+
   linkManagePopularList: {
     id: 'app.containers.Admin.linkManagePopularList',
     defaultMessage: 'Manage the GitHub popular list'

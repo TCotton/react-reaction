@@ -27,6 +27,11 @@ function Admin() {
               <FormattedMessage {...messages.addItemsBack} />
             </Link>
           </li>
+          <li>
+            <Link to='/admin/signout'>
+              <FormattedMessage {...messages.linkSignOut} />
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

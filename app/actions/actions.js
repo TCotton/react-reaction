@@ -22,7 +22,7 @@ class ErrorMessage {
       });
 
       // - redirect to the route './feature'
-      browserHistory.push('/');
+      browserHistory.push('/admin');
 
     }).catch((response) => {
 
@@ -30,6 +30,16 @@ class ErrorMessage {
       dispatch(authError(response.message));
 
     });
+
+  }
+
+  static goToHomePage(dispatch) {
+
+    dispatch({
+      type: TYPES.UNAUTH_USER
+    });
+
+    browserHistory.push('/admin');
 
   }
 
@@ -133,8 +143,8 @@ function authError(error) {
 
 function signoutUser() {
 
-  return {
-    type: TYPES.UNAUTH_USER
+  return function (dispatch) {
+    ErrorMessage.goToHomePage(dispatch);
   };
 
 }

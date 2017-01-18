@@ -19,7 +19,7 @@ export default defineMessages({
 
   password: {
     id: 'app.containers.Signup.password',
-    defaultMessage: 'Email'
+    defaultMessage: 'Password'
   },
 
   passwordConfirm: {
