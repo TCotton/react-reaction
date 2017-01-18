@@ -44,11 +44,11 @@ ReactDOM.render(
       <Router history={browserHistory}>
         <Route path='/' component={App} />
         <Route path='/signin' component={Signin} />
-        <Route path='/admin/signout' component={Signout} />
         <Route path='/admin' component={RequireAuth(Admin)} />
         <Route path='/admin/signup' component={RequireAuth(Signup)} />
-        <Route path='/admin/exclude' component={Included(ExcludePopular)} />
-        <Route path='/admin/include' component={Excluded(ExcludedPosts)} />
+        <Route path='/admin/signout' component={RequireAuth(Signout)} />
+        <Route path='/admin/exclude' component={RequireAuth(Included(ExcludePopular))} />
+        <Route path='/admin/include' component={RequireAuth(Excluded(ExcludedPosts))} />
       </Router>
     </Provider>
   </IntlProvider>, document.querySelector('.container'));
