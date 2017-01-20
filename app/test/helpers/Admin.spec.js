@@ -33,11 +33,6 @@ describe('<Admin />', () => {
     expect(mountWrapper.find('.admin-index').length).to.not.equal(1);
   });
 
-  it('should have a className of whatever ' + stylesClass['admin-index'], () => {
-    expect(mountWrapper.find(stylesClass['admin-index']).length).to.equal(1);
-    expect(mountWrapper.find('.admin-index').length).to.not.equal(1);
-  });
-
   it('should have an H1 element', () => {
     expect(mountWrapper.find('h1').length).to.equal(1);
     expect(mountWrapper.find('h2').length).to.not.equal(1);
