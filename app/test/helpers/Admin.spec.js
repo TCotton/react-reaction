@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import _ from 'lodash';
-import { mountWithIntl, shallowWithIntl } from './intl-test';
+import { mountWithIntl } from './intl-test';
 
 import Admin from '../../../app/components/Admin';
 import stylesClass from '../../../app/components/Admin/_admin.scss';
@@ -13,16 +13,11 @@ const styles = _.mapValues(stylesClass, raw => '.' + raw);
 describe('<Admin />', () => {
 
   let mountWrapper;
-  let mountShallow;
 
   beforeEach(() => {
 
     // create an instance of CommentBox
     mountWrapper = mountWithIntl(
-      <Admin />
-    );
-
-    mountShallow = shallowWithIntl(
       <Admin />
     );
 
