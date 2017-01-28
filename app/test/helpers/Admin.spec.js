@@ -17,9 +17,7 @@ describe('<Admin />', () => {
   beforeEach(() => {
 
     // create an instance of CommentBox
-    mountWrapper = mountWithIntl(
-      <Admin />
-    );
+    mountWrapper = mountWithIntl(<Admin />);
 
   });
 

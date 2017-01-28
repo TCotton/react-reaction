@@ -4,11 +4,13 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cheerio = require('cheerio');
+const webpack = require('webpack');
 
 const postCSSMqKeyframes = require('postcss-mq-keyframes');
 const postCSSFocus = require('postcss-focus');
 const postCSSFakeId = require('postcss-fakeid');
 const postcssBase64 = require('postcss-base64');
+const postcssReporter = require('postcss-reporter');
 
 /*
 const WebpackStrip = require('strip-loader');
@@ -23,38 +25,15 @@ const stripLoader = {
 devConfig.module.loaders.push(stripLoader);
 */
 
-/**
- * We dynamically generate the HTML content in development so that the different
- * DLL Javascript files are loaded in script tags and available to our application.
- */
-function templateContent() {
-
-  const html = fs.readFileSync(
-    path.resolve(process.cwd(), 'app/index.html')
-  ).toString();
-
-  if (!dllPlugin) {
-    return html;
-  }
-
-  const doc = cheerio(html);
-  const body = doc.find('body');
-  const dllNames = !dllPlugin.dlls ? ['reactBoilerplateDeps'] : Object.keys(dllPlugin.dlls);
-
-  dllNames.forEach((dllName) => body.append(`<script data-dll='true' src='/${dllName}.dll.js'></script>`));
-
-  return doc.toString();
-}
-
-module.exports = (options) => {
+module.exports = () => {
 
   /**
    * Environment type
    * BUILD is for generating minified builds
    * TEST is for generating test builds
    */
-  const BUILD = !!options.BUILD;
-  const TEST = !!options.TEST;
+  const BUILD = !!(process.env.NODE_ENV === 'production');
+  const TEST = !!(process.env.NODE_ENV === 'test');
 
   const config = {};
 
@@ -92,10 +71,7 @@ module.exports = (options) => {
       {
         test: /\.jsx?$|\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: ['react', ['es2015', { 'modules': false }], 'stage-1']
-        }
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
@@ -111,29 +87,32 @@ module.exports = (options) => {
             query: {
               sourceMap: true,
               modules: true,
-              importLoaders: 1,
+              importLoaders: 2,
               localIdentName: '[name]__[local]___[hash:base64:5]'
             }
           },
 
-          /* {
-           loader: 'postcss-loader',
-           options: {
-           plugins: () => {
-           return [
-           autoprefixer({
-           browsers: ['last 2 versions']
-           }),
-           postcssBase64({
-           extensions: ['.svg', '.png', '.jpeg', 'jpg']
-           }),
-           postCSSMqKeyframes(),
-           postCSSFocus(),
-           postCSSFakeId()
-           ];
-           }
-           }
-           } */
+         /* {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => {
+                return [
+                  autoprefixer({
+                    browsers: ['last 2 versions']
+                  }),
+                  postcssBase64({
+                    extensions: ['.svg', '.png', '.jpeg', 'jpg']
+                  }),
+                  postCSSMqKeyframes(),
+                  postCSSFocus(),
+                  postCSSFakeId(),
+                  postcssReporter({
+                    clearMessages: true
+                  })
+                ];
+              }
+            }
+          },*/
 
           {
             loader: 'sass-loader',
@@ -188,12 +167,16 @@ module.exports = (options) => {
       filename: 'index.html'
     }),
 
-  /*  new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
+    // inside your code for any environment checks; UglifyJS will automatically
+    // drop any unreachable code.
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })*/
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+
+    new webpack.NamedModulesPlugin(),
 
     new BundleAnalyzerPlugin({
       // Can be `server`, `static` or `disabled`.
@@ -225,6 +208,8 @@ module.exports = (options) => {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'app')
   };
+
+  config.target = 'web';
 
   return config;
 
