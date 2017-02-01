@@ -7,11 +7,12 @@
     "analyze:clean": "rimraf stats.json",
     "preanalyze": "npm run analyze:clean",
     "analyze": "node ./internals/analyze.js",
-    "test": "mocha -w ./app/test/helpers/browser.js ./app/test/helpers/*.spec.js",
+    "test": "mocha ./app/test/helpers/browser.js ./app/test/helpers/*.spec.js",
+    "test:watch": "mocha -w ./app/test/helpers/browser.js ./app/test/helpers/*.spec.js",
     "testTwo": "mocha --compilers js:babel-core/register --require ./app/test/test_helper.js --recursive 'app/actions/**/*test.js'",
     "testTwo:watch": "npm run test -- --auto-watch --no-single-run",
     "start": "cross-env NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --colors --watch --config",
-    "build": "bump --prompt",
+    "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress",
     "strip": "webpack --config 'webpack.production.config.js' -p",
     "nodeDev": "NODE_ENV=development PORT=3090 nodemon server/index.js",
     "security": "nsp check",
@@ -25,6 +26,38 @@
     "start:prod": "cross-env NODE_ENV=production node server",
     "presetup": "npm i chalk shelljs",
     "coveralls": "cat ./coverage/lcov/lcov.info | coveralls"
+  },
+  "babel": {
+    "presets": [
+      [
+        "latest",
+        {
+          "es2015": {
+            "modules": false
+          }
+        }
+      ],
+      "react",
+      "stage-0"
+    ],
+    "env": {
+      "production": {
+        "only": [
+          "app"
+        ],
+        "plugins": [
+          "transform-react-remove-prop-types",
+          "transform-react-constant-elements",
+          "transform-react-inline-elements"
+        ]
+      },
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs",
+          "dynamic-import-node"
+        ]
+      }
+    }
   },
   "jest": {
     "verbose": true
@@ -50,6 +83,7 @@
   "dependencies": {
     "axios": "0.15.2",
     "babel-polyfill": "6.16.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-1": "6.16.0",
     "babel-runtime": "6.18.0",
     "bcrypt-nodejs": "0.0.3",
@@ -145,6 +179,7 @@
     "html-webpack-plugin": "2.24.1",
     "image-webpack-loader": "3.0.0",
     "imports-loader": "0.6.5",
+    "ip": "^1.1.4",
     "istanbul": "0.4.5",
     "jest": "17.0.3",
     "jquery": "3.1.1",
