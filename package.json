@@ -11,7 +11,7 @@
     "test:watch": "mocha -w ./app/test/helpers/browser.js ./app/test/helpers/*.spec.js",
     "testTwo": "mocha --compilers js:babel-core/register --require ./app/test/test_helper.js --recursive 'app/actions/**/*test.js'",
     "testTwo:watch": "npm run test -- --auto-watch --no-single-run",
-    "start": "cross-env NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --colors --watch --config",
+    "start": "cross-env NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "build": "cross-env NODE_ENV=production webpack --config internals/webpack/webpack.prod.babel.js --color -p --progress",
     "strip": "webpack --config 'webpack.production.config.js' -p",
     "nodeDev": "NODE_ENV=development PORT=3090 nodemon server/index.js",
@@ -59,6 +59,13 @@
       }
     }
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./internals/webpack/webpack.prod.babel.js"
+      }
+    }
+  },
   "jest": {
     "verbose": true
   },
@@ -89,6 +96,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.15.2",
     "chalk": "1.1.3",
+    "circular-dependency-plugin": "^2.0.0",
     "classnames": "2.2.5",
     "cookie-parser": "1.4.3",
     "cross-env": "3.1.3",

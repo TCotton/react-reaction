@@ -41,7 +41,7 @@ module.exports = (options) => ({
             interlaced: false,
             pngquant: {
               quality: '65-90',
-              speed: 4,
+              speed: 4
             },
           },
         },
@@ -63,7 +63,7 @@ module.exports = (options) => ({
   plugins: options.plugins.concat([
     new webpack.ProvidePlugin({
       // make fetch available
-      fetch: 'exports-loader?self.fetch!whatwg-fetch',
+      fetch: 'exports-loader?self.fetch!whatwg-fetch'
     }),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
@@ -71,7 +71,7 @@ module.exports = (options) => ({
     // drop any unreachable code.
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       },
     }),
     new webpack.NamedModulesPlugin()
