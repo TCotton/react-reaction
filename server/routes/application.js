@@ -67,4 +67,8 @@ module.exports = function (app) {
 
   app.get(`/${CONST.API}/${CONST.RET_REMOVE}`, apiLimiter, RemoveItem.retrieveItems);
 
+  app.get('*', (req, res) => {
+
+  });
+
 };
