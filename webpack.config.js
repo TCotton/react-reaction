@@ -85,7 +85,7 @@ module.exports = () => {
       {
         test: /\.jsx?$|\.js$/,
         exclude: /node_modules/,
-        loader: ['babel-loader']
+        loader: ['babel-loader?cacheDirectory']
       },
       {
         test: /\.(png|jpg|jpe?g$|svg)$/,
@@ -169,8 +169,17 @@ module.exports = () => {
 
     config.module.rules.push(
       {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'resolve-url-loader']
+        }),
+      }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'css-loader', 'resolve-url-loader', 'sass-loader?outputStyle=compressed&includePaths=\'./app/scss\'&sourceMap=true')
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: ['css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'resolve-url-loader', 'sass-loader?outputStyle=compressed&includePaths=\'./app/scss\'&sourceMap=true']
+        })
       }
     );
 
@@ -178,7 +187,7 @@ module.exports = () => {
 
   config.resolve = {
     // resolve extensions in the ES6 modules import/export
-    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx', '.json'],
+    extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx', '.json', '.css', '.scss'],
     modules: [path.resolve(__dirname, 'app'), 'node_modules']
   };
 
