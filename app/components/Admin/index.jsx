@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import styles from './_admin.scss';
+import stylesTwo from './testing.css';
 import H1 from '../../components/h1';
 
 function Admin() {

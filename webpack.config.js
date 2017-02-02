@@ -106,6 +106,26 @@ module.exports = () => {
 
     config.module.rules.push(
       {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+
+          {
+            loader: 'style-loader'
+          },
+
+          {
+            loader: 'css-loader',
+            query: {
+              sourceMap: true,
+              modules: true,
+              importLoaders: 2,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          }
+        ]
+      },
+      {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
@@ -170,12 +190,14 @@ module.exports = () => {
     config.module.rules.push(
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: ['css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'resolve-url-loader']
         }),
       }, {
         test: /\.scss$/,
+        exclude: /node_modules/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: ['css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'resolve-url-loader', 'sass-loader?outputStyle=compressed&includePaths=\'./app/scss\'&sourceMap=true']
@@ -206,7 +228,8 @@ module.exports = () => {
     new HtmlWebpackPlugin({
       template: 'index.tpl.html',
       inject: 'body',
-      filename: 'index.html'
+      filename: 'index.html',
+      chunksSortMode: 'dependency'
     }),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
@@ -217,8 +240,6 @@ module.exports = () => {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
-
-    new webpack.NamedModulesPlugin(),
 
     new BundleAnalyzerPlugin({
       // Can be `server`, `static` or `disabled`.
@@ -272,7 +293,7 @@ module.exports = () => {
         }
       }),
 
-      new ExtractTextPlugin('style-[hash].css')
+      new ExtractTextPlugin('style-[name].[hash]')
     );
 
   }
@@ -286,7 +307,8 @@ module.exports = () => {
         ignoreFiles: [
           './app/scss/_reset.scss'
         ]
-      })
+      }),
+      new webpack.NamedModulesPlugin()
     );
 
   }
