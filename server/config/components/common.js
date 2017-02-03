@@ -1,5 +1,9 @@
 const Joi = require('joi');
 
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = 'production';
+}
+
 const envVarsSchema = Joi.object({
 
   NODE_ENV: Joi.string().allow(['development', 'production', 'test', 'provision']).required(),

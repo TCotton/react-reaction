@@ -7,6 +7,8 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const log = require('loglevel');
 const helmet = require('helmet');
+const mime = require('mime');
+const fs = require('fs');
 
 const router = require('../../routes/application');
 const common = require('./common');
@@ -39,12 +41,33 @@ app.use(bodyParser.json({
 
 if (common.isProduction) {
 
-  app.use(express.static('../../public'));
+  app.use(express.static('build', { root: __base }));
 
-  app.get('/*', function(req, res, next) {
+ /* app.get('/!*', (req, res, next) => {
+
+    if (req.url.endsWith('.js')) {
+
+      fs.readFile(req.url, (err, data) => {
+        if (err) {
+          res.writeHead(404);
+          return res.end('File not found.');
+        }
+
+        res.setHeader('Content-Type', mime.lookup(req.url));
+        res.writeHead(200);
+        res.end(data);
+      });
+
+    } else {
+      next();
+    }
+
+  });*/
+
+  app.get('/*', (req, res, next) => {
 
     if (!req.url.startsWith('/api/')) {
-      res.sendFile('../../public/index.html');
+      res.sendFile('build/index.html', { root: __base });
     }
 
     if (req.url.startsWith('/api/')) {
@@ -61,6 +84,11 @@ router(app);
 const port = process.env.port || common.server.port;
 
 const server = http.createServer(app);
+
+function handler(req, res) {
+
+
+}
 
 module.exports = server.listen(port, (err) => {
 

@@ -1,7 +1,8 @@
 // Main starting point of the application
 /* eslint-disable */
 try {
-  require('./config/');
+  global.__base = __dirname + '/';
+  require('./server/config/');
 } catch (ex) {
   throw ex;
 }
