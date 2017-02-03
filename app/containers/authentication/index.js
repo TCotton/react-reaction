@@ -1,3 +1,4 @@
+/* eslint-disable  react/prop-types */
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 

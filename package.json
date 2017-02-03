@@ -10,7 +10,7 @@
     "test": "cross-env NODE_ENV=test mocha ./app/test/helpers/browser.js ./app/test/helpers/*.spec.js",
     "test:watch": "cross-env NODE_ENV=test mocha -w ./app/test/helpers/browser.js ./app/test/helpers/*.spec.js",
     "start": "cross-env NODE_ENV=development ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --progress --colors --watch --config",
-    "build": "cross-env NODE_ENV=production webpack --color -p --progress",
+    "build": "cross-env NODE_ENV=production webpack --display-error-details --color -p --progress",
     "preview": "cross-env NODE_ENV=production ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config",
     "bumpIt": "bump --prompt",
     "strip": "webpack --config 'webpack.config.js' -p",

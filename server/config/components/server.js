@@ -2,7 +2,7 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const log = require('loglevel');
@@ -10,6 +10,7 @@ const helmet = require('helmet');
 
 const router = require('../../routes/application');
 const common = require('./common');
+const mongoDB = require('../../config');
 
 const app = express();
 
@@ -27,11 +28,13 @@ if (common.isProduction) {
 if (common.isDevelopment) {
   mongoose.connect('mongodb://localhost:auth/auth');
 } else {
-  log.error('No production DB');
+  mongoose.connect(mongoDB.MONGO_MODULUS);
 }
+
 // App Set up
 // parse cookies 
 // we need this because "cookie" is true in csrfProtection 
+
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(bodyParser.json({

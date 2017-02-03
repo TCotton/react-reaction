@@ -3,7 +3,6 @@ import { browserHistory } from 'react-router';
 import { getStoredState } from 'redux-persist';
 import TYPES from './types';
 import UNIVERSAL from '../constant';
-// import SESSION_STORAGE from '../util/sessionStorage';
 import store from '../store';
 
 class ErrorMessage {

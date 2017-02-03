@@ -16,43 +16,14 @@ const postcssReporter = require('postcss-reporter');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProduction = nodeEnv === 'production';
 
-/*
- const WebpackStrip = require('strip-loader');
- const devConfig = require('./webpack.config');
-
- const stripLoader = {
- test: /\.jsx?$|\.js?$/,
- exclude: /node_modules/,
- loader: WebpackStrip.loader('console.log', 'console.dir')
- };
-
- devConfig.module.loaders.push(stripLoader);
- */
 console.dir(process.env.NODE_ENV);
-
-ExtractTextPlugin.extract = (before, loader, options) => {
-  if (typeof loader === 'string') {
-    return [
-      ExtractTextPlugin.loader(Object.assign({ omit: before.split('!').length, extract: true, remove: true }, options)),
-      before,
-      loader
-    ].join('!');
-  } else {
-    options = loader;
-    loader = before;
-    return [
-      ExtractTextPlugin.loader(Object.assign({ remove: true }, options)),
-      loader
-    ].join('!');
-  }
-};
 
 module.exports = () => {
 
   const config = {};
 
   config.entry = [
-    'index.jsx'
+    'index.js'
   ];
 
   config.output = {
@@ -189,19 +160,12 @@ module.exports = () => {
 
     config.module.rules.push(
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'resolve-url-loader']
-        }),
-      }, {
         test: /\.scss$/,
-        exclude: /node_modules/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: ['css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]', 'resolve-url-loader', 'sass-loader?outputStyle=compressed&includePaths=\'./app/scss\'&sourceMap=true']
-        })
+        loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]!resolve-url-loader!sass-loader?outputStyle=compressed&includePaths=\'./app/scss\'&sourceMap=true'
+      },
+      {
+        test: /\.js$/,
+        loader: 'strip-loader?strip[]=debug,strip[]=console.log,strip[]=console.dir'
       }
     );
 
@@ -317,7 +281,6 @@ module.exports = () => {
     historyApiFallback: true,
     compress: isProduction,
     inline: !isProduction,
-    /*    hot: !isProduction,*/
     contentBase: isProduction ? path.resolve(__dirname, 'build') : path.resolve(__dirname, 'app'),
     stats: {
       assets: true,

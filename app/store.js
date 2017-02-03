@@ -1,15 +1,19 @@
-import createLogger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { autoRehydrate } from 'redux-persist';
-import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducers from './reducers';
 
-const logger = createLogger();
-const middleWare = [reduxThunk, logger];
+const middleWare = [reduxThunk];
 
-const composeEnhancers = (process.env.NODE_ENV !== 'production') ? composeWithDevTools : compose;
+let composeEnhancers = compose;
+
+function debug() {
+  composeEnhancers = require('redux-devtools-extension').composeWithDevTools; // eslint-disable-line
+  middleWare.push(require('redux-logger')()); // eslint-disable-line
+}
+
+debug();
 
 const createStoreWithMiddleware = composeEnhancers(applyMiddleware(...middleWare), autoRehydrate())(createStore);
 
