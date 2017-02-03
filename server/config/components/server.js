@@ -31,15 +31,30 @@ if (common.isDevelopment) {
   mongoose.connect(mongoDB.MONGO_MODULUS);
 }
 
-// App Set up
-// parse cookies 
-// we need this because "cookie" is true in csrfProtection 
-
 app.use(cookieParser());
 app.use(morgan('combined'));
 app.use(bodyParser.json({
   type: '*/*'
 }));
+
+if (common.isProduction) {
+
+  app.use(express.static('../../public'));
+
+  app.get('/*', function(req, res, next) {
+
+    if (!req.url.startsWith('/api/')) {
+      res.sendFile('../../public/index.html');
+    }
+
+    if (req.url.startsWith('/api/')) {
+      next();
+    }
+
+  });
+
+}
+
 router(app);
 
 // Server setup
